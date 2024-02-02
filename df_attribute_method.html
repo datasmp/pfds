@@ -1,0 +1,2909 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Attributes and Methods &#8212; Python in Plain Terms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'df_attribute_method';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visualization" href="df_visualization.html" />
+    <link rel="prev" title="Dataframe" href="df_basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="pfds.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="pfds.html">
+                    Python for Data Science
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_info.html">Basic Information</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="df_basics.html">Dataframe</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Attributes and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">Advanced Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io/issues/new?title=Issue%20on%20page%20%2Fdf_attribute_method.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/df_attribute_method.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Attributes and Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-and-len">shape and len()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-and-columns">index and columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail">head() and tail()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">info()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe">describe()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#value-counts">value_counts()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copy">copy()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop">drop()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reset-index">reset_index()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-index">set_index()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-mean-median-std">sum(), mean(), median(), std()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rename">rename()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-values">sort_values()</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="attributes-and-methods">
+<h1>Attributes and Methods<a class="headerlink" href="#attributes-and-methods" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this section, we will cover basic attributes and methods of dataframes.</p>
+<ul class="simple">
+<li><p>Throughout this section, we’ll be using the following three dataframes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_height_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;State&#39;</span><span class="p">:[</span><span class="s1">&#39;NY&#39;</span><span class="p">,</span> <span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="s1">&#39;TX&#39;</span><span class="p">],</span> <span class="s1">&#39;Height&#39;</span><span class="p">:[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">140</span><span class="p">]}</span>
+<span class="n">df_sh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">state_height_dic</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Liz&#39;</span><span class="p">,</span> <span class="s1">&#39;Tim&#39;</span><span class="p">])</span>
+<span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_grades</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/datasmp/datasets/main/grades.csv&#39;</span><span class="p">)</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mqtvy</td>
+      <td>37047871</td>
+      <td>10</td>
+      <td>M</td>
+      <td>30</td>
+      <td>91</td>
+      <td>69</td>
+      <td>93</td>
+      <td>17</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>jbbsx</td>
+      <td>35439616</td>
+      <td>11</td>
+      <td>F</td>
+      <td>6</td>
+      <td>18</td>
+      <td>93</td>
+      <td>9</td>
+      <td>98</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mrvab</td>
+      <td>35543247</td>
+      <td>11</td>
+      <td>M</td>
+      <td>78</td>
+      <td>92</td>
+      <td>60</td>
+      <td>43</td>
+      <td>34</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>bjyve</td>
+      <td>61282135</td>
+      <td>9</td>
+      <td>M</td>
+      <td>60</td>
+      <td>8</td>
+      <td>10</td>
+      <td>99</td>
+      <td>80</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>rlpsr</td>
+      <td>53448034</td>
+      <td>10</td>
+      <td>M</td>
+      <td>3</td>
+      <td>38</td>
+      <td>45</td>
+      <td>43</td>
+      <td>79</td>
+      <td>69</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/datasmp/datasets/main/stock.xlsx&#39;</span><span class="p">)</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-02</td>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>189.66</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-03</td>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-01-06</td>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>1902.88</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-01-07</td>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>1906.86</td>
+      <td>187.24</td>
+      <td>3237.18</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-01-08</td>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Attributes provide information about the dataframe.</p></li>
+</ul>
+<section id="shape-and-len">
+<h3>shape and len()<a class="headerlink" href="#shape-and-len" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code> returns the tuple (number of rows, number of columns).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len()</span></code> returns the number of rows.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3 rows and 2 columns</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3 rows</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df_sh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 100 rows and 10 columns</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 100 rows </span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df_grades</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="index-and-columns">
+<h3>index and columns<a class="headerlink" href="#index-and-columns" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><em>index</em> returns row labels.</p></li>
+<li><p><em>columns</em> returns column labels.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># row labels</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;John&#39;, &#39;Liz&#39;, &#39;Tim&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># column labels</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;State&#39;, &#39;Height&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="values">
+<h3>values<a class="headerlink" href="#values" title="Permalink to this heading">#</a></h3>
+<p>The values attribute removes labels and returns an array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;NY&#39;, 160],
+       [&#39;OK&#39;, 180],
+       [&#39;TX&#39;, 140]], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<section id="head-and-tail">
+<h3>head() and tail()<a class="headerlink" href="#head-and-tail" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>head(n) displays the first n rows.</p></li>
+<li><p>tail(n) displays the last n rows.</p></li>
+<li><p>The default value of <span class="math notranslate nohighlight">\(n\)</span> is 5.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first 5 rows</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mqtvy</td>
+      <td>37047871</td>
+      <td>10</td>
+      <td>M</td>
+      <td>30</td>
+      <td>91</td>
+      <td>69</td>
+      <td>93</td>
+      <td>17</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>jbbsx</td>
+      <td>35439616</td>
+      <td>11</td>
+      <td>F</td>
+      <td>6</td>
+      <td>18</td>
+      <td>93</td>
+      <td>9</td>
+      <td>98</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mrvab</td>
+      <td>35543247</td>
+      <td>11</td>
+      <td>M</td>
+      <td>78</td>
+      <td>92</td>
+      <td>60</td>
+      <td>43</td>
+      <td>34</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>bjyve</td>
+      <td>61282135</td>
+      <td>9</td>
+      <td>M</td>
+      <td>60</td>
+      <td>8</td>
+      <td>10</td>
+      <td>99</td>
+      <td>80</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>rlpsr</td>
+      <td>53448034</td>
+      <td>10</td>
+      <td>M</td>
+      <td>3</td>
+      <td>38</td>
+      <td>45</td>
+      <td>43</td>
+      <td>79</td>
+      <td>69</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first 7 rows</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mqtvy</td>
+      <td>37047871</td>
+      <td>10</td>
+      <td>M</td>
+      <td>30</td>
+      <td>91</td>
+      <td>69</td>
+      <td>93</td>
+      <td>17</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>jbbsx</td>
+      <td>35439616</td>
+      <td>11</td>
+      <td>F</td>
+      <td>6</td>
+      <td>18</td>
+      <td>93</td>
+      <td>9</td>
+      <td>98</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mrvab</td>
+      <td>35543247</td>
+      <td>11</td>
+      <td>M</td>
+      <td>78</td>
+      <td>92</td>
+      <td>60</td>
+      <td>43</td>
+      <td>34</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>bjyve</td>
+      <td>61282135</td>
+      <td>9</td>
+      <td>M</td>
+      <td>60</td>
+      <td>8</td>
+      <td>10</td>
+      <td>99</td>
+      <td>80</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>rlpsr</td>
+      <td>53448034</td>
+      <td>10</td>
+      <td>M</td>
+      <td>3</td>
+      <td>38</td>
+      <td>45</td>
+      <td>43</td>
+      <td>79</td>
+      <td>69</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>hotxq</td>
+      <td>96808584</td>
+      <td>9</td>
+      <td>F</td>
+      <td>29</td>
+      <td>18</td>
+      <td>61</td>
+      <td>17</td>
+      <td>72</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ylskw</td>
+      <td>37901138</td>
+      <td>9</td>
+      <td>M</td>
+      <td>53</td>
+      <td>85</td>
+      <td>61</td>
+      <td>87</td>
+      <td>9</td>
+      <td>94</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># last 5 rows</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>95</th>
+      <td>zxuaq</td>
+      <td>58332078</td>
+      <td>12</td>
+      <td>M</td>
+      <td>57</td>
+      <td>1</td>
+      <td>48</td>
+      <td>61</td>
+      <td>58</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>vegye</td>
+      <td>10019910</td>
+      <td>11</td>
+      <td>F</td>
+      <td>88</td>
+      <td>30</td>
+      <td>48</td>
+      <td>85</td>
+      <td>48</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>euwlj</td>
+      <td>27967150</td>
+      <td>12</td>
+      <td>F</td>
+      <td>70</td>
+      <td>15</td>
+      <td>72</td>
+      <td>77</td>
+      <td>20</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>oesms</td>
+      <td>36171468</td>
+      <td>10</td>
+      <td>M</td>
+      <td>88</td>
+      <td>16</td>
+      <td>100</td>
+      <td>62</td>
+      <td>76</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>buugr</td>
+      <td>88783139</td>
+      <td>10</td>
+      <td>M</td>
+      <td>23</td>
+      <td>74</td>
+      <td>14</td>
+      <td>17</td>
+      <td>40</td>
+      <td>59</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># last 7 rows</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>93</th>
+      <td>yzljj</td>
+      <td>10884705</td>
+      <td>10</td>
+      <td>M</td>
+      <td>92</td>
+      <td>75</td>
+      <td>41</td>
+      <td>33</td>
+      <td>61</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>jloze</td>
+      <td>30408806</td>
+      <td>10</td>
+      <td>M</td>
+      <td>19</td>
+      <td>24</td>
+      <td>73</td>
+      <td>98</td>
+      <td>48</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>zxuaq</td>
+      <td>58332078</td>
+      <td>12</td>
+      <td>M</td>
+      <td>57</td>
+      <td>1</td>
+      <td>48</td>
+      <td>61</td>
+      <td>58</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>vegye</td>
+      <td>10019910</td>
+      <td>11</td>
+      <td>F</td>
+      <td>88</td>
+      <td>30</td>
+      <td>48</td>
+      <td>85</td>
+      <td>48</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>euwlj</td>
+      <td>27967150</td>
+      <td>12</td>
+      <td>F</td>
+      <td>70</td>
+      <td>15</td>
+      <td>72</td>
+      <td>77</td>
+      <td>20</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>oesms</td>
+      <td>36171468</td>
+      <td>10</td>
+      <td>M</td>
+      <td>88</td>
+      <td>16</td>
+      <td>100</td>
+      <td>62</td>
+      <td>76</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>buugr</td>
+      <td>88783139</td>
+      <td>10</td>
+      <td>M</td>
+      <td>23</td>
+      <td>74</td>
+      <td>14</td>
+      <td>17</td>
+      <td>40</td>
+      <td>59</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="info">
+<h3>info()<a class="headerlink" href="#info" title="Permalink to this heading">#</a></h3>
+<p>The info() method provides basic information about the DataFrame, including:</p>
+<ul class="simple">
+<li><p>row labels: RangeIndex: 100 entries, 0 to 99</p></li>
+<li><p>column labls: ‘Name’, ‘ID’, ‘Grade’, ‘Gender’, ‘HW’, ‘Test-1’, ‘Test-2’, ‘Test-3’, ‘Test-4’, ‘Final’</p></li>
+<li><p>number of columns: 10</p></li>
+<li><p>Non-null (non-missing) values: 100 for each column</p></li>
+<li><p>dtype: object (strings), int64</p></li>
+<li><p>memory usage: 7.9+ KB</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_grades</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 10 columns):
+ #   Column  Non-Null Count  Dtype 
+---  ------  --------------  ----- 
+ 0   Name    100 non-null    object
+ 1   ID      100 non-null    int64 
+ 2   Grade   100 non-null    int64 
+ 3   Gender  100 non-null    object
+ 4   HW      100 non-null    int64 
+ 5   Test-1  100 non-null    int64 
+ 6   Test-2  100 non-null    int64 
+ 7   Test-3  100 non-null    int64 
+ 8   Test-4  100 non-null    int64 
+ 9   Final   100 non-null    int64 
+dtypes: int64(8), object(2)
+memory usage: 7.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_grades</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Name&#39;, &#39;ID&#39;, &#39;Grade&#39;, &#39;Gender&#39;, &#39;HW&#39;, &#39;Test-1&#39;, &#39;Test-2&#39;, &#39;Test-3&#39;,
+       &#39;Test-4&#39;, &#39;Final&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="describe">
+<h3>describe()<a class="headerlink" href="#describe" title="Permalink to this heading">#</a></h3>
+<p>It returns the descriptive statistics of the columns of the DataFrame, including:</p>
+<ul class="simple">
+<li><p>Count</p></li>
+<li><p>Mean</p></li>
+<li><p>Standard deviation (std)</p></li>
+<li><p>Minimum (min)</p></li>
+<li><p>25th percentile</p></li>
+<li><p>50th percentile (median)</p></li>
+<li><p>75th percentile</p></li>
+<li><p>Maximum (max)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>252.000000</td>
+      <td>252.000000</td>
+      <td>252.000000</td>
+      <td>252.000000</td>
+      <td>252.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>94.753056</td>
+      <td>288.347579</td>
+      <td>2678.569087</td>
+      <td>192.986984</td>
+      <td>3215.720079</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>21.836181</td>
+      <td>167.278855</td>
+      <td>545.632095</td>
+      <td>15.541861</td>
+      <td>318.045077</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>55.660000</td>
+      <td>72.240000</td>
+      <td>1676.610000</td>
+      <td>134.900000</td>
+      <td>2237.400000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>76.622500</td>
+      <td>149.745000</td>
+      <td>2146.120000</td>
+      <td>187.957500</td>
+      <td>3034.530000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>90.960000</td>
+      <td>232.830000</td>
+      <td>2884.500000</td>
+      <td>196.205000</td>
+      <td>3275.360000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>115.350000</td>
+      <td>421.035000</td>
+      <td>3164.790000</td>
+      <td>203.785000</td>
+      <td>3403.050000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>136.490000</td>
+      <td>695.000000</td>
+      <td>3531.450000</td>
+      <td>218.020000</td>
+      <td>3735.360000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="value-counts">
+<h3>value_counts()<a class="headerlink" href="#value-counts" title="Permalink to this heading">#</a></h3>
+<p>It returns the number of occurrences for each value of the column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are 54 occurrences of &#39;M&#39; and 46 occurrences of &#39;F&#39; in the column Gender.</span>
+<span class="n">df_grades</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gender
+M    54
+F    46
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are 27 occurrences of &#39;nine&#39;, 26 occurrences of &#39;eleven&#39;, 24 occurrences of &#39;twelve&#39;, </span>
+<span class="c1"># and 23 occurrences of &#39;ten&#39; in the Grade column.</span>
+<span class="n">df_grades</span><span class="p">[</span><span class="s1">&#39;Grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grade
+9     27
+11    26
+12    24
+10    23
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="copy">
+<h3>copy()<a class="headerlink" href="#copy" title="Permalink to this heading">#</a></h3>
+<p>The <em>copy()</em> method returns a copy of the DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh_copy</span> <span class="o">=</span> <span class="n">df_sh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_sh_copy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="drop">
+<h3>drop()<a class="headerlink" href="#drop" title="Permalink to this heading">#</a></h3>
+<p>The drop() method is used to remove column(s) and row(s) from the DataFrame.</p>
+<ul class="simple">
+<li><p>axis=0 means that the given row(s) are dropped (default).</p></li>
+<li><p>axis=1 means that the given column(s) are dropped.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># row with label &#39;Liz&#39; is removed</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Liz&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># column with label &#39;Height&#39; is removed</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>By default, the <em>drop()</em> method does not change the DataFrame. It just displays how the DataFrame would look if the dropping were performed.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no change on df_sh</span>
+<span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>To make a change to the DataFrame, the parameter <code class="docutils literal notranslate"><span class="pre">inplace</span></code> should be set to True, which is False by default.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no &#39;State&#39; column any more</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no &#39;Tim&#39; row any more</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Tim&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#default value of axis=0  </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="reset-index">
+<h3>reset_index()<a class="headerlink" href="#reset-index" title="Permalink to this heading">#</a></h3>
+<p>The <em>reset_index()</em> method is used to reset the row labels of a DataFrame to default values: <span class="math notranslate nohighlight">\(0, 1, 2, ...\)</span></p>
+<ul class="simple">
+<li><p>It also adds the initial row labels as a new column with label <em>index</em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>John</td>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Liz</td>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>If you do not want to keep the initial index values, you can set the <em>drop</em> parameter to True.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no index column</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><em>reset_index()</em> does not change the DataFrame unless inplace=True.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no change on row labels</span>
+<span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># row labels are changed</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>John</td>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Liz</td>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="set-index">
+<h3>set_index()<a class="headerlink" href="#set-index" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_index()</span></code> method is used to set the DataFrame row labels to an existing column.</p>
+<ul class="simple">
+<li><p>The label of the column that becomes the new index is preserved for future use.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use &#39;State&#39; column values as new row labels </span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NY</th>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>Liz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><em>set_index()</em> does not change the DataFrame unless inplace=True</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no change on row labels</span>
+<span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>John</td>
+      <td>NY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Liz</td>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># row labels are changed</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NY</th>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>Liz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Let’s update the index of <em>df_stock</em> using the <em>Date</em> column.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>189.66</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>1902.88</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>1906.86</td>
+      <td>187.24</td>
+      <td>3237.18</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="sum-mean-median-std">
+<h3>sum(), mean(), median(), std()<a class="headerlink" href="#sum-mean-median-std" title="Permalink to this heading">#</a></h3>
+<p>When axis=0, computation is column-wise (vertically). This means that for each column, the operation is performed on different row values.</p>
+<ul class="simple">
+<li><p>This is the default value.</p></li>
+</ul>
+<p>When axis=1, computation is row-wise (horizontally). This means that for each row, the operation is performed on different column values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># axis=0</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># sum of values in each column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE      23877.77
+TESLA      72663.59
+AMAZON    674999.41
+VISA       48632.72
+SP500     810361.46
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># axis=1</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># sum of values in each row</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date
+2020-01-02    5505.90
+2020-01-03    5460.18
+2020-01-06    5501.41
+2020-01-07    5498.94
+2020-01-08    5508.94
+               ...   
+2020-12-23    7857.00
+2020-12-24    7877.67
+2020-12-28    8031.80
+2020-12-29    8063.74
+2020-12-30    8064.21
+Length: 252, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean of each column</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE       94.753056
+TESLA      288.347579
+AMAZON    2678.569087
+VISA       192.986984
+SP500     3215.720079
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># median of each column</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE       90.960
+TESLA      232.830
+AMAZON    2884.500
+VISA       196.205
+SP500     3275.360
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># standard deviation of each column</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE      21.836181
+TESLA     167.278855
+AMAZON    545.632095
+VISA       15.541861
+SP500     318.045077
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rename">
+<h3>rename()<a class="headerlink" href="#rename" title="Permalink to this heading">#</a></h3>
+<p>The <em>rename()</em> method is used to rename column or row labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NY</th>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>Liz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Let’s rename the index column as “Name”.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span><span class="s1">&#39;Name&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NY</th>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>Liz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no change on df_sh</span>
+<span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NY</th>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>Liz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><em>rename()</em> does not change the DataFrame unless inplace=True.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;index&#39; --&gt; &#39;Name&#39;</span>
+<span class="n">df_sh</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span><span class="s1">&#39;Name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NY</th>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>Liz</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="sort-values">
+<h3>sort_values()<a class="headerlink" href="#sort-values" title="Permalink to this heading">#</a></h3>
+<p>It sorts the dataframe based on the provided column in ascending or descending order.</p>
+<ul class="simple">
+<li><p>By default, sorting is done in ascending order.</p></li>
+<li><p>To sort in descending order, set the <code class="docutils literal notranslate"><span class="pre">ascending</span></code> parameter to False.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ascending</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Test-2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>jjgag</td>
+      <td>46794501</td>
+      <td>11</td>
+      <td>F</td>
+      <td>8</td>
+      <td>43</td>
+      <td>1</td>
+      <td>7</td>
+      <td>82</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>cxkpb</td>
+      <td>71808293</td>
+      <td>10</td>
+      <td>M</td>
+      <td>87</td>
+      <td>80</td>
+      <td>4</td>
+      <td>14</td>
+      <td>77</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>mwsqn</td>
+      <td>85824590</td>
+      <td>11</td>
+      <td>M</td>
+      <td>89</td>
+      <td>95</td>
+      <td>4</td>
+      <td>34</td>
+      <td>94</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>yxchm</td>
+      <td>48696307</td>
+      <td>9</td>
+      <td>M</td>
+      <td>33</td>
+      <td>54</td>
+      <td>5</td>
+      <td>39</td>
+      <td>94</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>rulsy</td>
+      <td>40694890</td>
+      <td>12</td>
+      <td>M</td>
+      <td>4</td>
+      <td>8</td>
+      <td>6</td>
+      <td>81</td>
+      <td>62</td>
+      <td>46</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># descending</span>
+<span class="n">df_grades</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Test-2&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Gender</th>
+      <th>HW</th>
+      <th>Test-1</th>
+      <th>Test-2</th>
+      <th>Test-3</th>
+      <th>Test-4</th>
+      <th>Final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16</th>
+      <td>abqln</td>
+      <td>59927557</td>
+      <td>11</td>
+      <td>F</td>
+      <td>26</td>
+      <td>97</td>
+      <td>100</td>
+      <td>46</td>
+      <td>94</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>oesms</td>
+      <td>36171468</td>
+      <td>10</td>
+      <td>M</td>
+      <td>88</td>
+      <td>16</td>
+      <td>100</td>
+      <td>62</td>
+      <td>76</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>xohww</td>
+      <td>81223224</td>
+      <td>9</td>
+      <td>M</td>
+      <td>32</td>
+      <td>24</td>
+      <td>100</td>
+      <td>81</td>
+      <td>59</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>wxtpu</td>
+      <td>98301627</td>
+      <td>12</td>
+      <td>M</td>
+      <td>44</td>
+      <td>57</td>
+      <td>99</td>
+      <td>87</td>
+      <td>9</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>tkhtm</td>
+      <td>56044667</td>
+      <td>12</td>
+      <td>F</td>
+      <td>20</td>
+      <td>67</td>
+      <td>97</td>
+      <td>13</td>
+      <td>73</td>
+      <td>41</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="df_basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dataframe</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="df_visualization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Visualization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-and-len">shape and len()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-and-columns">index and columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail">head() and tail()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">info()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe">describe()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#value-counts">value_counts()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copy">copy()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop">drop()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reset-index">reset_index()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-index">set_index()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-mean-median-std">sum(), mean(), median(), std()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rename">rename()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-values">sort_values()</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yusuf Danisman
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

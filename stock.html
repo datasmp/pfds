@@ -1,0 +1,2795 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Stock Data &#8212; Python in Plain Terms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stock';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="pfds.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="pfds.html">
+                    Python for Data Science
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_info.html">Basic Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataframe.html">Dataframe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io/issues/new?title=Issue%20on%20page%20%2Fstock.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/stock.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stock Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Stock Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-time">Remove Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#percentage-change">Percentage Change</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-missing-values">Remove missing values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-stock-data">Multiple Stock Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-coefficient">Correlation Coefficient</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projects">Projects</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-1-sp500-correlations">Project-1: SP500 Correlations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-symbol-list">Step-1: Symbol List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-close-data">Step-2: Close Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-correlations">Step-3: Correlations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-visualization">Step-4: Visualization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="stock-data">
+<h1>Stock Data<a class="headerlink" href="#stock-data" title="Permalink to this heading">#</a></h1>
+<section id="import-data">
+<h2>Import Data<a class="headerlink" href="#import-data" title="Permalink to this heading">#</a></h2>
+<p>Historical stock data can be imported using <code class="docutils literal notranslate"><span class="pre">yfinance</span></code>.</p>
+<ul class="simple">
+<li><p>Each stock has a symbol which is unique to it and made up of letters, ‘.’ and ‘-’ up to five characters.</p></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Company</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Alphabet</p></td>
+<td class="text-center"><p>AALP</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Amazon</p></td>
+<td class="text-center"><p>AMZN</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Apple</p></td>
+<td class="text-center"><p>AAPL</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Visa</p></td>
+<td class="text-center"><p>V</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Allstate</p></td>
+<td class="text-center"><p>ALL</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Tesla</p></td>
+<td class="text-center"><p>TSLA</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Symbol is used to import the historical data to import the historical data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">history()</span></code> method returns a dataframe with date as index and 7 columns:</p>
+<ul>
+<li><p>Open  : The intial price of the stock in the beginning of the day</p></li>
+<li><p>High  : The highest price of the stock during the day</p></li>
+<li><p>Low   : The lowest price of the stock during the day</p></li>
+<li><p>Close : The final price of the stock at the end of the day</p></li>
+<li><p>Volume: The number of stocks traded during the day</p></li>
+<li><p>Dividens: This is the share of company earnings distributed among its investors</p></li>
+<li><p>Stock Splits: It is subdividing each share of its stock into a fixed number of units.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">history()</span></code> method by default returns the data for the business days in last month.</p>
+<ul>
+<li><p>There are some missing days in the dates. These are the days when market is closed.</p></li>
+<li><p>The index consists of the dates which also include time.</p></li>
+<li><p><em>start</em> and <em>end</em> parameters are used to access a data in a particular range.</p>
+<ul>
+<li><p>The date should be in the form of ‘YEAR-MONTH-DAY’ where month is numerical</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Dividends</th>
+      <th>Stock Splits</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-01-02 00:00:00-05:00</th>
+      <td>187.149994</td>
+      <td>188.440002</td>
+      <td>183.889999</td>
+      <td>185.639999</td>
+      <td>82488700</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-01-03 00:00:00-05:00</th>
+      <td>184.220001</td>
+      <td>185.880005</td>
+      <td>183.429993</td>
+      <td>184.250000</td>
+      <td>58414500</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-01-04 00:00:00-05:00</th>
+      <td>182.149994</td>
+      <td>183.089996</td>
+      <td>180.880005</td>
+      <td>181.910004</td>
+      <td>71983600</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-01-05 00:00:00-05:00</th>
+      <td>181.990005</td>
+      <td>182.759995</td>
+      <td>180.169998</td>
+      <td>181.179993</td>
+      <td>62303300</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-01-08 00:00:00-05:00</th>
+      <td>182.089996</td>
+      <td>185.600006</td>
+      <td>181.500000</td>
+      <td>185.559998</td>
+      <td>59144500</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># there is data for 21 days</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em>period=’max’</em> returns all available data of a stock</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Dividends</th>
+      <th>Stock Splits</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1980-12-12 00:00:00-05:00</th>
+      <td>0.099319</td>
+      <td>0.099750</td>
+      <td>0.099319</td>
+      <td>0.099319</td>
+      <td>469033600</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1980-12-15 00:00:00-05:00</th>
+      <td>0.094569</td>
+      <td>0.094569</td>
+      <td>0.094137</td>
+      <td>0.094137</td>
+      <td>175884800</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1980-12-16 00:00:00-05:00</th>
+      <td>0.087659</td>
+      <td>0.087659</td>
+      <td>0.087228</td>
+      <td>0.087228</td>
+      <td>105728000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1980-12-17 00:00:00-05:00</th>
+      <td>0.089387</td>
+      <td>0.089818</td>
+      <td>0.089387</td>
+      <td>0.089387</td>
+      <td>86441600</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1980-12-18 00:00:00-05:00</th>
+      <td>0.091978</td>
+      <td>0.092410</td>
+      <td>0.091978</td>
+      <td>0.091978</td>
+      <td>73449600</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Daily data between ‘1995-1-1’ and ‘2000-12-31’</p>
+<ul>
+<li><p>In the form of ‘YEAR-MONTH-DAY’</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1995-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2000-12-31&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Dividends</th>
+      <th>Stock Splits</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1995-01-03 00:00:00-05:00</th>
+      <td>0.290907</td>
+      <td>0.290907</td>
+      <td>0.283424</td>
+      <td>0.287166</td>
+      <td>103868800</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1995-01-04 00:00:00-05:00</th>
+      <td>0.289036</td>
+      <td>0.296520</td>
+      <td>0.289036</td>
+      <td>0.294649</td>
+      <td>158681600</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1995-01-05 00:00:00-05:00</th>
+      <td>0.293713</td>
+      <td>0.294649</td>
+      <td>0.289972</td>
+      <td>0.290907</td>
+      <td>73640000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1995-01-06 00:00:00-05:00</th>
+      <td>0.311486</td>
+      <td>0.322711</td>
+      <td>0.307745</td>
+      <td>0.314292</td>
+      <td>1076622400</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1995-01-09 00:00:00-05:00</th>
+      <td>0.311486</td>
+      <td>0.313357</td>
+      <td>0.306808</td>
+      <td>0.308329</td>
+      <td>274086400</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Remove the last the two columns.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;1995-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2000-12-31&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1995-01-03 00:00:00-05:00</th>
+      <td>0.290907</td>
+      <td>0.290907</td>
+      <td>0.283424</td>
+      <td>0.287166</td>
+      <td>103868800</td>
+    </tr>
+    <tr>
+      <th>1995-01-04 00:00:00-05:00</th>
+      <td>0.289036</td>
+      <td>0.296520</td>
+      <td>0.289036</td>
+      <td>0.294649</td>
+      <td>158681600</td>
+    </tr>
+    <tr>
+      <th>1995-01-05 00:00:00-05:00</th>
+      <td>0.293713</td>
+      <td>0.294649</td>
+      <td>0.289972</td>
+      <td>0.290907</td>
+      <td>73640000</td>
+    </tr>
+    <tr>
+      <th>1995-01-06 00:00:00-05:00</th>
+      <td>0.311486</td>
+      <td>0.322711</td>
+      <td>0.307745</td>
+      <td>0.314292</td>
+      <td>1076622400</td>
+    </tr>
+    <tr>
+      <th>1995-01-09 00:00:00-05:00</th>
+      <td>0.311486</td>
+      <td>0.313357</td>
+      <td>0.306808</td>
+      <td>0.308329</td>
+      <td>274086400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="remove-time">
+<h2>Remove Time<a class="headerlink" href="#remove-time" title="Permalink to this heading">#</a></h2>
+<p>In this section we will remove the time part from the index dates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reset the index and make the old index the Date column</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1995-01-03 00:00:00-05:00</td>
+      <td>0.290907</td>
+      <td>0.290907</td>
+      <td>0.283424</td>
+      <td>0.287166</td>
+      <td>103868800</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1995-01-04 00:00:00-05:00</td>
+      <td>0.289036</td>
+      <td>0.296520</td>
+      <td>0.289036</td>
+      <td>0.294649</td>
+      <td>158681600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1995-01-05 00:00:00-05:00</td>
+      <td>0.293713</td>
+      <td>0.294649</td>
+      <td>0.289972</td>
+      <td>0.290907</td>
+      <td>73640000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1995-01-06 00:00:00-05:00</td>
+      <td>0.311486</td>
+      <td>0.322711</td>
+      <td>0.307745</td>
+      <td>0.314292</td>
+      <td>1076622400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1995-01-09 00:00:00-05:00</td>
+      <td>0.311486</td>
+      <td>0.313357</td>
+      <td>0.306808</td>
+      <td>0.308329</td>
+      <td>274086400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ude dt to access only date part and make it the new values of the &#39;Date&#39; column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1995-01-03</td>
+      <td>0.290907</td>
+      <td>0.290907</td>
+      <td>0.283424</td>
+      <td>0.287166</td>
+      <td>103868800</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1995-01-04</td>
+      <td>0.289036</td>
+      <td>0.296520</td>
+      <td>0.289036</td>
+      <td>0.294649</td>
+      <td>158681600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1995-01-05</td>
+      <td>0.293713</td>
+      <td>0.294649</td>
+      <td>0.289972</td>
+      <td>0.290907</td>
+      <td>73640000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1995-01-06</td>
+      <td>0.311486</td>
+      <td>0.322711</td>
+      <td>0.307745</td>
+      <td>0.314292</td>
+      <td>1076622400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1995-01-09</td>
+      <td>0.311486</td>
+      <td>0.313357</td>
+      <td>0.306808</td>
+      <td>0.308329</td>
+      <td>274086400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the new &#39;Date&#39; column index again but only with date</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1995-01-03</th>
+      <td>0.290907</td>
+      <td>0.290907</td>
+      <td>0.283424</td>
+      <td>0.287166</td>
+      <td>103868800</td>
+    </tr>
+    <tr>
+      <th>1995-01-04</th>
+      <td>0.289036</td>
+      <td>0.296520</td>
+      <td>0.289036</td>
+      <td>0.294649</td>
+      <td>158681600</td>
+    </tr>
+    <tr>
+      <th>1995-01-05</th>
+      <td>0.293713</td>
+      <td>0.294649</td>
+      <td>0.289972</td>
+      <td>0.290907</td>
+      <td>73640000</td>
+    </tr>
+    <tr>
+      <th>1995-01-06</th>
+      <td>0.311486</td>
+      <td>0.322711</td>
+      <td>0.307745</td>
+      <td>0.314292</td>
+      <td>1076622400</td>
+    </tr>
+    <tr>
+      <th>1995-01-09</th>
+      <td>0.311486</td>
+      <td>0.313357</td>
+      <td>0.306808</td>
+      <td>0.308329</td>
+      <td>274086400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="percentage-change">
+<h2>Percentage Change<a class="headerlink" href="#percentage-change" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pct_change()</span></code> is used to find the percentage change for each column.</p>
+<ul class="simple">
+<li><p>It returns a dataframe and the first row has null (NaN) values.</p></li>
+<li><p>This is because of not having a proviuos day data to compute the percentage change</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NaN means missing value</span>
+<span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1995-01-03</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1995-01-04</th>
+      <td>-6.430320e-03</td>
+      <td>0.019294</td>
+      <td>0.019801</td>
+      <td>0.026060</td>
+      <td>0.527712</td>
+    </tr>
+    <tr>
+      <th>1995-01-05</th>
+      <td>1.617969e-02</td>
+      <td>-0.006309</td>
+      <td>0.003236</td>
+      <td>-0.012701</td>
+      <td>-0.535926</td>
+    </tr>
+    <tr>
+      <th>1995-01-06</th>
+      <td>6.051180e-02</td>
+      <td>0.095238</td>
+      <td>0.061293</td>
+      <td>0.080387</td>
+      <td>13.620076</td>
+    </tr>
+    <tr>
+      <th>1995-01-09</th>
+      <td>7.835521e-08</td>
+      <td>-0.028986</td>
+      <td>-0.003042</td>
+      <td>-0.018973</td>
+      <td>-0.745420</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="remove-missing-values">
+<h2>Remove missing values<a class="headerlink" href="#remove-missing-values" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dropna()</span></code> can be used to drop the rows with missing values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop missing values</span>
+<span class="n">df_pct</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df_pct</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1995-01-04</th>
+      <td>-6.430320e-03</td>
+      <td>0.019294</td>
+      <td>0.019801</td>
+      <td>0.026060</td>
+      <td>0.527712</td>
+    </tr>
+    <tr>
+      <th>1995-01-05</th>
+      <td>1.617969e-02</td>
+      <td>-0.006309</td>
+      <td>0.003236</td>
+      <td>-0.012701</td>
+      <td>-0.535926</td>
+    </tr>
+    <tr>
+      <th>1995-01-06</th>
+      <td>6.051180e-02</td>
+      <td>0.095238</td>
+      <td>0.061293</td>
+      <td>0.080387</td>
+      <td>13.620076</td>
+    </tr>
+    <tr>
+      <th>1995-01-09</th>
+      <td>7.835521e-08</td>
+      <td>-0.028986</td>
+      <td>-0.003042</td>
+      <td>-0.018973</td>
+      <td>-0.745420</td>
+    </tr>
+    <tr>
+      <th>1995-01-10</th>
+      <td>-9.008485e-03</td>
+      <td>0.050746</td>
+      <td>0.006100</td>
+      <td>0.060296</td>
+      <td>1.243053</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="multiple-stock-data">
+<h2>Multiple Stock Data<a class="headerlink" href="#multiple-stock-data" title="Permalink to this heading">#</a></h2>
+<p>Dataframe which consists of Closing values of a list of stocks.</p>
+<ul class="simple">
+<li><p>In the code below, data for each stock in <em>stock_list</em> is imported and only its Close column is added to the <em>df_multiple</em> datarame which is initially an empty dataframe.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stock_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="s1">&#39;AAPL&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">]</span>
+<span class="n">df_multiple</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>   <span class="c1"># empty dataframe</span>
+
+<span class="k">for</span> <span class="n">stock</span> <span class="ow">in</span> <span class="n">stock_list</span><span class="p">:</span> 
+    <span class="n">df_multiple</span><span class="p">[</span><span class="n">stock</span><span class="p">]</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-12-31&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Close</span>   <span class="c1"># Close column</span>
+
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AMZN</th>
+      <th>TSLA</th>
+      <th>AAPL</th>
+      <th>V</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02 00:00:00-05:00</th>
+      <td>15.4260</td>
+      <td>14.620667</td>
+      <td>24.466452</td>
+      <td>62.248867</td>
+    </tr>
+    <tr>
+      <th>2015-01-05 00:00:00-05:00</th>
+      <td>15.1095</td>
+      <td>14.006000</td>
+      <td>23.777193</td>
+      <td>60.874794</td>
+    </tr>
+    <tr>
+      <th>2015-01-06 00:00:00-05:00</th>
+      <td>14.7645</td>
+      <td>14.085333</td>
+      <td>23.779430</td>
+      <td>60.482529</td>
+    </tr>
+    <tr>
+      <th>2015-01-07 00:00:00-05:00</th>
+      <td>14.9210</td>
+      <td>14.063333</td>
+      <td>24.112869</td>
+      <td>61.292877</td>
+    </tr>
+    <tr>
+      <th>2015-01-08 00:00:00-05:00</th>
+      <td>15.0230</td>
+      <td>14.041333</td>
+      <td>25.039339</td>
+      <td>62.114971</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>As a second way we can first initiate the dataframe with the Close column of the first stock then we can add the Close values for other stocks to the dataframe.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">close_first</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="n">stock_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-12-31&#39;</span><span class="p">)[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span>
+<span class="n">close_first</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">stock_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># rename: Close ---&gt; &#39;MMM&quot;</span>
+<span class="n">df_multiple</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">close_first</span><span class="p">)</span>            <span class="c1"># convert series to a dataframe with single column</span>
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AMZN</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02 00:00:00-05:00</th>
+      <td>15.4260</td>
+    </tr>
+    <tr>
+      <th>2015-01-05 00:00:00-05:00</th>
+      <td>15.1095</td>
+    </tr>
+    <tr>
+      <th>2015-01-06 00:00:00-05:00</th>
+      <td>14.7645</td>
+    </tr>
+    <tr>
+      <th>2015-01-07 00:00:00-05:00</th>
+      <td>14.9210</td>
+    </tr>
+    <tr>
+      <th>2015-01-08 00:00:00-05:00</th>
+      <td>15.0230</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">stock</span> <span class="ow">in</span> <span class="n">stock_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2015-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2020-12-31&#39;</span><span class="p">)[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span>
+    <span class="n">close</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">close</span><span class="p">)</span>
+
+    <span class="n">df_multiple</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_multiple</span><span class="p">,</span> <span class="n">close</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AMZN</th>
+      <th>TSLA</th>
+      <th>AAPL</th>
+      <th>V</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02 00:00:00-05:00</th>
+      <td>15.4260</td>
+      <td>14.620667</td>
+      <td>24.466448</td>
+      <td>62.248852</td>
+    </tr>
+    <tr>
+      <th>2015-01-05 00:00:00-05:00</th>
+      <td>15.1095</td>
+      <td>14.006000</td>
+      <td>23.777191</td>
+      <td>60.874794</td>
+    </tr>
+    <tr>
+      <th>2015-01-06 00:00:00-05:00</th>
+      <td>14.7645</td>
+      <td>14.085333</td>
+      <td>23.779430</td>
+      <td>60.482533</td>
+    </tr>
+    <tr>
+      <th>2015-01-07 00:00:00-05:00</th>
+      <td>14.9210</td>
+      <td>14.063333</td>
+      <td>24.112867</td>
+      <td>61.292862</td>
+    </tr>
+    <tr>
+      <th>2015-01-08 00:00:00-05:00</th>
+      <td>15.0230</td>
+      <td>14.041333</td>
+      <td>25.039341</td>
+      <td>62.114986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove time</span>
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_multiple</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_multiple</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AMZN</th>
+      <th>TSLA</th>
+      <th>AAPL</th>
+      <th>V</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>15.4260</td>
+      <td>14.620667</td>
+      <td>24.466448</td>
+      <td>62.248852</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>15.1095</td>
+      <td>14.006000</td>
+      <td>23.777191</td>
+      <td>60.874794</td>
+    </tr>
+    <tr>
+      <th>2015-01-06</th>
+      <td>14.7645</td>
+      <td>14.085333</td>
+      <td>23.779430</td>
+      <td>60.482533</td>
+    </tr>
+    <tr>
+      <th>2015-01-07</th>
+      <td>14.9210</td>
+      <td>14.063333</td>
+      <td>24.112867</td>
+      <td>61.292862</td>
+    </tr>
+    <tr>
+      <th>2015-01-08</th>
+      <td>15.0230</td>
+      <td>14.041333</td>
+      <td>25.039341</td>
+      <td>62.114986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="correlation-coefficient">
+<h2>Correlation Coefficient<a class="headerlink" href="#correlation-coefficient" title="Permalink to this heading">#</a></h2>
+<p>Pearson correlation coefficient of a two data sets is a number between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(1\)</span> which represents the strength of the linear relationship between two data.</p>
+<ul class="simple">
+<li><p>If this number is close to <span class="math notranslate nohighlight">\(+1\)</span>:</p>
+<ul>
+<li><p>The points in the scatter plot of two datasets is close to a line which has a positive slope.</p></li>
+</ul>
+</li>
+<li><p>If this number is close to <span class="math notranslate nohighlight">\(-1\)</span>:</p>
+<ul>
+<li><p>The points in the scatter plot of two datasets is close to a line which has a negative slope.</p></li>
+</ul>
+</li>
+<li><p>If this number is close to <span class="math notranslate nohighlight">\(0\)</span>:</p>
+<ul>
+<li><p>The points in the scatter plot of two datasets is not close to a line.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Correlation coefficients can be computed for each pair of columns as follows:.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="n">pearsonr</span><span class="p">(</span><span class="n">df_multiple</span><span class="p">[</span><span class="s1">&#39;AMZN&#39;</span><span class="p">],</span><span class="n">df_multiple</span><span class="p">[</span><span class="s1">&#39;TSLA&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7539676106876784
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">corr()</span></code> method returns a dataframe which consists of (Pearson) correlation coefficients of each pair of columns.</p>
+<ul class="simple">
+<li><p>The diagonal values are all 1 becausse it represents the correlation of two same data.</p></li>
+<li><p>It is symmetric because correlation coefficients of stock1-stock2 pair and stock2-stock1 pair are  equal.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_multiple</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AMZN</th>
+      <th>TSLA</th>
+      <th>AAPL</th>
+      <th>V</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AMZN</th>
+      <td>1.000000</td>
+      <td>0.753968</td>
+      <td>0.936848</td>
+      <td>0.947092</td>
+    </tr>
+    <tr>
+      <th>TSLA</th>
+      <td>0.753968</td>
+      <td>1.000000</td>
+      <td>0.884444</td>
+      <td>0.614037</td>
+    </tr>
+    <tr>
+      <th>AAPL</th>
+      <td>0.936848</td>
+      <td>0.884444</td>
+      <td>1.000000</td>
+      <td>0.882409</td>
+    </tr>
+    <tr>
+      <th>V</th>
+      <td>0.947092</td>
+      <td>0.614037</td>
+      <td>0.882409</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Seaborn library’s heatmap is very useful to visualize correlation matrix.</p></li>
+<li><p><em>annot=True</em> is to display the numbers.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_multiple</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8d00748e0c36a194d7c4e84783c66d3e26d5dc20aef1deb0386c789589e60521.png" src="_images/8d00748e0c36a194d7c4e84783c66d3e26d5dc20aef1deb0386c789589e60521.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="projects">
+<h1>Projects<a class="headerlink" href="#projects" title="Permalink to this heading">#</a></h1>
+<section id="project-1-sp500-correlations">
+<h2>Project-1: SP500 Correlations<a class="headerlink" href="#project-1-sp500-correlations" title="Permalink to this heading">#</a></h2>
+<section id="step-1-symbol-list">
+<h3>Step-1: Symbol List<a class="headerlink" href="#step-1-symbol-list" title="Permalink to this heading">#</a></h3>
+<p>Import the stock symbols from the wikipedia website: <code class="docutils literal notranslate"><span class="pre">'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'</span></code>,
+store them in a list and modify them</p>
+<ul class="simple">
+<li><p>Import the first table of the website using <code class="docutils literal notranslate"><span class="pre">read_html()</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/List_of_S%26P_500_companies&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df_sp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Symbol</th>
+      <th>Security</th>
+      <th>GICS Sector</th>
+      <th>GICS Sub-Industry</th>
+      <th>Headquarters Location</th>
+      <th>Date added</th>
+      <th>CIK</th>
+      <th>Founded</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>MMM</td>
+      <td>3M</td>
+      <td>Industrials</td>
+      <td>Industrial Conglomerates</td>
+      <td>Saint Paul, Minnesota</td>
+      <td>1957-03-04</td>
+      <td>66740</td>
+      <td>1902</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AOS</td>
+      <td>A. O. Smith</td>
+      <td>Industrials</td>
+      <td>Building Products</td>
+      <td>Milwaukee, Wisconsin</td>
+      <td>2017-07-26</td>
+      <td>91142</td>
+      <td>1916</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ABT</td>
+      <td>Abbott</td>
+      <td>Health Care</td>
+      <td>Health Care Equipment</td>
+      <td>North Chicago, Illinois</td>
+      <td>1957-03-04</td>
+      <td>1800</td>
+      <td>1888</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ABBV</td>
+      <td>AbbVie</td>
+      <td>Health Care</td>
+      <td>Biotechnology</td>
+      <td>North Chicago, Illinois</td>
+      <td>2012-12-31</td>
+      <td>1551152</td>
+      <td>2013 (1888)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ACN</td>
+      <td>Accenture</td>
+      <td>Information Technology</td>
+      <td>IT Consulting &amp; Other Services</td>
+      <td>Dublin, Ireland</td>
+      <td>2011-07-06</td>
+      <td>1467373</td>
+      <td>1989</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Store the <em>Symbols</em> column values in a list.</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">to_list</span></code> to convert a series to a list.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">symbol_list</span> <span class="o">=</span> <span class="n">df_sp</span><span class="p">[</span><span class="s1">&#39;Symbol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">symbol_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MMM&#39;, &#39;AOS&#39;, &#39;ABT&#39;, &#39;ABBV&#39;, &#39;ACN&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Remove ‘GOOG’ and ‘FOXA’ from the symbol list.</p>
+<ul>
+<li><p>Alphabet (Google) and Fox have two stocks which behave similarly so we will remove one symbol for each  company.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Print the symbols start with ‘GO’</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">stock</span> <span class="ow">in</span> <span class="n">symbol_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">stock</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;GO&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GOOGL
+GOOG
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Print the symbols start with’FO’</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">stock</span> <span class="ow">in</span> <span class="n">symbol_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">stock</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FO&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FOXA
+FOX
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check the length of the list before and after removing two stocks</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbol_list</span><span class="p">))</span>
+<span class="n">symbol_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;GOOG&#39;</span><span class="p">)</span>
+<span class="n">symbol_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;FOXA&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbol_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>503
+501
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Replace ‘.’ by  <code class="docutils literal notranslate"><span class="pre">-</span></code> since yfinance uses dashes instead of periods.</p>
+<ul>
+<li><p>Find the symbols which contains ‘.’ (dot).</p></li>
+<li><p>If there is a ‘.’ (dot) in the symbol replace it with ‘-’ (dash).</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">symbol_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BRK.B
+BF.B
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">symbol_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">symbol_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+        <span class="n">symbol_list</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no output</span>
+<span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">symbol_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-close-data">
+<h3>Step-2: Close Data<a class="headerlink" href="#step-2-close-data" title="Permalink to this heading">#</a></h3>
+<p>Construct a dataframe which has the Close values between <em>2021-1-1</em>  and <em>2023-12-31</em> of each stock in stock_list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the first 5 symbols</span>
+<span class="n">symbol_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MMM&#39;, &#39;AOS&#39;, &#39;ABT&#39;, &#39;ABBV&#39;, &#39;ACN&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Start the construction of the dataframe with the <em>Close</em> column of the symbol of index 0: ‘MMM’</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">close_first</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="n">symbol_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2023-12-31&#39;</span><span class="p">)[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span>
+<span class="n">close_first</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">symbol_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># rename: Close ---&gt; &#39;MMM&quot;</span>
+<span class="n">df_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">close_first</span><span class="p">)</span>                  <span class="c1"># convert series to a dataframe with single column</span>
+<span class="n">df_sp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MMM</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-04 00:00:00-05:00</th>
+      <td>150.696106</td>
+    </tr>
+    <tr>
+      <th>2021-01-05 00:00:00-05:00</th>
+      <td>150.441864</td>
+    </tr>
+    <tr>
+      <th>2021-01-06 00:00:00-05:00</th>
+      <td>152.730286</td>
+    </tr>
+    <tr>
+      <th>2021-01-07 00:00:00-05:00</th>
+      <td>148.810989</td>
+    </tr>
+    <tr>
+      <th>2021-01-08 00:00:00-05:00</th>
+      <td>146.092896</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the number of missing values</span>
+<span class="n">df_sp</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The following code is the main part of this step.</p></li>
+<li><p>It adds a column for each symbol if it has no missing value.</p>
+<ul>
+<li><p>These symbols will be printed.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">symbol_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-1-1&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2023-12-31&#39;</span><span class="p">)[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span>
+    <span class="n">close</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">close</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">close</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sp</span><span class="p">):</span>   <span class="c1"># check whether for symbol there are enough values</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sp</span><span class="p">,</span> <span class="n">close</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Output<br />
+CEG<br />
+GEHC<br />
+KVUE<br />
+VLTO</p></li>
+</ul>
+<ul class="simple">
+<li><p>Since it is time consuming to execute the above code it is better to save it as a csv file for further use.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_sp</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data_files/sp_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># index_col: which column is index</span>
+<span class="c1"># parse_dates: import index as a date</span>
+<span class="n">df_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data_files/sp_data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_sp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MMM</th>
+      <th>AOS</th>
+      <th>ABT</th>
+      <th>ABBV</th>
+      <th>ACN</th>
+      <th>ADBE</th>
+      <th>AMD</th>
+      <th>AES</th>
+      <th>AFL</th>
+      <th>A</th>
+      <th>...</th>
+      <th>WTW</th>
+      <th>GWW</th>
+      <th>WYNN</th>
+      <th>XEL</th>
+      <th>XYL</th>
+      <th>YUM</th>
+      <th>ZBRA</th>
+      <th>ZBH</th>
+      <th>ZION</th>
+      <th>ZTS</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-04 00:00:00-05:00</th>
+      <td>150.696106</td>
+      <td>50.896690</td>
+      <td>103.105202</td>
+      <td>92.173615</td>
+      <td>245.115585</td>
+      <td>485.339996</td>
+      <td>92.300003</td>
+      <td>21.361832</td>
+      <td>40.139668</td>
+      <td>116.384743</td>
+      <td>...</td>
+      <td>195.267776</td>
+      <td>378.961700</td>
+      <td>106.067345</td>
+      <td>60.077137</td>
+      <td>96.228065</td>
+      <td>100.226860</td>
+      <td>378.130005</td>
+      <td>145.390503</td>
+      <td>38.797554</td>
+      <td>159.686401</td>
+    </tr>
+    <tr>
+      <th>2021-01-05 00:00:00-05:00</th>
+      <td>150.441864</td>
+      <td>51.227070</td>
+      <td>104.380890</td>
+      <td>93.126740</td>
+      <td>246.511032</td>
+      <td>485.690002</td>
+      <td>92.769997</td>
+      <td>22.078794</td>
+      <td>40.204712</td>
+      <td>117.336311</td>
+      <td>...</td>
+      <td>193.638168</td>
+      <td>380.058990</td>
+      <td>109.331718</td>
+      <td>59.491558</td>
+      <td>96.112228</td>
+      <td>100.236328</td>
+      <td>380.570007</td>
+      <td>147.906082</td>
+      <td>39.412094</td>
+      <td>160.799255</td>
+    </tr>
+    <tr>
+      <th>2021-01-06 00:00:00-05:00</th>
+      <td>152.730316</td>
+      <td>52.992210</td>
+      <td>104.163544</td>
+      <td>92.322266</td>
+      <td>249.206253</td>
+      <td>466.309998</td>
+      <td>90.330002</td>
+      <td>22.961210</td>
+      <td>41.756775</td>
+      <td>120.553963</td>
+      <td>...</td>
+      <td>195.267776</td>
+      <td>382.282410</td>
+      <td>109.986580</td>
+      <td>60.809116</td>
+      <td>100.166382</td>
+      <td>100.785675</td>
+      <td>394.820007</td>
+      <td>152.120865</td>
+      <td>43.840424</td>
+      <td>163.161453</td>
+    </tr>
+    <tr>
+      <th>2021-01-07 00:00:00-05:00</th>
+      <td>148.811020</td>
+      <td>53.643543</td>
+      <td>105.174660</td>
+      <td>93.310387</td>
+      <td>251.557510</td>
+      <td>477.739990</td>
+      <td>95.160004</td>
+      <td>22.731415</td>
+      <td>41.524433</td>
+      <td>123.761826</td>
+      <td>...</td>
+      <td>196.753616</td>
+      <td>385.015930</td>
+      <td>108.895149</td>
+      <td>59.619656</td>
+      <td>104.712822</td>
+      <td>100.018486</td>
+      <td>409.100006</td>
+      <td>151.219055</td>
+      <td>45.177963</td>
+      <td>163.015091</td>
+    </tr>
+    <tr>
+      <th>2021-01-08 00:00:00-05:00</th>
+      <td>146.092896</td>
+      <td>53.011101</td>
+      <td>105.467613</td>
+      <td>93.800056</td>
+      <td>252.474991</td>
+      <td>485.100006</td>
+      <td>94.580002</td>
+      <td>23.365654</td>
+      <td>41.347851</td>
+      <td>124.644699</td>
+      <td>...</td>
+      <td>195.210281</td>
+      <td>381.810669</td>
+      <td>108.180756</td>
+      <td>60.168636</td>
+      <td>103.651016</td>
+      <td>101.486549</td>
+      <td>405.470001</td>
+      <td>150.886826</td>
+      <td>44.030209</td>
+      <td>164.098572</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 497 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shape of the dataframe</span>
+<span class="n">df_sp</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(753, 497)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-correlations">
+<h3>Step-3: Correlations<a class="headerlink" href="#step-3-correlations" title="Permalink to this heading">#</a></h3>
+<p>In this step, for each pair of symbols correlation coefficients will be computed and the 6 pairs with heighest and lowest correlation coefficients will be determined.</p>
+<ul class="simple">
+<li><p>Store the correlations of each pair in a dataframe.</p></li>
+<li><p>Display the 6 pairs with highest and lowest correlations.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Stock-1&#39;</span><span class="p">,</span> <span class="s1">&#39;Stock-2&#39;</span><span class="p">,</span> <span class="s1">&#39;Correlation&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sp</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sp</span><span class="o">.</span><span class="n">columns</span><span class="p">)):</span>
+        <span class="n">stock1</span> <span class="o">=</span> <span class="n">df_sp</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">stock2</span> <span class="o">=</span> <span class="n">df_sp</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">corr</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock1</span><span class="p">],</span> <span class="n">df_sp</span><span class="p">[</span><span class="n">stock2</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">df_corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df_corr</span><span class="p">)]</span> <span class="o">=</span> <span class="n">stock1</span><span class="p">,</span> <span class="n">stock2</span><span class="p">,</span> <span class="n">corr</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It is time consuming to execute the code above, therefore it is better to save it as a csv file.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_corr</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;correlation.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data_files/correlation.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_corr</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Stock-1</th>
+      <th>Stock-2</th>
+      <th>Correlation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>MMM</td>
+      <td>AOS</td>
+      <td>0.063387</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>MMM</td>
+      <td>ABT</td>
+      <td>0.715564</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MMM</td>
+      <td>ABBV</td>
+      <td>-0.822724</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>MMM</td>
+      <td>ACN</td>
+      <td>0.124522</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>MMM</td>
+      <td>ADBE</td>
+      <td>0.470797</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Stock-1</th>
+      <th>Stock-2</th>
+      <th>Correlation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>104888</th>
+      <td>MCK</td>
+      <td>VFC</td>
+      <td>-0.964388</td>
+    </tr>
+    <tr>
+      <th>75329</th>
+      <td>XOM</td>
+      <td>VFC</td>
+      <td>-0.962925</td>
+    </tr>
+    <tr>
+      <th>75165</th>
+      <td>XOM</td>
+      <td>MTCH</td>
+      <td>-0.961040</td>
+    </tr>
+    <tr>
+      <th>104148</th>
+      <td>MTCH</td>
+      <td>MCK</td>
+      <td>-0.955417</td>
+    </tr>
+    <tr>
+      <th>102923</th>
+      <td>MPC</td>
+      <td>VFC</td>
+      <td>-0.952390</td>
+    </tr>
+    <tr>
+      <th>104897</th>
+      <td>MCK</td>
+      <td>DIS</td>
+      <td>-0.950410</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Stock-1</th>
+      <th>Stock-2</th>
+      <th>Correlation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>53551</th>
+      <td>COP</td>
+      <td>EOG</td>
+      <td>0.989266</td>
+    </tr>
+    <tr>
+      <th>64731</th>
+      <td>DHI</td>
+      <td>LEN</td>
+      <td>0.987987</td>
+    </tr>
+    <tr>
+      <th>36863</th>
+      <td>CDNS</td>
+      <td>SNPS</td>
+      <td>0.984475</td>
+    </tr>
+    <tr>
+      <th>70077</th>
+      <td>EOG</td>
+      <td>MRO</td>
+      <td>0.984452</td>
+    </tr>
+    <tr>
+      <th>17941</th>
+      <td>APA</td>
+      <td>MRO</td>
+      <td>0.983864</td>
+    </tr>
+    <tr>
+      <th>37582</th>
+      <td>CPT</td>
+      <td>MAA</td>
+      <td>0.982877</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="step-4-visualization">
+<h3>Step-4: Visualization<a class="headerlink" href="#step-4-visualization" title="Permalink to this heading">#</a></h3>
+<p>In the step we will visualize the pairs with high and low correlations to see the strong positive or negative correlations between them.</p>
+<ul class="simple">
+<li><p>Display the lineplots of the six pairs with highest and lowest correlations.</p>
+<ul>
+<li><p>Use subplots</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lowest 6 pairs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">stock1</span><span class="p">,</span> <span class="n">stock2</span><span class="p">,</span> <span class="n">corr</span> <span class="o">=</span> <span class="n">df_corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Correlation </span><span class="si">{</span><span class="n">stock1</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">stock2</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/80da4c86623172cd2a61b6ddf741a6d3fde07e2504c403c3b9d9419f57800247.png" src="_images/80da4c86623172cd2a61b6ddf741a6d3fde07e2504c403c3b9d9419f57800247.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Highest 6 pairs</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">stock1</span><span class="p">,</span> <span class="n">stock2</span><span class="p">,</span> <span class="n">corr</span> <span class="o">=</span> <span class="n">df_corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Correlation </span><span class="si">{</span><span class="n">stock1</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">stock2</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4963ee5d9454823f89c4fb16e14c0ff3e08017305369226923710489ccd81404.png" src="_images/4963ee5d9454823f89c4fb16e14c0ff3e08017305369226923710489ccd81404.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Display the scatterplots of the six pairs with highest and lowest correlations.</p>
+<ul>
+<li><p>Use subplots</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lowest 6 pairs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">stock1</span><span class="p">,</span> <span class="n">stock2</span><span class="p">,</span> <span class="n">corr</span> <span class="o">=</span> <span class="n">df_corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Correlation </span><span class="si">{</span><span class="n">stock1</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">stock2</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock1</span><span class="p">],</span> <span class="n">df_sp</span><span class="p">[</span><span class="n">stock2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">stock1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">stock2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a9e5e7e652e3c47848fa5a81d880f6dd3f0b8d64c0b302c8f099518076ac3283.png" src="_images/a9e5e7e652e3c47848fa5a81d880f6dd3f0b8d64c0b302c8f099518076ac3283.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Highest 6 pairs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">stock1</span><span class="p">,</span> <span class="n">stock2</span><span class="p">,</span> <span class="n">corr</span> <span class="o">=</span> <span class="n">df_corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Correlation </span><span class="si">{</span><span class="n">stock1</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">stock2</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_sp</span><span class="p">[</span><span class="n">stock1</span><span class="p">],</span> <span class="n">df_sp</span><span class="p">[</span><span class="n">stock2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">stock1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">stock2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a4a44e2a8730198c393ee2b93295e6217873e94113a88613c9a0b3e542626c1a.png" src="_images/a4a44e2a8730198c393ee2b93295e6217873e94113a88613c9a0b3e542626c1a.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Stock Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-time">Remove Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#percentage-change">Percentage Change</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-missing-values">Remove missing values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-stock-data">Multiple Stock Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-coefficient">Correlation Coefficient</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projects">Projects</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-1-sp500-correlations">Project-1: SP500 Correlations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-symbol-list">Step-1: Symbol List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-close-data">Step-2: Close Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-correlations">Step-3: Correlations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-visualization">Step-4: Visualization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yusuf Danisman
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
