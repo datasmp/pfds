@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Stock Data &#8212; Python in Plain Terms</title>
+    <title>Stock Data Analysis &#8212; Python in Plain Terms</title>
   
   
   
@@ -183,9 +183,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">Advanced Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Stock Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Stock Data Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
 </ul>
 </li>
 </ul>
@@ -371,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Stock Data</h1>
+    <h1>Stock Data Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -402,12 +403,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="stock-data">
-<h1>Stock Data<a class="headerlink" href="#stock-data" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="stock-data-analysis">
+<h1>Stock Data Analysis<a class="headerlink" href="#stock-data-analysis" title="Permalink to this heading">#</a></h1>
 <section id="import-data">
 <h2>Import Data<a class="headerlink" href="#import-data" title="Permalink to this heading">#</a></h2>
 <p>Historical stock data can be imported using <code class="docutils literal notranslate"><span class="pre">yfinance</span></code>.</p>
@@ -444,15 +446,15 @@ document.write(`
 </table>
 <ul class="simple">
 <li><p>The symbol is used to import historical data.</p></li>
-<li><p>The <em>history()</em> method returns a dataframe with the date as the index and seven columns:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">history()</span></code> method returns a dataframe with date as index and 7 columns:</p>
 <ul>
-<li><p>Open: The initial price of the stock at the beginning of the day.</p></li>
-<li><p>High: The highest price of the stock during the day.</p></li>
-<li><p>Low: The lowest price of the stock during the day.</p></li>
-<li><p>Close: The final price of the stock at the end of the day.</p></li>
-<li><p>Volume: The number of stocks traded during the day.</p></li>
-<li><p>Dividends: This is the share of company earnings distributed among its investors.</p></li>
-<li><p>Stock Splits: It subdivides each share of its stock into a fixed number of units.</p></li>
+<li><p><em>Open</em>  : The intial price of the stock in the beginning of the day</p></li>
+<li><p><em>High</em>  : The highest price of the stock during the day</p></li>
+<li><p><em>Low</em>   : The lowest price of the stock during the day</p></li>
+<li><p><em>Close</em> : The final price of the stock at the end of the day</p></li>
+<li><p><em>Volume</em>: The number of stocks traded during the day</p></li>
+<li><p><em>Dividens</em>: This is the share of company earnings distributed among its investors</p></li>
+<li><p><em>Stock Splits</em>: It is subdividing each share of its stock into a fixed number of units.</p></li>
 </ul>
 </li>
 </ul>
@@ -516,52 +518,52 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>2024-01-02 00:00:00-05:00</th>
-      <td>187.149994</td>
-      <td>188.440002</td>
-      <td>183.889999</td>
-      <td>185.639999</td>
-      <td>82488700</td>
+      <th>2024-01-17 00:00:00-05:00</th>
+      <td>181.038998</td>
+      <td>182.696871</td>
+      <td>180.070233</td>
+      <td>182.447189</td>
+      <td>47317400</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2024-01-03 00:00:00-05:00</th>
-      <td>184.220001</td>
-      <td>185.880005</td>
-      <td>183.429993</td>
-      <td>184.250000</td>
-      <td>58414500</td>
+      <th>2024-01-18 00:00:00-05:00</th>
+      <td>185.852846</td>
+      <td>188.898962</td>
+      <td>185.593183</td>
+      <td>188.389618</td>
+      <td>78005800</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2024-01-04 00:00:00-05:00</th>
-      <td>182.149994</td>
-      <td>183.089996</td>
-      <td>180.880005</td>
-      <td>181.910004</td>
-      <td>71983600</td>
+      <th>2024-01-19 00:00:00-05:00</th>
+      <td>189.088718</td>
+      <td>191.705375</td>
+      <td>188.579374</td>
+      <td>191.315872</td>
+      <td>68741000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2024-01-05 00:00:00-05:00</th>
-      <td>181.990005</td>
-      <td>182.759995</td>
-      <td>180.169998</td>
-      <td>181.179993</td>
-      <td>62303300</td>
+      <th>2024-01-22 00:00:00-05:00</th>
+      <td>192.054929</td>
+      <td>195.081066</td>
+      <td>192.014971</td>
+      <td>193.642899</td>
+      <td>60133900</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2024-01-08 00:00:00-05:00</th>
-      <td>182.089996</td>
-      <td>185.600006</td>
-      <td>181.500000</td>
-      <td>185.559998</td>
-      <td>59144500</td>
+      <th>2024-01-23 00:00:00-05:00</th>
+      <td>194.771475</td>
+      <td>195.500540</td>
+      <td>193.582989</td>
+      <td>194.931259</td>
+      <td>42355600</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -577,7 +579,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(22, 7)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(23, 7)
 </pre></div>
 </div>
 </div>
@@ -633,50 +635,50 @@ document.write(`
   <tbody>
     <tr>
       <th>1980-12-12 00:00:00-05:00</th>
-      <td>0.099319</td>
-      <td>0.099750</td>
-      <td>0.099319</td>
-      <td>0.099319</td>
+      <td>0.099192</td>
+      <td>0.099623</td>
+      <td>0.099192</td>
+      <td>0.099192</td>
       <td>469033600</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1980-12-15 00:00:00-05:00</th>
-      <td>0.094569</td>
-      <td>0.094569</td>
-      <td>0.094137</td>
-      <td>0.094137</td>
+      <td>0.094448</td>
+      <td>0.094448</td>
+      <td>0.094017</td>
+      <td>0.094017</td>
       <td>175884800</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1980-12-16 00:00:00-05:00</th>
-      <td>0.087659</td>
-      <td>0.087659</td>
-      <td>0.087228</td>
-      <td>0.087228</td>
+      <td>0.087548</td>
+      <td>0.087548</td>
+      <td>0.087117</td>
+      <td>0.087117</td>
       <td>105728000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1980-12-17 00:00:00-05:00</th>
-      <td>0.089387</td>
-      <td>0.089818</td>
-      <td>0.089387</td>
-      <td>0.089387</td>
+      <td>0.089273</td>
+      <td>0.089704</td>
+      <td>0.089273</td>
+      <td>0.089273</td>
       <td>86441600</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1980-12-18 00:00:00-05:00</th>
-      <td>0.091978</td>
-      <td>0.092410</td>
-      <td>0.091978</td>
-      <td>0.091978</td>
+      <td>0.091861</td>
+      <td>0.092292</td>
+      <td>0.091861</td>
+      <td>0.091861</td>
       <td>73449600</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -736,50 +738,50 @@ document.write(`
   <tbody>
     <tr>
       <th>1995-01-03 00:00:00-05:00</th>
-      <td>0.290907</td>
-      <td>0.290907</td>
-      <td>0.283424</td>
-      <td>0.287166</td>
+      <td>0.290536</td>
+      <td>0.290536</td>
+      <td>0.283063</td>
+      <td>0.286800</td>
       <td>103868800</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1995-01-04 00:00:00-05:00</th>
-      <td>0.289036</td>
-      <td>0.296520</td>
-      <td>0.289036</td>
-      <td>0.294649</td>
+      <td>0.288668</td>
+      <td>0.296142</td>
+      <td>0.288668</td>
+      <td>0.294274</td>
       <td>158681600</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1995-01-05 00:00:00-05:00</th>
-      <td>0.293713</td>
-      <td>0.294649</td>
-      <td>0.289972</td>
-      <td>0.290907</td>
+      <td>0.293339</td>
+      <td>0.294274</td>
+      <td>0.289602</td>
+      <td>0.290536</td>
       <td>73640000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1995-01-06 00:00:00-05:00</th>
-      <td>0.311486</td>
-      <td>0.322711</td>
-      <td>0.307745</td>
-      <td>0.314292</td>
+      <td>0.311089</td>
+      <td>0.322299</td>
+      <td>0.307352</td>
+      <td>0.313891</td>
       <td>1076622400</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1995-01-09 00:00:00-05:00</th>
-      <td>0.311486</td>
-      <td>0.313357</td>
-      <td>0.306808</td>
-      <td>0.308329</td>
+      <td>0.311089</td>
+      <td>0.312957</td>
+      <td>0.306417</td>
+      <td>0.307936</td>
       <td>274086400</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -835,42 +837,42 @@ document.write(`
   <tbody>
     <tr>
       <th>1995-01-03 00:00:00-05:00</th>
-      <td>0.290907</td>
-      <td>0.290907</td>
-      <td>0.283424</td>
-      <td>0.287166</td>
+      <td>0.290536</td>
+      <td>0.290536</td>
+      <td>0.283063</td>
+      <td>0.286800</td>
       <td>103868800</td>
     </tr>
     <tr>
       <th>1995-01-04 00:00:00-05:00</th>
-      <td>0.289036</td>
-      <td>0.296520</td>
-      <td>0.289036</td>
-      <td>0.294649</td>
+      <td>0.288668</td>
+      <td>0.296142</td>
+      <td>0.288668</td>
+      <td>0.294274</td>
       <td>158681600</td>
     </tr>
     <tr>
       <th>1995-01-05 00:00:00-05:00</th>
-      <td>0.293713</td>
-      <td>0.294649</td>
-      <td>0.289972</td>
-      <td>0.290907</td>
+      <td>0.293339</td>
+      <td>0.294274</td>
+      <td>0.289602</td>
+      <td>0.290536</td>
       <td>73640000</td>
     </tr>
     <tr>
       <th>1995-01-06 00:00:00-05:00</th>
-      <td>0.311486</td>
-      <td>0.322711</td>
-      <td>0.307745</td>
-      <td>0.314292</td>
+      <td>0.311089</td>
+      <td>0.322300</td>
+      <td>0.307352</td>
+      <td>0.313891</td>
       <td>1076622400</td>
     </tr>
     <tr>
       <th>1995-01-09 00:00:00-05:00</th>
-      <td>0.311486</td>
-      <td>0.313357</td>
-      <td>0.306808</td>
-      <td>0.308329</td>
+      <td>0.311089</td>
+      <td>0.312957</td>
+      <td>0.306417</td>
+      <td>0.307936</td>
       <td>274086400</td>
     </tr>
   </tbody>
@@ -920,46 +922,46 @@ document.write(`
     <tr>
       <th>0</th>
       <td>1995-01-03 00:00:00-05:00</td>
-      <td>0.290907</td>
-      <td>0.290907</td>
-      <td>0.283424</td>
-      <td>0.287166</td>
+      <td>0.290536</td>
+      <td>0.290536</td>
+      <td>0.283063</td>
+      <td>0.286800</td>
       <td>103868800</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1995-01-04 00:00:00-05:00</td>
-      <td>0.289036</td>
-      <td>0.296520</td>
-      <td>0.289036</td>
-      <td>0.294649</td>
+      <td>0.288668</td>
+      <td>0.296142</td>
+      <td>0.288668</td>
+      <td>0.294274</td>
       <td>158681600</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1995-01-05 00:00:00-05:00</td>
-      <td>0.293713</td>
-      <td>0.294649</td>
-      <td>0.289972</td>
-      <td>0.290907</td>
+      <td>0.293339</td>
+      <td>0.294274</td>
+      <td>0.289602</td>
+      <td>0.290536</td>
       <td>73640000</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1995-01-06 00:00:00-05:00</td>
-      <td>0.311486</td>
-      <td>0.322711</td>
-      <td>0.307745</td>
-      <td>0.314292</td>
+      <td>0.311089</td>
+      <td>0.322300</td>
+      <td>0.307352</td>
+      <td>0.313891</td>
       <td>1076622400</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1995-01-09 00:00:00-05:00</td>
-      <td>0.311486</td>
-      <td>0.313357</td>
-      <td>0.306808</td>
-      <td>0.308329</td>
+      <td>0.311089</td>
+      <td>0.312957</td>
+      <td>0.306417</td>
+      <td>0.307936</td>
       <td>274086400</td>
     </tr>
   </tbody>
@@ -1005,46 +1007,46 @@ document.write(`
     <tr>
       <th>0</th>
       <td>1995-01-03</td>
-      <td>0.290907</td>
-      <td>0.290907</td>
-      <td>0.283424</td>
-      <td>0.287166</td>
+      <td>0.290536</td>
+      <td>0.290536</td>
+      <td>0.283063</td>
+      <td>0.286800</td>
       <td>103868800</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1995-01-04</td>
-      <td>0.289036</td>
-      <td>0.296520</td>
-      <td>0.289036</td>
-      <td>0.294649</td>
+      <td>0.288668</td>
+      <td>0.296142</td>
+      <td>0.288668</td>
+      <td>0.294274</td>
       <td>158681600</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1995-01-05</td>
-      <td>0.293713</td>
-      <td>0.294649</td>
-      <td>0.289972</td>
-      <td>0.290907</td>
+      <td>0.293339</td>
+      <td>0.294274</td>
+      <td>0.289602</td>
+      <td>0.290536</td>
       <td>73640000</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1995-01-06</td>
-      <td>0.311486</td>
-      <td>0.322711</td>
-      <td>0.307745</td>
-      <td>0.314292</td>
+      <td>0.311089</td>
+      <td>0.322300</td>
+      <td>0.307352</td>
+      <td>0.313891</td>
       <td>1076622400</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1995-01-09</td>
-      <td>0.311486</td>
-      <td>0.313357</td>
-      <td>0.306808</td>
-      <td>0.308329</td>
+      <td>0.311089</td>
+      <td>0.312957</td>
+      <td>0.306417</td>
+      <td>0.307936</td>
       <td>274086400</td>
     </tr>
   </tbody>
@@ -1096,42 +1098,42 @@ document.write(`
   <tbody>
     <tr>
       <th>1995-01-03</th>
-      <td>0.290907</td>
-      <td>0.290907</td>
-      <td>0.283424</td>
-      <td>0.287166</td>
+      <td>0.290536</td>
+      <td>0.290536</td>
+      <td>0.283063</td>
+      <td>0.286800</td>
       <td>103868800</td>
     </tr>
     <tr>
       <th>1995-01-04</th>
-      <td>0.289036</td>
-      <td>0.296520</td>
-      <td>0.289036</td>
-      <td>0.294649</td>
+      <td>0.288668</td>
+      <td>0.296142</td>
+      <td>0.288668</td>
+      <td>0.294274</td>
       <td>158681600</td>
     </tr>
     <tr>
       <th>1995-01-05</th>
-      <td>0.293713</td>
-      <td>0.294649</td>
-      <td>0.289972</td>
-      <td>0.290907</td>
+      <td>0.293339</td>
+      <td>0.294274</td>
+      <td>0.289602</td>
+      <td>0.290536</td>
       <td>73640000</td>
     </tr>
     <tr>
       <th>1995-01-06</th>
-      <td>0.311486</td>
-      <td>0.322711</td>
-      <td>0.307745</td>
-      <td>0.314292</td>
+      <td>0.311089</td>
+      <td>0.322300</td>
+      <td>0.307352</td>
+      <td>0.313891</td>
       <td>1076622400</td>
     </tr>
     <tr>
       <th>1995-01-09</th>
-      <td>0.311486</td>
-      <td>0.313357</td>
-      <td>0.306808</td>
-      <td>0.308329</td>
+      <td>0.311089</td>
+      <td>0.312957</td>
+      <td>0.306417</td>
+      <td>0.307936</td>
       <td>274086400</td>
     </tr>
   </tbody>
@@ -1198,8 +1200,8 @@ document.write(`
     </tr>
     <tr>
       <th>1995-01-04</th>
-      <td>-6.430523e-03</td>
-      <td>0.019294</td>
+      <td>-6.430011e-03</td>
+      <td>0.019295</td>
       <td>0.019801</td>
       <td>0.026060</td>
       <td>0.527712</td>
@@ -1214,7 +1216,7 @@ document.write(`
     </tr>
     <tr>
       <th>1995-01-06</th>
-      <td>6.051137e-02</td>
+      <td>6.051125e-02</td>
       <td>0.095237</td>
       <td>0.061292</td>
       <td>0.080386</td>
@@ -1222,7 +1224,7 @@ document.write(`
     </tr>
     <tr>
       <th>1995-01-09</th>
-      <td>1.750128e-07</td>
+      <td>8.011423e-08</td>
       <td>-0.028986</td>
       <td>-0.003042</td>
       <td>-0.018973</td>
@@ -1281,8 +1283,8 @@ document.write(`
   <tbody>
     <tr>
       <th>1995-01-04</th>
-      <td>-6.430523e-03</td>
-      <td>0.019294</td>
+      <td>-6.430011e-03</td>
+      <td>0.019295</td>
       <td>0.019801</td>
       <td>0.026060</td>
       <td>0.527712</td>
@@ -1297,7 +1299,7 @@ document.write(`
     </tr>
     <tr>
       <th>1995-01-06</th>
-      <td>6.051137e-02</td>
+      <td>6.051125e-02</td>
       <td>0.095237</td>
       <td>0.061292</td>
       <td>0.080386</td>
@@ -1305,7 +1307,7 @@ document.write(`
     </tr>
     <tr>
       <th>1995-01-09</th>
-      <td>1.750128e-07</td>
+      <td>8.011423e-08</td>
       <td>-0.028986</td>
       <td>-0.003042</td>
       <td>-0.018973</td>
@@ -1313,8 +1315,8 @@ document.write(`
     </tr>
     <tr>
       <th>1995-01-10</th>
-      <td>-9.008581e-03</td>
-      <td>0.050745</td>
+      <td>-9.008400e-03</td>
+      <td>0.050746</td>
       <td>0.006100</td>
       <td>0.060296</td>
       <td>1.243053</td>
@@ -1376,36 +1378,36 @@ document.write(`
       <th>2015-01-02 00:00:00-05:00</th>
       <td>15.4260</td>
       <td>14.620667</td>
-      <td>24.466452</td>
-      <td>62.248848</td>
+      <td>24.435270</td>
+      <td>62.132992</td>
     </tr>
     <tr>
       <th>2015-01-05 00:00:00-05:00</th>
       <td>15.1095</td>
       <td>14.006000</td>
-      <td>23.777187</td>
-      <td>60.874779</td>
+      <td>23.746887</td>
+      <td>60.761482</td>
     </tr>
     <tr>
       <th>2015-01-06 00:00:00-05:00</th>
       <td>14.7645</td>
       <td>14.085333</td>
-      <td>23.779427</td>
-      <td>60.482536</td>
+      <td>23.749126</td>
+      <td>60.369965</td>
     </tr>
     <tr>
       <th>2015-01-07 00:00:00-05:00</th>
       <td>14.9210</td>
       <td>14.063333</td>
-      <td>24.112865</td>
-      <td>61.292900</td>
+      <td>24.082136</td>
+      <td>61.178795</td>
     </tr>
     <tr>
       <th>2015-01-08 00:00:00-05:00</th>
       <td>15.0230</td>
       <td>14.041333</td>
-      <td>25.039337</td>
-      <td>62.114971</td>
+      <td>25.007423</td>
+      <td>61.999367</td>
     </tr>
   </tbody>
 </table>
@@ -1524,36 +1526,36 @@ document.write(`
       <th>2015-01-02 00:00:00-05:00</th>
       <td>15.4260</td>
       <td>14.620667</td>
-      <td>24.466448</td>
-      <td>62.248837</td>
+      <td>24.435270</td>
+      <td>62.132999</td>
     </tr>
     <tr>
       <th>2015-01-05 00:00:00-05:00</th>
       <td>15.1095</td>
       <td>14.006000</td>
-      <td>23.777191</td>
-      <td>60.874783</td>
+      <td>23.746893</td>
+      <td>60.761486</td>
     </tr>
     <tr>
       <th>2015-01-06 00:00:00-05:00</th>
       <td>14.7645</td>
       <td>14.085333</td>
-      <td>23.779434</td>
-      <td>60.482540</td>
+      <td>23.749126</td>
+      <td>60.369953</td>
     </tr>
     <tr>
       <th>2015-01-07 00:00:00-05:00</th>
       <td>14.9210</td>
       <td>14.063333</td>
-      <td>24.112865</td>
-      <td>61.292881</td>
+      <td>24.082144</td>
+      <td>61.178822</td>
     </tr>
     <tr>
       <th>2015-01-08 00:00:00-05:00</th>
       <td>15.0230</td>
       <td>14.041333</td>
-      <td>25.039341</td>
-      <td>62.114975</td>
+      <td>25.007423</td>
+      <td>61.999371</td>
     </tr>
   </tbody>
 </table>
@@ -1606,36 +1608,36 @@ document.write(`
       <th>2015-01-02</th>
       <td>15.4260</td>
       <td>14.620667</td>
-      <td>24.466448</td>
-      <td>62.248837</td>
+      <td>24.435270</td>
+      <td>62.132999</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
       <td>15.1095</td>
       <td>14.006000</td>
-      <td>23.777191</td>
-      <td>60.874783</td>
+      <td>23.746893</td>
+      <td>60.761486</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
       <td>14.7645</td>
       <td>14.085333</td>
-      <td>23.779434</td>
-      <td>60.482540</td>
+      <td>23.749126</td>
+      <td>60.369953</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
       <td>14.9210</td>
       <td>14.063333</td>
-      <td>24.112865</td>
-      <td>61.292881</td>
+      <td>24.082144</td>
+      <td>61.178822</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
       <td>15.0230</td>
       <td>14.041333</td>
-      <td>25.039341</td>
-      <td>62.114975</td>
+      <td>25.007423</td>
+      <td>61.999371</td>
     </tr>
   </tbody>
 </table>
@@ -1760,6 +1762,16 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/8d00748e0c36a194d7c4e84783c66d3e26d5dc20aef1deb0386c789589e60521.png" src="_images/8d00748e0c36a194d7c4e84783c66d3e26d5dc20aef1deb0386c789589e60521.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_multiple</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f510ba74b406c49c4fe047cd59d54941100774e666ce714061667c5b9d852240.png" src="_images/f510ba74b406c49c4fe047cd59d54941100774e666ce714061667c5b9d852240.png" />
 </div>
 </div>
 </section>

@@ -183,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">Advanced Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
 </ul>
@@ -399,6 +399,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-mean-median-std">sum(), mean(), median(), std()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rename">rename()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-values">sort_values()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicated">duplicated()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-duplicates">drop_duplicates()</a></li>
 </ul>
 </li>
 </ul>
@@ -2767,6 +2769,139 @@ dtype: float64
 </div></div></div>
 </div>
 </section>
+<section id="duplicated">
+<h3>duplicated()<a class="headerlink" href="#duplicated" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>It returns a Series with boolean values showing if a row is a repeat or not.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_height_dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;State&#39;</span><span class="p">:[</span><span class="s1">&#39;NY&#39;</span><span class="p">,</span> <span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="s1">&#39;TX&#39;</span><span class="p">,</span> <span class="s1">&#39;TX&#39;</span><span class="p">],</span> <span class="s1">&#39;Height&#39;</span><span class="p">:[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">140</span><span class="p">]}</span>
+<span class="n">df_sh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">state_height_dic</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Liz&#39;</span><span class="p">,</span> <span class="s1">&#39;Tim&#39;</span><span class="p">,</span> <span class="s1">&#39;Tim&#39;</span><span class="p">])</span>
+<span class="n">df_sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>John    False
+Liz     False
+Tim     False
+Tim      True
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="drop-duplicates">
+<h3>drop_duplicates()<a class="headerlink" href="#drop-duplicates" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>It returns a DataFrame with duplicate rows removed.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sh</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>John</th>
+      <td>NY</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>OK</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>Tim</th>
+      <td>TX</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -2851,6 +2986,8 @@ dtype: float64
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-mean-median-std">sum(), mean(), median(), std()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rename">rename()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-values">sort_values()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicated">duplicated()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-duplicates">drop_duplicates()</a></li>
 </ul>
 </li>
 </ul>
