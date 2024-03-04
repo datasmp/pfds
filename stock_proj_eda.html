@@ -392,7 +392,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swarm-and-violin-plots">Swarm and Violin Plots</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier">Outlier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction">Direction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average">Moving Average</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average">Moving Average</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-signals">Moving Average Signals</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">Histogram</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-pct-change">Future Pct Change</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation:</a></li>
@@ -2485,6 +2488,31 @@ Name: count, dtype: int64
 </table>
 </div></div></div>
 </div>
+<section id="moving-average-signals">
+<h3>Moving Average Signals<a class="headerlink" href="#moving-average-signals" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A buy signal occurs when the shorter-term moving average (MA) crosses above the longer-term MA, signaling an upward trend shift, commonly referred to as a “golden cross”.</p></li>
+<li><p>A sell signal occurs when the shorter-term moving average (MA) crosses below the longer-term MA, signaling an downward trend shift, commonly referred to as a “dead/death cross”.</p></li>
+</ul>
+<p><strong>Reference:</strong> <a class="reference external" href="https://www.investopedia.com/articles/active-trading/052014/how-use-moving-average-buy-stocks.asp#:~:text=Moving%20averages%20with%20a%20shorter,of%20potential%20support%20or%20resistance">https://www.investopedia.com/articles/active-trading/052014/how-use-moving-average-buy-stocks.asp#:~:text=Moving averages with a shorter,of potential support or resistance</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">400</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">N</span><span class="p">:,:]</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Original&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">N</span><span class="p">:,:]</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SMA_20&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">N</span><span class="p">:,:]</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SMA_100&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5875</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="s1">&#39;buy signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">5875</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">43</span> <span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3b3601db1b2271a59ffeed514b76d9e264ac3cd8b4c3bfe8cc345d9701bae481.png" src="_images/3b3601db1b2271a59ffeed514b76d9e264ac3cd8b4c3bfe8cc345d9701bae481.png" />
+</div>
+</div>
+</section>
 </section>
 <section id="histogram">
 <h2>Histogram<a class="headerlink" href="#histogram" title="Permalink to this heading">#</a></h2>
@@ -2943,7 +2971,7 @@ Name: count, dtype: int64
       <th>2000-01-03 00:00:00-05:00</th>
       <td>4.468750</td>
       <td>NaN</td>
-      <td>13.042858</td>
+      <td>12.967631</td>
       <td>NaN</td>
       <td>10.878955</td>
     </tr>
@@ -2951,33 +2979,33 @@ Name: count, dtype: int64
       <th>2000-01-04 00:00:00-05:00</th>
       <td>4.096875</td>
       <td>NaN</td>
-      <td>12.626603</td>
+      <td>12.553775</td>
       <td>NaN</td>
-      <td>11.008724</td>
+      <td>11.008727</td>
     </tr>
     <tr>
       <th>2000-01-05 00:00:00-05:00</th>
       <td>3.487500</td>
       <td>NaN</td>
-      <td>13.181608</td>
+      <td>13.105596</td>
       <td>NaN</td>
-      <td>11.419659</td>
+      <td>11.419661</td>
     </tr>
     <tr>
       <th>2000-01-06 00:00:00-05:00</th>
       <td>3.278125</td>
       <td>NaN</td>
-      <td>13.112235</td>
+      <td>13.036612</td>
       <td>NaN</td>
-      <td>11.484547</td>
+      <td>11.484545</td>
     </tr>
     <tr>
       <th>2000-01-07 00:00:00-05:00</th>
       <td>3.478125</td>
       <td>NaN</td>
-      <td>13.597876</td>
+      <td>13.519453</td>
       <td>NaN</td>
-      <td>11.635941</td>
+      <td>11.635944</td>
     </tr>
   </tbody>
 </table>
@@ -3025,25 +3053,25 @@ Name: count, dtype: int64
       <td>2010-06-29</td>
       <td>5.4305</td>
       <td>1.592667</td>
-      <td>21.335152</td>
+      <td>21.212105</td>
       <td>11.367868</td>
-      <td>19.264557</td>
+      <td>19.264553</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2010-06-30</td>
       <td>5.4630</td>
       <td>1.588667</td>
-      <td>21.129227</td>
+      <td>21.007364</td>
       <td>11.134885</td>
-      <td>19.034723</td>
+      <td>19.034727</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2010-07-01</td>
       <td>5.5480</td>
       <td>1.464000</td>
-      <td>20.879185</td>
+      <td>20.758760</td>
       <td>10.998248</td>
       <td>18.987581</td>
     </tr>
@@ -3052,16 +3080,16 @@ Name: count, dtype: int64
       <td>2010-07-02</td>
       <td>5.4570</td>
       <td>1.280000</td>
-      <td>20.798281</td>
+      <td>20.678329</td>
       <td>10.924675</td>
-      <td>19.087761</td>
+      <td>19.087765</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2010-07-06</td>
       <td>5.5030</td>
       <td>1.074000</td>
-      <td>20.540871</td>
+      <td>20.422409</td>
       <td>10.912663</td>
       <td>19.600468</td>
     </tr>
@@ -3210,7 +3238,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5a19f46cc2b077d2eb16f6901fff13437e6043d1fb98ebfcf06e67e4e0fef5b8.png" src="_images/5a19f46cc2b077d2eb16f6901fff13437e6043d1fb98ebfcf06e67e4e0fef5b8.png" />
+<img alt="_images/c04443fb03467035435d083ae085f2eac79117a442b168788a9e70ea4755b517.png" src="_images/c04443fb03467035435d083ae085f2eac79117a442b168788a9e70ea4755b517.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3267,25 +3295,25 @@ Name: AMZN, dtype: float64
       <td>2010-06-29</td>
       <td>5.4305</td>
       <td>1.592667</td>
-      <td>21.335152</td>
+      <td>21.212105</td>
       <td>11.367868</td>
-      <td>19.264557</td>
+      <td>19.264553</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2010-06-30</td>
       <td>5.4630</td>
       <td>1.588667</td>
-      <td>21.129227</td>
+      <td>21.007364</td>
       <td>11.134885</td>
-      <td>19.034723</td>
+      <td>19.034727</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2010-07-01</td>
       <td>5.5480</td>
       <td>1.464000</td>
-      <td>20.879185</td>
+      <td>20.758760</td>
       <td>10.998248</td>
       <td>18.987581</td>
     </tr>
@@ -3294,16 +3322,16 @@ Name: AMZN, dtype: float64
       <td>2010-07-02</td>
       <td>5.4570</td>
       <td>1.280000</td>
-      <td>20.798281</td>
+      <td>20.678329</td>
       <td>10.924675</td>
-      <td>19.087761</td>
+      <td>19.087765</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2010-07-06</td>
       <td>5.5030</td>
       <td>1.074000</td>
-      <td>20.540871</td>
+      <td>20.422409</td>
       <td>10.912663</td>
       <td>19.600468</td>
     </tr>
@@ -3354,9 +3382,9 @@ Name: AMZN, dtype: float64
       <td>2010-06-29</td>
       <td>5.4305</td>
       <td>1.592667</td>
-      <td>21.335152</td>
+      <td>21.212105</td>
       <td>11.367868</td>
-      <td>19.264557</td>
+      <td>19.264553</td>
       <td>2010</td>
       <td>29</td>
     </tr>
@@ -3365,9 +3393,9 @@ Name: AMZN, dtype: float64
       <td>2010-06-30</td>
       <td>5.4630</td>
       <td>1.588667</td>
-      <td>21.129227</td>
+      <td>21.007364</td>
       <td>11.134885</td>
-      <td>19.034723</td>
+      <td>19.034727</td>
       <td>2010</td>
       <td>30</td>
     </tr>
@@ -3376,7 +3404,7 @@ Name: AMZN, dtype: float64
       <td>2010-07-01</td>
       <td>5.5480</td>
       <td>1.464000</td>
-      <td>20.879185</td>
+      <td>20.758760</td>
       <td>10.998248</td>
       <td>18.987581</td>
       <td>2010</td>
@@ -3387,9 +3415,9 @@ Name: AMZN, dtype: float64
       <td>2010-07-02</td>
       <td>5.4570</td>
       <td>1.280000</td>
-      <td>20.798281</td>
+      <td>20.678329</td>
       <td>10.924675</td>
-      <td>19.087761</td>
+      <td>19.087765</td>
       <td>2010</td>
       <td>2</td>
     </tr>
@@ -3398,7 +3426,7 @@ Name: AMZN, dtype: float64
       <td>2010-07-06</td>
       <td>5.5030</td>
       <td>1.074000</td>
-      <td>20.540871</td>
+      <td>20.422409</td>
       <td>10.912663</td>
       <td>19.600468</td>
       <td>2010</td>
@@ -3415,7 +3443,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cf3002bf1eb3f97f481bf1ca5095bf3e55914efaefd5bb80d83f24acdfce231f.png" src="_images/cf3002bf1eb3f97f481bf1ca5095bf3e55914efaefd5bb80d83f24acdfce231f.png" />
+<img alt="_images/8216f11e6a3c8fb60c3890cdd28d2b7d4b999c08360d6699b1a454f718cf23e0.png" src="_images/8216f11e6a3c8fb60c3890cdd28d2b7d4b999c08360d6699b1a454f718cf23e0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3425,7 +3453,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/865feb0306d8802b7823edaceaffbbd79e118bdff00eebf152fa1446fe704f62.png" src="_images/865feb0306d8802b7823edaceaffbbd79e118bdff00eebf152fa1446fe704f62.png" />
+<img alt="_images/ee506130cba82a28a774c5aed6f284a69850c3bcd920c434e4744e4e5f1a745b.png" src="_images/ee506130cba82a28a774c5aed6f284a69850c3bcd920c434e4744e4e5f1a745b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3435,7 +3463,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d1209e056c3966f2d2f30b0922cbcdf4c19706d991e4112f7048d86eba4c7b83.png" src="_images/d1209e056c3966f2d2f30b0922cbcdf4c19706d991e4112f7048d86eba4c7b83.png" />
+<img alt="_images/80f2b5c008a504292d40f88130db29f98c57cab89e81e6ca09e49323f49ce38e.png" src="_images/80f2b5c008a504292d40f88130db29f98c57cab89e81e6ca09e49323f49ce38e.png" />
 </div>
 </div>
 </section>
@@ -4058,7 +4086,10 @@ Name: AMZN, dtype: float64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swarm-and-violin-plots">Swarm and Violin Plots</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier">Outlier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction">Direction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average">Moving Average</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average">Moving Average</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-average-signals">Moving Average Signals</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">Histogram</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-pct-change">Future Pct Change</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation:</a></li>
