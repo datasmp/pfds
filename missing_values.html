@@ -1,0 +1,2723 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Missing Values &#8212; Python in Plain Terms</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'missing_values';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Statistics" href="statistics.html" />
+    <link rel="prev" title="Numpy Arrays" href="numpy_arrays.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo2.png" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
+    <script>document.write(`<img src="_static/logo2.png" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Cover
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">DataFrames Advanced Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">DataFrames Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_exercises.html">DataFrames Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_matplot.html">Visualization Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Visualization Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Missing Values</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io/issues/new?title=Issue%20on%20page%20%2Fmissing_values.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/missing_values.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Missing Values</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Missing Values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation-methods">Imputation Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-a-constant-number">Filling with a constant number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-a-string">Filling with a string</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-forward-fill">Filling with forward fill</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-backward-fill">Filling with backward fill</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-mean">Filling with mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-median">Filling with median</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-missing-values">Dropping Missing Values</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputer-methods">Imputer Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-imputer">Simple Imputer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-imputer">knn Imputer</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="missing-values">
+<h1>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this heading">#</a></h1>
+<p><img alt="" src="_images/missing2.png" /></p>
+<p>We will use the following dataset throughout this chapter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df_stock</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/datasmp/datasets/main/stock.xlsx&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>189.66</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>1902.88</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>1906.86</td>
+      <td>187.24</td>
+      <td>3237.18</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, we will replace some values in the dataframe with missing values (NaN).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">df_stock</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">missing</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">r</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">missing</span> <span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df_stock</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>NaN</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>NaN</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>NaN</td>
+      <td>187.24</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>NaN</td>
+      <td>191.77</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 252 entries, 2020-01-02 to 2020-12-30
+Data columns (total 5 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   APPLE   252 non-null    float64
+ 1   TESLA   252 non-null    float64
+ 2   AMAZON  126 non-null    float64
+ 3   VISA    134 non-null    float64
+ 4   SP500   139 non-null    float64
+dtypes: float64(5)
+memory usage: 11.8+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE       0
+TESLA       0
+AMAZON    126
+VISA      118
+SP500     113
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>357
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="imputation-methods">
+<h1>Imputation Methods<a class="headerlink" href="#imputation-methods" title="Permalink to this heading">#</a></h1>
+<section id="filling-with-a-constant-number">
+<h2>Filling with a constant number<a class="headerlink" href="#filling-with-a-constant-number" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>999.00</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>999.00</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>999.00</td>
+      <td>187.24</td>
+      <td>999.00</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>999.00</td>
+      <td>191.77</td>
+      <td>999.00</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>999.00</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>999.00</td>
+      <td>999.00</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>999.00</td>
+      <td>999.00</td>
+      <td>999.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filling-with-a-string">
+<h2>Filling with a string<a class="headerlink" href="#filling-with-a-string" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;EMPTY&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>EMPTY</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>EMPTY</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>EMPTY</td>
+      <td>187.24</td>
+      <td>EMPTY</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>EMPTY</td>
+      <td>191.77</td>
+      <td>EMPTY</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.3</td>
+      <td>193.83</td>
+      <td>EMPTY</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>EMPTY</td>
+      <td>EMPTY</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>EMPTY</td>
+      <td>EMPTY</td>
+      <td>EMPTY</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filling-with-forward-fill">
+<h2>Filling with forward fill<a class="headerlink" href="#filling-with-forward-fill" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>NaN</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>1874.97</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>1874.97</td>
+      <td>187.24</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>1891.97</td>
+      <td>191.77</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>3283.15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filling-with-backward-fill">
+<h2>Filling with backward fill<a class="headerlink" href="#filling-with-backward-fill" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>188.15</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>1891.97</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>1891.97</td>
+      <td>187.24</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>1883.16</td>
+      <td>191.77</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>1864.72</td>
+      <td>203.13</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>1864.72</td>
+      <td>203.13</td>
+      <td>3316.81</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filling-with-mean">
+<h2>Filling with mean<a class="headerlink" href="#filling-with-mean" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE       94.753056
+TESLA      288.347579
+AMAZON    2672.675635
+VISA       191.660373
+SP500     3222.287482
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df_stock</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.010000</td>
+      <td>191.660373</td>
+      <td>3257.850000</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.970000</td>
+      <td>188.150000</td>
+      <td>3234.850000</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>2672.675635</td>
+      <td>187.740000</td>
+      <td>3246.280000</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>2672.675635</td>
+      <td>187.240000</td>
+      <td>3222.287482</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.970000</td>
+      <td>190.450000</td>
+      <td>3253.050000</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>2672.675635</td>
+      <td>191.770000</td>
+      <td>3222.287482</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.160000</td>
+      <td>192.290000</td>
+      <td>3265.350000</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.300000</td>
+      <td>193.830000</td>
+      <td>3222.287482</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>2672.675635</td>
+      <td>191.660373</td>
+      <td>3283.150000</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>2672.675635</td>
+      <td>191.660373</td>
+      <td>3222.287482</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filling-with-median">
+<h2>Filling with median<a class="headerlink" href="#filling-with-median" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>APPLE       90.960
+TESLA      232.830
+AMAZON    2821.555
+VISA       194.565
+SP500     3276.020
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df_stock</span><span class="o">.</span><span class="n">median</span><span class="p">())</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.010</td>
+      <td>194.565</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.970</td>
+      <td>188.150</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>2821.555</td>
+      <td>187.740</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>2821.555</td>
+      <td>187.240</td>
+      <td>3276.02</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.970</td>
+      <td>190.450</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>2821.555</td>
+      <td>191.770</td>
+      <td>3276.02</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.160</td>
+      <td>192.290</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.300</td>
+      <td>193.830</td>
+      <td>3276.02</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>2821.555</td>
+      <td>194.565</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>2821.555</td>
+      <td>194.565</td>
+      <td>3276.02</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="dropping-missing-values">
+<h2>Dropping Missing Values<a class="headerlink" href="#dropping-missing-values" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>drop the rows with at least one missing nan value</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-22</th>
+      <td>78.63</td>
+      <td>113.91</td>
+      <td>1887.46</td>
+      <td>206.31</td>
+      <td>3321.75</td>
+    </tr>
+    <tr>
+      <th>2020-02-06</th>
+      <td>80.49</td>
+      <td>149.79</td>
+      <td>2050.23</td>
+      <td>201.49</td>
+      <td>3345.78</td>
+    </tr>
+    <tr>
+      <th>2020-02-19</th>
+      <td>80.28</td>
+      <td>183.48</td>
+      <td>2170.22</td>
+      <td>211.98</td>
+      <td>3386.15</td>
+    </tr>
+    <tr>
+      <th>2020-02-28</th>
+      <td>67.81</td>
+      <td>133.60</td>
+      <td>1883.75</td>
+      <td>180.63</td>
+      <td>2954.22</td>
+    </tr>
+    <tr>
+      <th>2020-03-03</th>
+      <td>71.77</td>
+      <td>149.10</td>
+      <td>1908.99</td>
+      <td>184.57</td>
+      <td>3003.37</td>
+    </tr>
+    <tr>
+      <th>2020-03-06</th>
+      <td>71.70</td>
+      <td>140.70</td>
+      <td>1901.09</td>
+      <td>183.21</td>
+      <td>2972.37</td>
+    </tr>
+    <tr>
+      <th>2020-03-10</th>
+      <td>70.79</td>
+      <td>129.07</td>
+      <td>1891.82</td>
+      <td>181.46</td>
+      <td>2882.23</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop columns</span>
+<span class="n">df_stock</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;APPLE&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>NaN</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>NaN</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>NaN</td>
+      <td>187.24</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>NaN</td>
+      <td>191.77</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;APPLE&#39;</span><span class="p">,</span> <span class="s1">&#39;AMAZON&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>NaN</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-17</th>
+      <td>78.88</td>
+      <td>102.10</td>
+      <td>1864.72</td>
+      <td>203.13</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-21</th>
+      <td>78.35</td>
+      <td>109.44</td>
+      <td>1892.00</td>
+      <td>NaN</td>
+      <td>3320.79</td>
+    </tr>
+    <tr>
+      <th>2020-01-22</th>
+      <td>78.63</td>
+      <td>113.91</td>
+      <td>1887.46</td>
+      <td>206.31</td>
+      <td>3321.75</td>
+    </tr>
+    <tr>
+      <th>2020-01-23</th>
+      <td>79.01</td>
+      <td>114.44</td>
+      <td>1884.58</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-28</th>
+      <td>78.62</td>
+      <td>113.38</td>
+      <td>1853.25</td>
+      <td>NaN</td>
+      <td>3276.24</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stock</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;APPLE&#39;</span><span class="p">,</span> <span class="s1">&#39;AMAZON&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.01</td>
+      <td>NaN</td>
+      <td>3257.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.97</td>
+      <td>188.15</td>
+      <td>3234.85</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>NaN</td>
+      <td>187.74</td>
+      <td>3246.28</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>NaN</td>
+      <td>187.24</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.97</td>
+      <td>190.45</td>
+      <td>3253.05</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>NaN</td>
+      <td>191.77</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.16</td>
+      <td>192.29</td>
+      <td>3265.35</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.30</td>
+      <td>193.83</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3283.15</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="imputer-methods">
+<h1>Imputer Methods<a class="headerlink" href="#imputer-methods" title="Permalink to this heading">#</a></h1>
+<section id="simple-imputer">
+<h2>Simple Imputer<a class="headerlink" href="#simple-imputer" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>   <span class="c1"># mean, median, most_frequent, constant</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_stock</span><span class="p">)</span>
+<span class="n">imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_stock</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  74.33      ,   86.05      , 1898.01      ,  191.66037313,
+        3257.85      ],
+       [  73.61      ,   88.6       , 1874.97      ,  188.15      ,
+        3234.85      ],
+       [  74.2       ,   90.31      , 2672.67563492,  187.74      ,
+        3246.28      ],
+       ...,
+       [ 136.49      ,  663.69      , 3283.96      ,  212.3       ,
+        3735.36      ],
+       [ 134.67      ,  665.99      , 2672.67563492,  214.04      ,
+        3222.28748201],
+       [ 133.52      ,  694.78      , 3285.85      ,  218.02      ,
+        3222.28748201]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_stock</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_stock</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_stock</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.010000</td>
+      <td>191.660373</td>
+      <td>3257.850000</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.970000</td>
+      <td>188.150000</td>
+      <td>3234.850000</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>2672.675635</td>
+      <td>187.740000</td>
+      <td>3246.280000</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>2672.675635</td>
+      <td>187.240000</td>
+      <td>3222.287482</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.970000</td>
+      <td>190.450000</td>
+      <td>3253.050000</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>2672.675635</td>
+      <td>191.770000</td>
+      <td>3222.287482</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.160000</td>
+      <td>192.290000</td>
+      <td>3265.350000</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.300000</td>
+      <td>193.830000</td>
+      <td>3222.287482</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>2672.675635</td>
+      <td>191.660373</td>
+      <td>3283.150000</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>2672.675635</td>
+      <td>191.660373</td>
+      <td>3222.287482</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="knn-imputer">
+<h2>knn Imputer<a class="headerlink" href="#knn-imputer" title="Permalink to this heading">#</a></h2>
+<p>imputed using the mean value from n_neighbors nearest neighbors found in the training set</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.impute.KNNImputer.html">https://scikit-learn.org/stable/modules/generated/sklearn.impute.KNNImputer.html</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">KNNImputer</span>
+<span class="n">imputer_knn</span> <span class="o">=</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">imputer_knn</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_stock</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  74.33,   86.05, 1898.01,  187.49, 3257.85],
+       [  73.61,   88.6 , 1874.97,  188.15, 3234.85],
+       [  74.2 ,   90.31, 1883.47,  187.74, 3246.28],
+       ...,
+       [ 136.49,  663.69, 3283.96,  212.3 , 3735.36],
+       [ 134.67,  665.99, 3260.02,  214.04, 3719.21],
+       [ 133.52,  694.78, 3285.85,  218.02, 3719.21]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">imputer_knn</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_stock</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_stock</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_stock</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>APPLE</th>
+      <th>TESLA</th>
+      <th>AMAZON</th>
+      <th>VISA</th>
+      <th>SP500</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-02</th>
+      <td>74.33</td>
+      <td>86.05</td>
+      <td>1898.010</td>
+      <td>187.49</td>
+      <td>3257.850</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>73.61</td>
+      <td>88.60</td>
+      <td>1874.970</td>
+      <td>188.15</td>
+      <td>3234.850</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>74.20</td>
+      <td>90.31</td>
+      <td>1883.470</td>
+      <td>187.74</td>
+      <td>3246.280</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>73.85</td>
+      <td>93.81</td>
+      <td>1883.470</td>
+      <td>187.24</td>
+      <td>3240.565</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>75.04</td>
+      <td>98.43</td>
+      <td>1891.970</td>
+      <td>190.45</td>
+      <td>3253.050</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>76.63</td>
+      <td>96.27</td>
+      <td>1887.565</td>
+      <td>191.77</td>
+      <td>3259.200</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>76.80</td>
+      <td>95.63</td>
+      <td>1883.160</td>
+      <td>192.29</td>
+      <td>3265.350</td>
+    </tr>
+    <tr>
+      <th>2020-01-13</th>
+      <td>78.44</td>
+      <td>104.97</td>
+      <td>1891.300</td>
+      <td>193.83</td>
+      <td>3299.980</td>
+    </tr>
+    <tr>
+      <th>2020-01-14</th>
+      <td>77.39</td>
+      <td>107.58</td>
+      <td>1878.010</td>
+      <td>198.48</td>
+      <td>3283.150</td>
+    </tr>
+    <tr>
+      <th>2020-01-15</th>
+      <td>77.05</td>
+      <td>103.70</td>
+      <td>1878.010</td>
+      <td>198.48</td>
+      <td>3299.980</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="numpy_arrays.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Numpy Arrays</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="statistics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Statistics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Missing Values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation-methods">Imputation Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-a-constant-number">Filling with a constant number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-a-string">Filling with a string</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-forward-fill">Filling with forward fill</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-backward-fill">Filling with backward fill</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-mean">Filling with mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filling-with-median">Filling with median</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-missing-values">Dropping Missing Values</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputer-methods">Imputer Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-imputer">Simple Imputer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-imputer">knn Imputer</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yusuf Danisman
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

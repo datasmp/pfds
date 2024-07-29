@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic Information &#8212; Python in Plain Terms</title>
+    <title>Statistics &#8212; Python in Plain Terms</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'basic_info';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Visualization" href="visual_main.html" />
+    <link rel="next" title="Series" href="series.html" />
     <link rel="prev" title="Acknowledgments" href="acknowledge.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -154,8 +154,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
-    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
+    <img src="_static/logo2.png" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
+    <script>document.write(`<img src="_static/logo2.png" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
   
   
 </a></div>
@@ -171,18 +171,23 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic Information</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Seaborn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">Dataframe</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">Dataframe</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">Attributes and Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="df_visualization.html">Visualization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">Advanced Methods</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
+
+
 <li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
@@ -372,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic Information</h1>
+    <h1>Statistics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,9 +387,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-variables">Types of Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-data">Types of Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#level-of-measurement">Level of Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals">Fundamentals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#population-and-sample">Population and Sample</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-methods">Sampling Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-and-statistics">Parameters and Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferential-statistics">Inferential Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-study">Statistical Study</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-of-measurement">Level of Measurement</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics">Descriptive Statistics</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-tendency">Central Tendency</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion">Dispersion</a><ul class="nav section-nav flex-column">
@@ -417,8 +431,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-information">
-<h1>Basic Information<a class="headerlink" href="#basic-information" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="statistics">
+<h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -427,8 +441,115 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="types-of-variables">
-<h2>Types of Variables<a class="headerlink" href="#types-of-variables" title="Permalink to this heading">#</a></h2>
+<section id="fundamentals">
+<h2>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this heading">#</a></h2>
+<p>The (singular) statistics is the science of collecting, analyzing, and interpreting the data.</p>
+<p>The (plural) statistics are the data.</p>
+<section id="population-and-sample">
+<h3>Population and Sample<a class="headerlink" href="#population-and-sample" title="Permalink to this heading">#</a></h3>
+<p>A population is the set of all instances of interest in a study.</p>
+<p>A sample, on the other hand, is a smaller subset of the population that ideally represents the general characteristics of the population.</p>
+<ul class="simple">
+<li><p>Sampling is often necessary due to practical limitations in data collection, such as time, cost, and accessibility.</p></li>
+<li><p>For instance, in a study on the math proficiency of ninth-grade students in the US, it may be impractical to gather data from every student in the country.</p></li>
+<li><p>Instead, a sample of, say, 1,000 students may be selected to represent different demographics and regions.</p></li>
+</ul>
+</section>
+<section id="sampling-methods">
+<h3>Sampling Methods<a class="headerlink" href="#sampling-methods" title="Permalink to this heading">#</a></h3>
+<p>There are four common sampling methods used in statistical studies:</p>
+<ol class="arabic simple">
+<li><p>Simple random sampling: Instances in the sample are chosen randomly from the population, often using a random number generator or other software to ensure every individual has an equal chance of being selected.</p></li>
+<li><p>Stratified sampling: The population is divided into distinct subgroups or strata based on certain characteristics (e.g., age, gender), and then a random sample is taken from each stratum. This ensures representation from each subgroup in the final sample.</p></li>
+<li><p>Systematic sampling: A random starting point is selected from the population, and then every nth individual thereafter is included in the sample. This method is useful when the population is organized in a systematic way, such as by alphabetical order or time intervals.</p></li>
+<li><p>Convenience sampling: Instances in the sample are chosen based on their accessibility or convenience rather than through random selection. This method is often used when it is impractical or impossible to implement other sampling methods, but it may introduce bias into the sample and limit the generalizability of the findings.</p></li>
+</ol>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
+<p>Data consists of measurements and observations collected from the sample.</p>
+<ul class="simple">
+<li><p>These raw data need to be organized and analyzed to extract meaningful insights.</p></li>
+<li><p>For example, data from the aforementioned study may include exam grades, course information, and student demographics for the selected sample.</p></li>
+<li><p>This raw data is often organized and cleaned using tools like spreadsheets.</p></li>
+</ul>
+</section>
+<section id="parameters-and-statistics">
+<h3>Parameters and Statistics<a class="headerlink" href="#parameters-and-statistics" title="Permalink to this heading">#</a></h3>
+<p>Sample statistics are numerical summaries that describe the characteristics of the sample based on the organized data.</p>
+<ul class="simple">
+<li><p>Examples of sample statistics include measures of central tendency (e.g., mean, median) and variability (e.g., standard deviation) of exam grades, as well as correlations between grades and student characteristics obtained from the sample data.</p></li>
+</ul>
+<p>Population parameters, on the other hand, are numerical summaries that describe the characteristics of the entire population.</p>
+<ul class="simple">
+<li><p>Since data for the entire population is often unavailable, population parameters are typically estimated using sample statistics.</p></li>
+</ul>
+</section>
+<section id="inferential-statistics">
+<h3>Inferential Statistics<a class="headerlink" href="#inferential-statistics" title="Permalink to this heading">#</a></h3>
+<p>Inferential statistics involves using sample statistics to make inferences or draw conclusions about population parameters.</p>
+<ul class="simple">
+<li><p>By analyzing sample data, researchers can generalize their findings to the broader population and make informed decisions or predictions.</p></li>
+</ul>
+</section>
+<section id="statistical-study">
+<h3>Statistical Study<a class="headerlink" href="#statistical-study" title="Permalink to this heading">#</a></h3>
+<p>The following chart summarizes the steps of a statistical study starting from a research questions about a population and choosing a sample, preparing the data and calculating sample statistics, making inferences about population parameters and draw conclusions about population.</p>
+<p><img alt="" src="_images/stat_study.png" /></p>
+<p>Below is a comprehensive overview of the steps involved in conducting a statistical study, beginning with formulating a research question about a population and progressing towards drawing conclusions about that population based on the obtained data</p>
+<ul class="simple">
+<li><p>Define Research Question: The process begins by identifying the population of interest and formulating a specific research question that aims to address a particular aspect of that population. This question serves as the guiding principle for the entire study.</p></li>
+<li><p>Choose Sample: Once the research question is established, the next step is to select a representative subset of the population to study. This involves carefully considering factors such as the desired sample size and the sampling method to ensure that the sample accurately reflects the characteristics of the population.</p></li>
+<li><p>Collect Data: With the sample chosen, data collection begins using appropriate methods such as surveys, experiments, or observational studies. The goal is to gather information from individuals or entities within the sample that will help answer the research question effectively.
+Prepare Data:</p>
+<ul>
+<li><p>After collecting the data, it must be organized and cleaned to ensure its accuracy and reliability.</p></li>
+<li><p>This involves removing any errors, inconsistencies, or missing values, as well as performing any necessary data transformations or manipulations to make it suitable for analysis.</p></li>
+</ul>
+</li>
+<li><p>Calculate Sample Statistics: Once the data is prepared, descriptive statistics are calculated to summarize the characteristics of the sample. Common statistics include measures of central tendency (e.g., mean, median) and measures of dispersion (e.g., standard deviation), which provide insights into the distribution of the data.
+Make Inferences:</p></li>
+<li><p>Using inferential statistics, researchers can make inferences about population parameters based on the sample statistics. This involves applying statistical techniques such as hypothesis testing and confidence intervals to estimate population parameters and assess the uncertainty associated with these estimates.
+Draw Conclusions:</p></li>
+<li><p>Based on the results obtained from the statistical analysis, researchers draw conclusions about the population of interest. They interpret the findings in the context of the research question and consider any implications, limitations, or future research directions that may arise from the study.</p></li>
+</ul>
+</section>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h3>
+<p>Variables are attributes or characteristics of the instances being studied.</p>
+<ul class="simple">
+<li><p>In the context of students, variables could include age, gender, ethnicity, exam grades, height, and weight.</p></li>
+<li><p>These variables are used to describe and differentiate individuals within the study population.</p></li>
+</ul>
+<p><em>Binary Variable:</em> A variable that can take only two values.<br />
+<em>Univariate Dataset:</em> A dataset containing exactly one variable.<br />
+<em>Bivariate Dataset:</em> A dataset containing exactly two variables.<br />
+<em>Multivariate Dataset:</em> A dataset containing more than two variables.</p>
+<p><em>Time Series:</em> A collection of data points measured, recorded, or observed at equally spaced time intervals, such as days, months, or years.</p>
+</section>
+<section id="id1">
+<h3>Data<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>A data is a collection of values of the variables for the instances in the sample.</p>
+<p>Types of Data:</p>
+<ol class="arabic">
+<li><p>Categorical (Qualitative):</p>
+<ul class="simple">
+<li><p>Attributes, labels, non-numerical entries.</p></li>
+<li><p>Represented by words or codes.</p></li>
+<li><p>Examples:</p>
+<ul>
+<li><p>Verbal Label: Gender (F, M), Color (Red, Green, Blue)</p></li>
+<li><p>Coded: Gender (0, 1)</p></li>
+<li><p>Coded: Color (0, 1, 2)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Numerical (Quantitative):</p>
+<ul>
+<li><p>Numerical measurements, counts, results of mathematical operations.</p></li>
+<li><p>Examples: Salary, number of claims, amount of rainfall.</p></li>
+<li><p>Types:</p>
 <ol class="arabic simple">
 <li><p>Discrete Variable:</p>
 <ul class="simple">
@@ -444,44 +565,13 @@ document.write(`
 </li>
 </ol>
 <p><em>Warning</em>: Continuous variables are often rounded, making them appear like discrete variables.</p>
-<p><strong>Binary Variable:</strong> It has only two values.<br />
-<strong>Univariate Dataset:</strong> It has exactly one variable.<br />
-<strong>Bivariate Dataset:</strong> It has exactly two variables.<br />
-<strong>Multivariate Dataset:</strong> It has more than two variables.</p>
-<p><strong>Time Series:</strong> each value represents a different, equally spaced point in time (year, month, week, day, hour, minute).</p>
-</section>
-<section id="types-of-data">
-<h2>Types of Data<a class="headerlink" href="#types-of-data" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Categorical (Qualitative):</p>
-<ul class="simple">
-<li><p>Attributes, labels, non-numerical entries.</p></li>
-<li><p>Represented by words or codes.</p></li>
-<li><p>Examples:</p>
-<ul>
-<li><p>Verbal Label: Gender (F, M), Color (Red, Green, Blue)</p></li>
-<li><p>Coded: Gender (0, 1)</p></li>
-<li><p>Coded: Color (0, 1, 2)</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Numerical (Quantitative):</p>
-<ul class="simple">
-<li><p>Numerical measurements, counts, results of mathematical operations.</p></li>
-<li><p>Examples: Salary, number of claims, amount of rainfall.</p></li>
-<li><p>Types:</p>
-<ul>
-<li><p>Discrete: number of apples.</p></li>
-<li><p>Continuous: percentage changes.</p></li>
-</ul>
 </li>
 </ul>
 </li>
 </ol>
 </section>
 <section id="level-of-measurement">
-<h2>Level of Measurement<a class="headerlink" href="#level-of-measurement" title="Permalink to this heading">#</a></h2>
+<h3>Level of Measurement<a class="headerlink" href="#level-of-measurement" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Nominal:</p>
 <ul class="simple">
@@ -524,6 +614,7 @@ document.write(`
 </ul>
 </li>
 </ol>
+</section>
 </section>
 <section id="descriptive-statistics">
 <h2>Descriptive Statistics<a class="headerlink" href="#descriptive-statistics" title="Permalink to this heading">#</a></h2>
@@ -1124,11 +1215,11 @@ Central tendency, dispersion, and distributions are the most commonly used tools
       </div>
     </a>
     <a class="right-next"
-       href="visual_main.html"
+       href="series.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Visualization</p>
+        <p class="prev-next-title">Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1147,9 +1238,18 @@ Central tendency, dispersion, and distributions are the most commonly used tools
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-variables">Types of Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-data">Types of Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#level-of-measurement">Level of Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamentals">Fundamentals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#population-and-sample">Population and Sample</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-methods">Sampling Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-and-statistics">Parameters and Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferential-statistics">Inferential Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-study">Statistical Study</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-of-measurement">Level of Measurement</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics">Descriptive Statistics</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-tendency">Central Tendency</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion">Dispersion</a><ul class="nav section-nav flex-column">

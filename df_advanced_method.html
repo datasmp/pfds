@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Advanced Methods &#8212; Python in Plain Terms</title>
+    <title>DataFrames Advanced Methods &#8212; Python in Plain Terms</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'df_advanced_method';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Stock Data Analysis" href="stock_main.html" />
-    <link rel="prev" title="Visualization" href="df_visualization.html" />
+    <link rel="next" title="DataFrames Visualization" href="df_visualization.html" />
+    <link rel="prev" title="DataFrames Attributes and Methods" href="df_attribute_method.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -141,7 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="pfds.html">
+<a class="navbar-brand logo" href="cover.html">
   
   
   
@@ -152,8 +152,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
-    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
+    <img src="_static/logo2.png" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
+    <script>document.write(`<img src="_static/logo2.png" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
   
   
 </a></div>
@@ -162,28 +162,38 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="pfds.html">
-                    Python for Data Science
+                <a class="reference internal" href="cover.html">
+                    Cover
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_info.html">Basic Information</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Seaborn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">DataFrames Advanced Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">DataFrames Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_exercises.html">DataFrames Exercises</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="df_basics.html">Dataframe</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">Attributes and Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">Visualization</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Advanced Methods</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_matplot.html">Visualization Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Visualization Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
 </ul>
 </li>
 </ul>
@@ -369,7 +379,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Advanced Methods</h1>
+    <h1>DataFrames Advanced Methods</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,6 +392,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">concat()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift">shift()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pct-change">pct_change()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling">rolling()</a></li>
 </ul>
             </nav>
         </div>
@@ -393,8 +404,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="advanced-methods">
-<h1>Advanced Methods<a class="headerlink" href="#advanced-methods" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="dataframes-advanced-methods">
+<h1>DataFrames Advanced Methods<a class="headerlink" href="#dataframes-advanced-methods" title="Permalink to this heading">#</a></h1>
+<p><img alt="" src="_images/df_advanced2.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -832,9 +844,7 @@ document.write(`
 </section>
 <section id="shift">
 <h2>shift()<a class="headerlink" href="#shift" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>It is used to shift the data up or down.</p></li>
-</ul>
+<p>It is used to shift the data up or down.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">])</span>
@@ -1108,9 +1118,7 @@ document.write(`
 </section>
 <section id="pct-change">
 <h2>pct_change()<a class="headerlink" href="#pct-change" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Percentage change between the current and a prior value.</p></li>
-</ul>
+<p>Percentage change between the current and a prior value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">180</span><span class="p">])</span>
@@ -1219,6 +1227,143 @@ document.write(`
 </div></div></div>
 </div>
 </section>
+<section id="rolling">
+<h2>rolling()<a class="headerlink" href="#rolling" title="Permalink to this heading">#</a></h2>
+<p>It is used to do calculations using a rolling window.</p>
+<ul class="simple">
+<li><p>The most commonly used methods following the <em>rolling()</em> method are <em>sum()</em>, <em>mean()</em>, <em>median()</em>, and <em>std()</em>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>600</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>180</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>rolling() returns a Rolling object.</p></li>
+<li><p>The <em>window</em> parameter specifies the size of the moving window and must be provided.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># window=3</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.window.rolling.Rolling
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1500.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1150.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>930.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>With a moving window size of 3, the row triplets and corresponding values are as follows:</p>
+<ul class="simple">
+<li><p>Rows 0, 1, and 2: The sum of 500, 400, and 600 is 1500.</p></li>
+<li><p>Rows 1, 2, and 3: The sum of 400, 600, and 150 is 1150.</p></li>
+<li><p>Rows 2, 3, and 4: The sum of 600, 150, and 180 is 930.</p></li>
+</ul>
+<p>The first two rolling sum values are NaN (not a number) because a minimum of 3 values is required to compute the sum</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1252,20 +1397,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="df_visualization.html"
+       href="df_attribute_method.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Visualization</p>
+        <p class="prev-next-title">DataFrames Attributes and Methods</p>
       </div>
     </a>
     <a class="right-next"
-       href="stock_main.html"
+       href="df_visualization.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Stock Data Analysis</p>
+        <p class="prev-next-title">DataFrames Visualization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1287,6 +1432,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">concat()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift">shift()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pct-change">pct_change()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling">rolling()</a></li>
 </ul>
   </nav></div>
 

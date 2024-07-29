@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Attributes and Methods &#8212; Python in Plain Terms</title>
+    <title>DataFrames Attributes and Methods &#8212; Python in Plain Terms</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'df_attribute_method';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Visualization" href="df_visualization.html" />
-    <link rel="prev" title="Dataframe" href="df_basics.html" />
+    <link rel="next" title="DataFrames Advanced Methods" href="df_advanced_method.html" />
+    <link rel="prev" title="DataFrames" href="df_basics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -143,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="pfds.html">
+<a class="navbar-brand logo" href="cover.html">
   
   
   
@@ -154,8 +154,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
-    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
+    <img src="_static/logo2.png" class="logo__image only-light" alt="Python in Plain Terms - Home"/>
+    <script>document.write(`<img src="_static/logo2.png" class="logo__image only-dark" alt="Python in Plain Terms - Home"/>`);</script>
   
   
 </a></div>
@@ -164,28 +164,38 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="pfds.html">
-                    Python for Data Science
+                <a class="reference internal" href="cover.html">
+                    Cover
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_info.html">Basic Information</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Seaborn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">DataFrames Attributes and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">DataFrames Advanced Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">DataFrames Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_exercises.html">DataFrames Exercises</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="df_basics.html">Dataframe</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Attributes and Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">Visualization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">Advanced Methods</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_matplot.html">Visualization Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Visualization Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
 </ul>
 </li>
 </ul>
@@ -371,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Attributes and Methods</h1>
+    <h1>DataFrames Attributes and Methods</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -414,8 +424,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="attributes-and-methods">
-<h1>Attributes and Methods<a class="headerlink" href="#attributes-and-methods" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="dataframes-attributes-and-methods">
+<h1>DataFrames Attributes and Methods<a class="headerlink" href="#dataframes-attributes-and-methods" title="Permalink to this heading">#</a></h1>
+<p><img alt="" src="_images/df_attributes2.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1285,7 +1296,7 @@ document.write(`
 <p>The info() method provides basic information about the DataFrame, including:</p>
 <ul class="simple">
 <li><p>row labels: RangeIndex: 100 entries, 0 to 99</p></li>
-<li><p>column labls: ‘Name’, ‘ID’, ‘Grade’, ‘Gender’, ‘HW’, ‘Test-1’, ‘Test-2’, ‘Test-3’, ‘Test-4’, ‘Final’</p></li>
+<li><p>column labels: ‘Name’, ‘ID’, ‘Grade’, ‘Gender’, ‘HW’, ‘Test-1’, ‘Test-2’, ‘Test-3’, ‘Test-4’, ‘Final’</p></li>
 <li><p>number of columns: 10</p></li>
 <li><p>Non-null (non-missing) values: 100 for each column</p></li>
 <li><p>dtype: object (strings), int64</p></li>
@@ -1641,7 +1652,8 @@ Name: count, dtype: int64
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>By default, the <em>drop()</em> method does not change the DataFrame. It just displays how the DataFrame would look if the dropping were performed.</p></li>
+<li><p>By default, the <em>drop()</em> method does not change the DataFrame.</p></li>
+<li><p>It just displays how the DataFrame would look if the dropping were performed.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2941,15 +2953,15 @@ dtype: bool
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dataframe</p>
+        <p class="prev-next-title">DataFrames</p>
       </div>
     </a>
     <a class="right-next"
-       href="df_visualization.html"
+       href="df_advanced_method.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Visualization</p>
+        <p class="prev-next-title">DataFrames Advanced Methods</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
