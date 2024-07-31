@@ -406,6 +406,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterations-and-series">Iterations and Series</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operations">Comparison Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail">head() and tail()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">info()</a></li>
@@ -1278,6 +1279,26 @@ Ted     False
 Mia      True
 Ben      True
 Name: Test-1, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading">#</a></h2>
+<p>Comparison operations can be used to filter rows based on the boolean values returned by comparison operators.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the rows with test1_grades &lt; 75</span>
+<span class="n">test1_grades</span><span class="p">[</span><span class="n">test1_grades</span> <span class="o">&lt;</span> <span class="mi">75</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Amy    70
+Mia    60
+Ben    60
+Name: Test-1, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -2460,6 +2481,7 @@ Name: Test-1, dtype: int64
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterations-and-series">Iterations and Series</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operations">Comparison Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#head-and-tail">head() and tail()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">info()</a></li>

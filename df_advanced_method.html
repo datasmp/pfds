@@ -393,6 +393,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift">shift()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pct-change">pct_change()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling">rolling()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corr">corr()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby">groupby()</a></li>
 </ul>
             </nav>
         </div>
@@ -1364,6 +1366,405 @@ document.write(`
 </ul>
 <p>The first two rolling sum values are NaN (not a number) because a minimum of 3 values is required to compute the sum</p>
 </section>
+<section id="corr">
+<h2>corr()<a class="headerlink" href="#corr" title="Permalink to this heading">#</a></h2>
+<p>It returns the correlation coefficients of all column pairs.</p>
+<p>Let’s find the correlation coefficients for the following DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span> <span class="p">{</span><span class="s1">&#39;x-values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;square-values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">25</span><span class="p">],</span><span class="s1">&#39;cube-values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">125</span><span class="p">],</span>
+                    <span class="s1">&#39;random&#39;</span><span class="p">:[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;reciprocal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">]})</span>
+<span class="n">df4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x-values</th>
+      <th>square-values</th>
+      <th>cube-values</th>
+      <th>random</th>
+      <th>reciprocal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>9</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>4</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>9</td>
+      <td>27</td>
+      <td>3</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>16</td>
+      <td>64</td>
+      <td>1</td>
+      <td>0.250000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>25</td>
+      <td>125</td>
+      <td>8</td>
+      <td>0.200000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df4</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x-values</th>
+      <th>square-values</th>
+      <th>cube-values</th>
+      <th>random</th>
+      <th>reciprocal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x-values</th>
+      <td>1.000000</td>
+      <td>0.981105</td>
+      <td>0.943118</td>
+      <td>-0.233126</td>
+      <td>-0.901754</td>
+    </tr>
+    <tr>
+      <th>square-values</th>
+      <td>0.981105</td>
+      <td>1.000000</td>
+      <td>0.989216</td>
+      <td>-0.053368</td>
+      <td>-0.806339</td>
+    </tr>
+    <tr>
+      <th>cube-values</th>
+      <td>0.943118</td>
+      <td>0.989216</td>
+      <td>1.000000</td>
+      <td>0.088235</td>
+      <td>-0.722074</td>
+    </tr>
+    <tr>
+      <th>random</th>
+      <td>-0.233126</td>
+      <td>-0.053368</td>
+      <td>0.088235</td>
+      <td>1.000000</td>
+      <td>0.553018</td>
+    </tr>
+    <tr>
+      <th>reciprocal</th>
+      <td>-0.901754</td>
+      <td>-0.806339</td>
+      <td>-0.722074</td>
+      <td>0.553018</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The correlation matrix can be visualized using Seaborn’s heatmap function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df4</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09334f10729bccbfd42920fc14134eae1e54c7b635314c776e4ccdb4f2999caa.png" src="_images/09334f10729bccbfd42920fc14134eae1e54c7b635314c776e4ccdb4f2999caa.png" />
+</div>
+</div>
+</section>
+<section id="groupby">
+<h2>groupby()<a class="headerlink" href="#groupby" title="Permalink to this heading">#</a></h2>
+<p>The groupby() function is used to group rows based on column values.</p>
+<ul class="simple">
+<li><p>It is commonly used to apply functions, such as calculating the sum, to each group.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;gender&#39;</span><span class="p">:[</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">],</span> <span class="s1">&#39;age&#39;</span><span class="p">:[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]})</span>
+<span class="n">df5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gender</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>M</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>F</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>F</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>M</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>F</td>
+      <td>40</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>The groupby() method below returns a GroupBy object with two groups, corresponding to ‘M’ and ‘F’.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x16a1d6e90&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The sum() method below calculates the total of the age values for the ‘M’ and ‘F’ groups.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>F</th>
+      <td>115</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td>65</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>The mean() method below calculates the mean of the age values for the ‘M’ and ‘F’ groups.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>F</th>
+      <td>38.333333</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td>32.500000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>The count() method below determines the number of samples (rows) in the ‘M’ and ‘F’ groups.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>F</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1433,6 +1834,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift">shift()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pct-change">pct_change()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling">rolling()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corr">corr()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby">groupby()</a></li>
 </ul>
   </nav></div>
 
