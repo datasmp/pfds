@@ -168,6 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
@@ -182,16 +183,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="eda_california_housing.html">California Housing Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
@@ -546,77 +547,77 @@ document.write(`
     <tr>
       <th>0</th>
       <td>english_premier</td>
-      <td>Manchester City</td>
+      <td>Brighton</td>
       <td>1</td>
-      <td>91</td>
-      <td>38</td>
-      <td>28</td>
-      <td>28</td>
       <td>3</td>
-      <td>96</td>
-      <td>34</td>
-      <td>+62</td>
-      <td>Erling Haaland - 27</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>+3</td>
+      <td>Danny Welbeck, Kaoru Mitoma... - 1</td>
     </tr>
     <tr>
       <th>1</th>
       <td>english_premier</td>
       <td>Arsenal</td>
       <td>2</td>
-      <td>89</td>
-      <td>38</td>
-      <td>28</td>
-      <td>28</td>
-      <td>5</td>
-      <td>91</td>
-      <td>29</td>
-      <td>+62</td>
-      <td>Bukayo Saka - 16</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>+2</td>
+      <td>Kai Havertz, Bukayo Saka - 1</td>
     </tr>
     <tr>
       <th>2</th>
       <td>english_premier</td>
       <td>Liverpool</td>
       <td>3</td>
-      <td>82</td>
-      <td>38</td>
-      <td>24</td>
-      <td>24</td>
-      <td>4</td>
-      <td>86</td>
-      <td>41</td>
-      <td>+45</td>
-      <td>Mohamed Salah - 18</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>+2</td>
+      <td>Mohamed Salah, Diogo Jota - 1</td>
     </tr>
     <tr>
       <th>3</th>
       <td>english_premier</td>
       <td>Aston Villa</td>
       <td>4</td>
-      <td>68</td>
-      <td>38</td>
-      <td>20</td>
-      <td>20</td>
-      <td>10</td>
-      <td>76</td>
-      <td>61</td>
-      <td>+15</td>
-      <td>Ollie Watkins - 19</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>+1</td>
+      <td>Amadou Onana, Jhon Durán - 1</td>
     </tr>
     <tr>
       <th>4</th>
       <td>english_premier</td>
-      <td>Tottenham</td>
+      <td>Manchester Utd</td>
       <td>5</td>
-      <td>66</td>
-      <td>38</td>
-      <td>20</td>
-      <td>20</td>
-      <td>12</td>
-      <td>74</td>
-      <td>61</td>
-      <td>+13</td>
-      <td>Son Heung-min - 17</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>+1</td>
+      <td>Joshua Zirkzee - 1</td>
     </tr>
   </tbody>
 </table>

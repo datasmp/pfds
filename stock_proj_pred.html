@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
@@ -185,16 +186,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="eda_california_housing.html">California Housing Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Project-3: Stock Prediction</a></li>
@@ -486,50 +487,50 @@ There are two types of prediction problems: Regression and Classification.</p>
   <tbody>
     <tr>
       <th>2015-01-02 00:00:00-05:00</th>
-      <td>24.861960</td>
-      <td>24.873121</td>
-      <td>23.960242</td>
-      <td>24.402174</td>
+      <td>24.833217</td>
+      <td>24.844365</td>
+      <td>23.932542</td>
+      <td>24.373962</td>
       <td>212818400</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-05 00:00:00-05:00</th>
-      <td>24.170045</td>
-      <td>24.250396</td>
-      <td>23.527237</td>
-      <td>23.714722</td>
+      <td>24.142098</td>
+      <td>24.222356</td>
+      <td>23.500033</td>
+      <td>23.687302</td>
       <td>257142000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-06 00:00:00-05:00</th>
-      <td>23.779452</td>
-      <td>23.978098</td>
-      <td>23.353144</td>
-      <td>23.716957</td>
+      <td>23.751958</td>
+      <td>23.950374</td>
+      <td>23.326143</td>
+      <td>23.689535</td>
       <td>263188400</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-07 00:00:00-05:00</th>
-      <td>23.926756</td>
-      <td>24.149953</td>
-      <td>23.815157</td>
-      <td>24.049515</td>
+      <td>23.899100</td>
+      <td>24.122039</td>
+      <td>23.787630</td>
+      <td>24.021717</td>
       <td>160423600</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-08 00:00:00-05:00</th>
-      <td>24.379852</td>
-      <td>25.031588</td>
-      <td>24.261556</td>
-      <td>24.973557</td>
+      <td>24.351662</td>
+      <td>25.002644</td>
+      <td>24.233502</td>
+      <td>24.944679</td>
       <td>237458000</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -579,10 +580,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>0</th>
       <td>2015-01-02 00:00:00-05:00</td>
-      <td>24.861960</td>
-      <td>24.873121</td>
-      <td>23.960242</td>
-      <td>24.402174</td>
+      <td>24.833217</td>
+      <td>24.844365</td>
+      <td>23.932542</td>
+      <td>24.373962</td>
       <td>212818400</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -590,10 +591,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>1</th>
       <td>2015-01-05 00:00:00-05:00</td>
-      <td>24.170045</td>
-      <td>24.250396</td>
-      <td>23.527237</td>
-      <td>23.714722</td>
+      <td>24.142098</td>
+      <td>24.222356</td>
+      <td>23.500033</td>
+      <td>23.687302</td>
       <td>257142000</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -601,10 +602,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>2</th>
       <td>2015-01-06 00:00:00-05:00</td>
-      <td>23.779452</td>
-      <td>23.978098</td>
-      <td>23.353144</td>
-      <td>23.716957</td>
+      <td>23.751958</td>
+      <td>23.950374</td>
+      <td>23.326143</td>
+      <td>23.689535</td>
       <td>263188400</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -612,10 +613,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>3</th>
       <td>2015-01-07 00:00:00-05:00</td>
-      <td>23.926756</td>
-      <td>24.149953</td>
-      <td>23.815157</td>
-      <td>24.049515</td>
+      <td>23.899100</td>
+      <td>24.122039</td>
+      <td>23.787630</td>
+      <td>24.021717</td>
       <td>160423600</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -623,10 +624,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>4</th>
       <td>2015-01-08 00:00:00-05:00</td>
-      <td>24.379852</td>
-      <td>25.031588</td>
-      <td>24.261556</td>
-      <td>24.973557</td>
+      <td>24.351662</td>
+      <td>25.002644</td>
+      <td>24.233502</td>
+      <td>24.944679</td>
       <td>237458000</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -676,10 +677,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>0</th>
       <td>2015-01-02</td>
-      <td>24.861960</td>
-      <td>24.873121</td>
-      <td>23.960242</td>
-      <td>24.402174</td>
+      <td>24.833217</td>
+      <td>24.844365</td>
+      <td>23.932542</td>
+      <td>24.373962</td>
       <td>212818400</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -687,10 +688,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>1</th>
       <td>2015-01-05</td>
-      <td>24.170045</td>
-      <td>24.250396</td>
-      <td>23.527237</td>
-      <td>23.714722</td>
+      <td>24.142098</td>
+      <td>24.222356</td>
+      <td>23.500033</td>
+      <td>23.687302</td>
       <td>257142000</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -698,10 +699,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>2</th>
       <td>2015-01-06</td>
-      <td>23.779452</td>
-      <td>23.978098</td>
-      <td>23.353144</td>
-      <td>23.716957</td>
+      <td>23.751958</td>
+      <td>23.950374</td>
+      <td>23.326143</td>
+      <td>23.689535</td>
       <td>263188400</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -709,10 +710,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>3</th>
       <td>2015-01-07</td>
-      <td>23.926756</td>
-      <td>24.149953</td>
-      <td>23.815157</td>
-      <td>24.049515</td>
+      <td>23.899100</td>
+      <td>24.122039</td>
+      <td>23.787630</td>
+      <td>24.021717</td>
       <td>160423600</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -720,10 +721,10 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>4</th>
       <td>2015-01-08</td>
-      <td>24.379852</td>
-      <td>25.031588</td>
-      <td>24.261556</td>
-      <td>24.973557</td>
+      <td>24.351662</td>
+      <td>25.002644</td>
+      <td>24.233502</td>
+      <td>24.944679</td>
       <td>237458000</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -781,50 +782,50 @@ There are two types of prediction problems: Regression and Classification.</p>
   <tbody>
     <tr>
       <th>2015-01-02</th>
-      <td>24.861960</td>
-      <td>24.873121</td>
-      <td>23.960242</td>
-      <td>24.402174</td>
+      <td>24.833217</td>
+      <td>24.844365</td>
+      <td>23.932542</td>
+      <td>24.373962</td>
       <td>212818400</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
-      <td>24.170045</td>
-      <td>24.250396</td>
-      <td>23.527237</td>
-      <td>23.714722</td>
+      <td>24.142098</td>
+      <td>24.222356</td>
+      <td>23.500033</td>
+      <td>23.687302</td>
       <td>257142000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
-      <td>23.779452</td>
-      <td>23.978098</td>
-      <td>23.353144</td>
-      <td>23.716957</td>
+      <td>23.751958</td>
+      <td>23.950374</td>
+      <td>23.326143</td>
+      <td>23.689535</td>
       <td>263188400</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
-      <td>23.926756</td>
-      <td>24.149953</td>
-      <td>23.815157</td>
-      <td>24.049515</td>
+      <td>23.899100</td>
+      <td>24.122039</td>
+      <td>23.787630</td>
+      <td>24.021717</td>
       <td>160423600</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
-      <td>24.379852</td>
-      <td>25.031588</td>
-      <td>24.261556</td>
-      <td>24.973557</td>
+      <td>24.351662</td>
+      <td>25.002644</td>
+      <td>24.233502</td>
+      <td>24.944679</td>
       <td>237458000</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -870,23 +871,23 @@ There are two types of prediction problems: Regression and Classification.</p>
   <tbody>
     <tr>
       <th>2015-01-02</th>
-      <td>24.402174</td>
+      <td>24.373962</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
-      <td>23.714722</td>
+      <td>23.687302</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
-      <td>23.716957</td>
+      <td>23.689535</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
-      <td>24.049515</td>
+      <td>24.021717</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
-      <td>24.973557</td>
+      <td>24.944679</td>
     </tr>
   </tbody>
 </table>
@@ -1195,7 +1196,7 @@ There are two types of prediction problems: Regression and Classification.</p>
     </tr>
     <tr>
       <th>2015-01-15</th>
-      <td>-0.027141</td>
+      <td>-0.027140</td>
       <td>-0.003810</td>
       <td>0.008879</td>
       <td>-0.024641</td>
@@ -1205,7 +1206,7 @@ There are two types of prediction problems: Regression and Classification.</p>
     <tr>
       <th>2015-01-16</th>
       <td>-0.007770</td>
-      <td>-0.027141</td>
+      <td>-0.027140</td>
       <td>-0.003810</td>
       <td>0.008879</td>
       <td>-0.024641</td>
@@ -1247,7 +1248,7 @@ There are two types of prediction problems: Regression and Classification.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.02464078,  0.00887879, -0.00381046, -0.02714058, -0.00776965])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.02464066,  0.00887857, -0.00381029, -0.02714021, -0.00777023])
 </pre></div>
 </div>
 </div>
@@ -1395,7 +1396,7 @@ There are two types of prediction problems: Regression and Classification.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.47
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.46
 </pre></div>
 </div>
 </div>
@@ -1439,7 +1440,7 @@ There are two types of prediction problems: Regression and Classification.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.55
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.49
 </pre></div>
 </div>
 </div>
@@ -1452,7 +1453,7 @@ There are two types of prediction problems: Regression and Classification.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.55
 </pre></div>
 </div>
 </div>
@@ -1465,7 +1466,7 @@ There are two types of prediction problems: Regression and Classification.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
 </pre></div>
 </div>
 </div>
@@ -1477,7 +1478,7 @@ There are two types of prediction problems: Regression and Classification.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.45
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.48
 </pre></div>
 </div>
 </div>

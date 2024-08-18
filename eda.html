@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="California Housing Dataset" href="eda_california_housing.html" />
-    <link rel="prev" title="Visualization Examples" href="visual_example.html" />
+    <link rel="prev" title="Datasets" href="datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,6 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
@@ -184,16 +185,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exploratory Data Analysis</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Exploratory Data Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="eda_california_housing.html">California Housing Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_eda.html">Project-2: EDA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
@@ -392,11 +393,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Exploratory Data Analysis</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#important-libraries">Important Libraries</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#open-data-repositories">Open Data Repositories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-libraries">Important Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-data-repositories">Open Data Repositories</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -504,9 +503,8 @@ document.write(`
 </ul>
 </li>
 </ol>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="important-libraries">
-<h1>Important Libraries<a class="headerlink" href="#important-libraries" title="Permalink to this heading">#</a></h1>
+<section id="important-libraries">
+<h2>Important Libraries<a class="headerlink" href="#important-libraries" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>pandas</p></li>
 <li><p>numpy</p></li>
@@ -514,13 +512,14 @@ document.write(`
 <li><p>matplotlib</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="open-data-repositories">
-<h1>Open Data Repositories<a class="headerlink" href="#open-data-repositories" title="Permalink to this heading">#</a></h1>
+<section id="open-data-repositories">
+<h2>Open Data Repositories<a class="headerlink" href="#open-data-repositories" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>UC Urvine ML Repository: <a class="reference external" href="https://archive.ics.uci.edu/ml/index.php">https://archive.ics.uci.edu/ml/index.php</a></p></li>
 <li><p>Kaggle: <a class="reference external" href="https://www.kaggle.com/datasets">https://www.kaggle.com/datasets</a></p></li>
 <li><p>Wiki: <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research">https://en.wikipedia.org/wiki/List_of_datasets_for_machine-learning_research</a></p></li>
 </ul>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -556,12 +555,12 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="visual_example.html"
+       href="datasets.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Visualization Examples</p>
+        <p class="prev-next-title">Datasets</p>
       </div>
     </a>
     <a class="right-next"
@@ -588,11 +587,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Exploratory Data Analysis</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#important-libraries">Important Libraries</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#open-data-repositories">Open Data Repositories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-libraries">Important Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-data-repositories">Open Data Repositories</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

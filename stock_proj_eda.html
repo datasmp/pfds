@@ -170,6 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="series.html">Series</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
@@ -184,16 +185,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="statistics.html">Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="eda_california_housing.html">California Housing Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="stock_main.html">Stock Data Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_corr.html">Project-1: SP500 Correlations</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Project-2: EDA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stock_proj_pred.html">Project-3: Stock Prediction</a></li>
@@ -2985,23 +2986,23 @@ Name: count, dtype: int64
       <td>NaN</td>
       <td>12.895320</td>
       <td>NaN</td>
-      <td>10.773265</td>
+      <td>10.676562</td>
     </tr>
     <tr>
       <th>2000-01-04 00:00:00-05:00</th>
       <td>4.096875</td>
       <td>NaN</td>
-      <td>12.483770</td>
+      <td>12.483771</td>
       <td>NaN</td>
-      <td>10.901774</td>
+      <td>10.803915</td>
     </tr>
     <tr>
       <th>2000-01-05 00:00:00-05:00</th>
       <td>3.487500</td>
       <td>NaN</td>
-      <td>13.032511</td>
+      <td>13.032507</td>
       <td>NaN</td>
-      <td>11.308710</td>
+      <td>11.207213</td>
     </tr>
     <tr>
       <th>2000-01-06 00:00:00-05:00</th>
@@ -3009,15 +3010,15 @@ Name: count, dtype: int64
       <td>NaN</td>
       <td>12.963915</td>
       <td>NaN</td>
-      <td>11.372967</td>
+      <td>11.270884</td>
     </tr>
     <tr>
       <th>2000-01-07 00:00:00-05:00</th>
       <td>3.478125</td>
       <td>NaN</td>
-      <td>13.444066</td>
+      <td>13.444065</td>
       <td>NaN</td>
-      <td>11.522898</td>
+      <td>11.419463</td>
     </tr>
   </tbody>
 </table>
@@ -3065,27 +3066,27 @@ Name: count, dtype: int64
       <td>2010-06-29</td>
       <td>5.4305</td>
       <td>1.592667</td>
-      <td>21.093821</td>
+      <td>21.093817</td>
       <td>11.354836</td>
-      <td>19.077396</td>
+      <td>18.906164</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2010-06-30</td>
       <td>5.4630</td>
       <td>1.588667</td>
-      <td>20.890217</td>
+      <td>20.890224</td>
       <td>11.122120</td>
-      <td>18.849794</td>
+      <td>18.680607</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2010-07-01</td>
       <td>5.5480</td>
       <td>1.464000</td>
-      <td>20.642998</td>
+      <td>20.643002</td>
       <td>10.985640</td>
-      <td>18.803122</td>
+      <td>18.634335</td>
     </tr>
     <tr>
       <th>3</th>
@@ -3094,7 +3095,7 @@ Name: count, dtype: int64
       <td>1.280000</td>
       <td>20.563021</td>
       <td>10.912151</td>
-      <td>18.902325</td>
+      <td>18.732664</td>
     </tr>
     <tr>
       <th>4</th>
@@ -3103,7 +3104,7 @@ Name: count, dtype: int64
       <td>1.074000</td>
       <td>20.308527</td>
       <td>10.900153</td>
-      <td>19.410042</td>
+      <td>19.235815</td>
     </tr>
   </tbody>
 </table>
@@ -3250,7 +3251,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cbcf258cb1d3f3b5088c29e0cec552f9e33b12b9245ec4017733da77829ca51d.png" src="_images/cbcf258cb1d3f3b5088c29e0cec552f9e33b12b9245ec4017733da77829ca51d.png" />
+<img alt="_images/1cd1b5b044b559e876d5ecbdb41f3f1a415be14b7700e1c19deda5176eca8564.png" src="_images/1cd1b5b044b559e876d5ecbdb41f3f1a415be14b7700e1c19deda5176eca8564.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3307,27 +3308,27 @@ Name: AMZN, dtype: float64
       <td>2010-06-29</td>
       <td>5.4305</td>
       <td>1.592667</td>
-      <td>21.093821</td>
+      <td>21.093817</td>
       <td>11.354836</td>
-      <td>19.077396</td>
+      <td>18.906164</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2010-06-30</td>
       <td>5.4630</td>
       <td>1.588667</td>
-      <td>20.890217</td>
+      <td>20.890224</td>
       <td>11.122120</td>
-      <td>18.849794</td>
+      <td>18.680607</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2010-07-01</td>
       <td>5.5480</td>
       <td>1.464000</td>
-      <td>20.642998</td>
+      <td>20.643002</td>
       <td>10.985640</td>
-      <td>18.803122</td>
+      <td>18.634335</td>
     </tr>
     <tr>
       <th>3</th>
@@ -3336,7 +3337,7 @@ Name: AMZN, dtype: float64
       <td>1.280000</td>
       <td>20.563021</td>
       <td>10.912151</td>
-      <td>18.902325</td>
+      <td>18.732664</td>
     </tr>
     <tr>
       <th>4</th>
@@ -3345,7 +3346,7 @@ Name: AMZN, dtype: float64
       <td>1.074000</td>
       <td>20.308527</td>
       <td>10.900153</td>
-      <td>19.410042</td>
+      <td>19.235815</td>
     </tr>
   </tbody>
 </table>
@@ -3394,9 +3395,9 @@ Name: AMZN, dtype: float64
       <td>2010-06-29</td>
       <td>5.4305</td>
       <td>1.592667</td>
-      <td>21.093821</td>
+      <td>21.093817</td>
       <td>11.354836</td>
-      <td>19.077396</td>
+      <td>18.906164</td>
       <td>2010</td>
       <td>29</td>
     </tr>
@@ -3405,9 +3406,9 @@ Name: AMZN, dtype: float64
       <td>2010-06-30</td>
       <td>5.4630</td>
       <td>1.588667</td>
-      <td>20.890217</td>
+      <td>20.890224</td>
       <td>11.122120</td>
-      <td>18.849794</td>
+      <td>18.680607</td>
       <td>2010</td>
       <td>30</td>
     </tr>
@@ -3416,9 +3417,9 @@ Name: AMZN, dtype: float64
       <td>2010-07-01</td>
       <td>5.5480</td>
       <td>1.464000</td>
-      <td>20.642998</td>
+      <td>20.643002</td>
       <td>10.985640</td>
-      <td>18.803122</td>
+      <td>18.634335</td>
       <td>2010</td>
       <td>1</td>
     </tr>
@@ -3429,7 +3430,7 @@ Name: AMZN, dtype: float64
       <td>1.280000</td>
       <td>20.563021</td>
       <td>10.912151</td>
-      <td>18.902325</td>
+      <td>18.732664</td>
       <td>2010</td>
       <td>2</td>
     </tr>
@@ -3440,7 +3441,7 @@ Name: AMZN, dtype: float64
       <td>1.074000</td>
       <td>20.308527</td>
       <td>10.900153</td>
-      <td>19.410042</td>
+      <td>19.235815</td>
       <td>2010</td>
       <td>6</td>
     </tr>
@@ -3455,7 +3456,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/474b3f86d0bf032abf0febb6d65f4570b2930e7c2839e69c6de2471f4b1e0cc7.png" src="_images/474b3f86d0bf032abf0febb6d65f4570b2930e7c2839e69c6de2471f4b1e0cc7.png" />
+<img alt="_images/27bcadeab3382b89585533464e4e3274d804581becd621cd8ed20ffffdcdb7ac.png" src="_images/27bcadeab3382b89585533464e4e3274d804581becd621cd8ed20ffffdcdb7ac.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3465,7 +3466,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a8fe0d5e0d1acd7b3bb76f6077d8568c455069df7bfdb4bc22a2c70fbb142689.png" src="_images/a8fe0d5e0d1acd7b3bb76f6077d8568c455069df7bfdb4bc22a2c70fbb142689.png" />
+<img alt="_images/dfa0cf6724819cb7a5afa48a5bab916c38f0c2f6d0bfc0d2af1bb2288296d1a8.png" src="_images/dfa0cf6724819cb7a5afa48a5bab916c38f0c2f6d0bfc0d2af1bb2288296d1a8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3475,7 +3476,7 @@ Name: AMZN, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1d052396b276fc6e43633e093edb4f41a0c2c9b10b3cd07829b353c7f9239538.png" src="_images/1d052396b276fc6e43633e093edb4f41a0c2c9b10b3cd07829b353c7f9239538.png" />
+<img alt="_images/92cd6d1c1958af2283fd638bc99461e46cd7e8077e5296a66d2c860ccd59d0be.png" src="_images/92cd6d1c1958af2283fd638bc99461e46cd7e8077e5296a66d2c860ccd59d0be.png" />
 </div>
 </div>
 </section>
