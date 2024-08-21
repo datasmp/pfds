@@ -420,13 +420,31 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">feature_names</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breast-cancer-dataset">Breast Cancer Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wine-dataset">Wine Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">keys()</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">DESCR</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">data</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">target</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">target_names</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">feature_names</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breast-cancer-dataset">Breast Cancer Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">keys()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">DESCR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">target</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">target_names</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">feature_names</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diabetes-dataset">Diabetes Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diabetes">load_diabetes()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">keys()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">DESCR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">target</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">feature_names</a></li>
 </ul>
 </li>
 </ul>
@@ -744,6 +762,10 @@ latter are NOT linearly separable from each other.
 </section>
 <section id="california-housing-dataset">
 <h3>California Housing Dataset<a class="headerlink" href="#california-housing-dataset" title="Permalink to this heading">#</a></h3>
+<p>The California Housing dataset contains housing information for 20,640 districts in California.</p>
+<ul class="simple">
+<li><p>It is used for regression tasks in data analysis.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
@@ -1327,6 +1349,329 @@ L. Wilson, NIST Form-Based Handprint Recognition System, NISTIR 5469,
 </div>
 </section>
 </section>
+<section id="wine-dataset">
+<h3>Wine Dataset<a class="headerlink" href="#wine-dataset" title="Permalink to this heading">#</a></h3>
+<p>This dataset consists of data from 178 wine samples, each characterized by 13 features.</p>
+<ul class="simple">
+<li><p>It is a classification dataset with three classes: class_0, class_1, and class_2.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load_breast_cancer is a function</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">load_wine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>function
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wine is a bunch</span>
+<span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">wine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sklearn.utils._bunch.Bunch
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id13">
+<h4>keys()<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
+<p>It returns the keys of the Bunch object <em>cancer</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;target_names&#39;, &#39;DESCR&#39;, &#39;feature_names&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id14">
+<h4>DESCR<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h4>
+<p>The <em>DESCR</em> attribute provides a detailed description of the dataset as a string.</p>
+<ul class="simple">
+<li><p>Use the print() function to render it in a more readable format.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># not easy to read</span>
+<span class="n">wine</span><span class="o">.</span><span class="n">DESCR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;.. _wine_dataset:\n\nWine recognition dataset\n------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 178\n    :Number of Attributes: 13 numeric, predictive attributes and the class\n    :Attribute Information:\n \t\t- Alcohol\n \t\t- Malic acid\n \t\t- Ash\n\t\t- Alcalinity of ash  \n \t\t- Magnesium\n\t\t- Total phenols\n \t\t- Flavanoids\n \t\t- Nonflavanoid phenols\n \t\t- Proanthocyanins\n\t\t- Color intensity\n \t\t- Hue\n \t\t- OD280/OD315 of diluted wines\n \t\t- Proline\n\n    - class:\n            - class_0\n            - class_1\n            - class_2\n\t\t\n    :Summary Statistics:\n    \n    ============================= ==== ===== ======= =====\n                                   Min   Max   Mean     SD\n    ============================= ==== ===== ======= =====\n    Alcohol:                      11.0  14.8    13.0   0.8\n    Malic Acid:                   0.74  5.80    2.34  1.12\n    Ash:                          1.36  3.23    2.36  0.27\n    Alcalinity of Ash:            10.6  30.0    19.5   3.3\n    Magnesium:                    70.0 162.0    99.7  14.3\n    Total Phenols:                0.98  3.88    2.29  0.63\n    Flavanoids:                   0.34  5.08    2.03  1.00\n    Nonflavanoid Phenols:         0.13  0.66    0.36  0.12\n    Proanthocyanins:              0.41  3.58    1.59  0.57\n    Colour Intensity:              1.3  13.0     5.1   2.3\n    Hue:                          0.48  1.71    0.96  0.23\n    OD280/OD315 of diluted wines: 1.27  4.00    2.61  0.71\n    Proline:                       278  1680     746   315\n    ============================= ==== ===== ======= =====\n\n    :Missing Attribute Values: None\n    :Class Distribution: class_0 (59), class_1 (71), class_2 (48)\n    :Creator: R.A. Fisher\n    :Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)\n    :Date: July, 1988\n\nThis is a copy of UCI ML Wine recognition datasets.\nhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\n\nThe data is the results of a chemical analysis of wines grown in the same\nregion in Italy by three different cultivators. There are thirteen different\nmeasurements taken for different constituents found in the three types of\nwine.\n\nOriginal Owners: \n\nForina, M. et al, PARVUS - \nAn Extendible Package for Data Exploration, Classification and Correlation. \nInstitute of Pharmaceutical and Food Analysis and Technologies,\nVia Brigata Salerno, 16147 Genoa, Italy.\n\nCitation:\n\nLichman, M. (2013). UCI Machine Learning Repository\n[https://archive.ics.uci.edu/ml]. Irvine, CA: University of California,\nSchool of Information and Computer Science. \n\n.. topic:: References\n\n  (1) S. Aeberhard, D. Coomans and O. de Vel, \n  Comparison of Classifiers in High Dimensional Settings, \n  Tech. Rep. no. 92-02, (1992), Dept. of Computer Science and Dept. of  \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Technometrics). \n\n  The data was used with many others for comparing various \n  classifiers. The classes are separable, though only RDA \n  has achieved 100% correct classification. \n  (RDA : 100%, QDA 99.4%, LDA 98.9%, 1NN 96.1% (z-transformed data)) \n  (All results using the leave-one-out technique) \n\n  (2) S. Aeberhard, D. Coomans and O. de Vel, \n  &quot;THE CLASSIFICATION PERFORMANCE OF RDA&quot; \n  Tech. Rep. no. 92-01, (1992), Dept. of Computer Science and Dept. of \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Journal of Chemometrics).\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">DESCR</span><span class="p">[:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.. _wine_dataset:
+
+Wine recognition dataset
+------------------------
+
+**Data Set Characteristics:**
+
+    :Number of Instances: 178
+    :Number of Attributes: 13 numeric, predictive attributes and the class
+    :Attribute Information:
+ 		- Alcohol
+ 		- Malic acid
+ 		- Ash
+		- Alcalinity of ash  
+ 		- Magnesium
+		- Total phenols
+ 		- Flavanoids
+ 		- Nonflavanoid phenols
+ 		- Proanthocyanins
+		- Color intensity
+ 		- Hue
+ 		- OD280/OD315 of diluted wines
+ 		- Proline
+
+    - class:
+            - class_0
+            - class_1
+            - class_2
+		
+    :Summary Statistics:
+    
+    ============================= ==== ===== ======= =====
+                                   Min   Max   Mean     SD
+    ============================= ==== ===== ======= =====
+    Alcohol:                      11.0  14.8    13.0   0.8
+    Malic Acid:                   0.74  5.80    2.34  1.12
+    Ash:                          1.36  3.23    2.36  0.27
+    Alcalinity of Ash:            10.6  30.0    19.5   3.3
+    Magnesium:                    70.0 162.0    99.7  14.3
+    Total Phenols:                0.98  3.88    2.29  0.63
+    Flavanoids:                   0.34  5.08    2.03  1.00
+    Nonflavanoid Phenols:         0.13  0.66    0.36  0.12
+    Proanthocyanins:              0.41  3.58    1.59  0.57
+    Colour Intensity:              1.3  13.0     5.1   2.3
+    Hue:                          0.48  1.71    0.96  0.23
+    OD280/OD315 of diluted wines: 1.27  4.00    2.61  0.71
+    Proline:                       278  1680     746   315
+    ============================= ==== ===== ======= =====
+
+    :Missing Attribute Values: None
+    :Class Distribution: class_0 (59), class_1 (71), class_2 (48)
+    :Creator: R.A. Fisher
+    :Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)
+    :Date: July, 1988
+
+This is a copy of UCI ML Wine recognition datasets.
+https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data
+
+The data is the results of a chemical analysis of wines grown in the same
+region in Italy by three different cultivators. There are thirteen different
+measurements taken for different constituents found in the three types of
+wine.
+
+Original Owners: 
+
+Forina, M. et al, PARVUS - 
+An Extendible Package for Data Exploration, Classification and Correlation. 
+Institute of Pharmaceutical and Food Analysis and Technologies,
+Via Brigata Salerno, 16147 Genoa, Italy.
+
+Citation:
+
+Lichman, M. (2013). UCI Machine Learning Repository
+[https://archive.ics.uci.edu/ml]. Irvine, CA: University of California,
+School of Information and Computer Science. 
+
+.. topic:: References
+
+  (1) S. Aeberhard, D. Coomans and O. de Vel, 
+  Comparison of Classifiers in High Dimensional Settings, 
+  Tech. Rep. no. 92-02, (1992), Dept. of Computer Science and Dept. of  
+  Mathematics and Statistics, James Cook University of North Queensland. 
+  (Also submitted to Technometrics). 
+
+  The data was used with many others for comparing various 
+  classifiers. The classes are separable, though only RDA 
+  has achieved 100% correct classification. 
+  (RDA : 100%, QDA 99.4%, LDA 98.9%, 1NN 96.1% (z-transformed data)) 
+  (All results using the leave-one-out technique) 
+
+  (2) S. Aeberhard, D. Coomans and O. de Vel, 
+  &quot;THE CLASSIFICATION PERFORMANCE OF RDA&quot; 
+  Tech. Rep. no. 92-01, (1992), Dept. of Computer Science and Dept. of 
+  Mathematics and Statistics, James Cook University of North Queensland. 
+  (Also submitted to Journal of Chemometrics).
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h4>data<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
+<p>The <em>data</em> attribute returns a NumPy array. It serves as the input data for modeling tasks.</p>
+<p>It contains 13 measurements for each wine.</p>
+<ul class="simple">
+<li><p>Its shape is 178 by 13.</p></li>
+<li><p>178 samples (wines)</p></li>
+<li><p>13 features (measurements)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.423e+01, 1.710e+00, 2.430e+00, 1.560e+01, 1.270e+02, 2.800e+00,
+        3.060e+00, 2.800e-01, 2.290e+00, 5.640e+00, 1.040e+00, 3.920e+00,
+        1.065e+03],
+       [1.320e+01, 1.780e+00, 2.140e+00, 1.120e+01, 1.000e+02, 2.650e+00,
+        2.760e+00, 2.600e-01, 1.280e+00, 4.380e+00, 1.050e+00, 3.400e+00,
+        1.050e+03],
+       [1.316e+01, 2.360e+00, 2.670e+00, 1.860e+01, 1.010e+02, 2.800e+00,
+        3.240e+00, 3.000e-01, 2.810e+00, 5.680e+00, 1.030e+00, 3.170e+00,
+        1.185e+03]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(178, 13)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id16">
+<h4>target<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h4>
+<p>The <em>target</em> attribute returns a NumPy array. It serves as the output data for modeling tasks.</p>
+<p>It consists of the types/classes of each patient.</p>
+<ul class="simple">
+<li><p>Its shape is (178,)</p></li>
+<li><p>178 samples (wines)</p></li>
+</ul>
+<p>The three classes—class_1, class_2 and class_3—are represented by the numbers 0, 1, and 2, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(178,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id17">
+<h4>target_names<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h4>
+<p>It returns the names of the two classes that are represented by numbers in the target.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">target_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;class_0&#39;, &#39;class_1&#39;, &#39;class_2&#39;], dtype=&#39;&lt;U7&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id18">
+<h4>feature_names<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h4>
+<p>It returns the names of the 13 features (measurements).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">feature_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;alcohol&#39;,
+ &#39;malic_acid&#39;,
+ &#39;ash&#39;,
+ &#39;alcalinity_of_ash&#39;,
+ &#39;magnesium&#39;,
+ &#39;total_phenols&#39;,
+ &#39;flavanoids&#39;,
+ &#39;nonflavanoid_phenols&#39;,
+ &#39;proanthocyanins&#39;,
+ &#39;color_intensity&#39;,
+ &#39;hue&#39;,
+ &#39;od280/od315_of_diluted_wines&#39;,
+ &#39;proline&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="breast-cancer-dataset">
 <h3>Breast Cancer Dataset<a class="headerlink" href="#breast-cancer-dataset" title="Permalink to this heading">#</a></h3>
 <p>This dataset contains data from 569 patients, each with 30 features.</p>
@@ -1367,8 +1712,8 @@ L. Wilson, NIST Form-Based Handprint Recognition System, NISTIR 5469,
 </div>
 </div>
 </div>
-<section id="id13">
-<h4>keys()<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
+<section id="id19">
+<h4>keys()<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h4>
 <p>It returns the keys of the Bunch object <em>cancer</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1383,8 +1728,8 @@ L. Wilson, NIST Form-Based Handprint Recognition System, NISTIR 5469,
 </div>
 </div>
 </section>
-<section id="id14">
-<h4>DESCR<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h4>
+<section id="id20">
+<h4>DESCR<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h4>
 <p>The <em>DESCR</em> attribute provides a detailed description of the dataset as a string.</p>
 <ul class="simple">
 <li><p>Use the print() function to render it in a more readable format.</p></li>
@@ -1544,8 +1889,8 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 </section>
-<section id="id15">
-<h4>data<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
+<section id="id21">
+<h4>data<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h4>
 <p>The <em>data</em> attribute returns a NumPy array. It serves as the input data for modeling tasks.</p>
 <p>It contains 30 measurements for each patient.</p>
 <ul class="simple">
@@ -1592,10 +1937,10 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 </section>
-<section id="id16">
-<h4>target<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h4>
+<section id="id22">
+<h4>target<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h4>
 <p>The <em>target</em> attribute returns a NumPy array. It serves as the output data for modeling tasks.</p>
-<p>It consists of the types/classes of each ppatient.</p>
+<p>It consists of the types/classes of each patient.</p>
 <ul class="simple">
 <li><p>Its shape is (569,)</p></li>
 <li><p>569 samples (patients)</p></li>
@@ -1651,8 +1996,8 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 </section>
-<section id="id17">
-<h4>target_names<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h4>
+<section id="id23">
+<h4>target_names<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h4>
 <p>It returns the names of the two classes that are represented by numbers in the target.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1667,8 +2012,8 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 </div>
 </div>
 </section>
-<section id="id18">
-<h4>feature_names<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h4>
+<section id="id24">
+<h4>feature_names<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h4>
 <p>It returns the names of the 30 features (measurements).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1687,6 +2032,245 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
        &#39;worst perimeter&#39;, &#39;worst area&#39;, &#39;worst smoothness&#39;,
        &#39;worst compactness&#39;, &#39;worst concavity&#39;, &#39;worst concave points&#39;,
        &#39;worst symmetry&#39;, &#39;worst fractal dimension&#39;], dtype=&#39;&lt;U23&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diabetes-dataset">
+<h3>Diabetes Dataset<a class="headerlink" href="#diabetes-dataset" title="Permalink to this heading">#</a></h3>
+<p>The Diabetes dataset contains housing information for 442 diabetes patients.</p>
+<ul class="simple">
+<li><p>It is used for regression tasks in data analysis.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_diabetes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-diabetes">
+<h4>load_diabetes()<a class="headerlink" href="#load-diabetes" title="Permalink to this heading">#</a></h4>
+<p>The load_diabetes function is imported from sklearn.datasets.</p>
+<ul class="simple">
+<li><p>load_diabetes() returns a Bunch object, which is similar to a dictionary.</p></li>
+<li><p>The keys of a Bunch object can be accessed using dot notation (e.g., <em>load_diabetes().key_name</em>) as well as square bracket notation (e.g., <em>load_diabetes[‘key_name’]</em>) like dictionaries.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span> <span class="o">=</span> <span class="n">load_diabetes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id25">
+<h4>keys()<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h4>
+<p>It returns the keys of the Bunch object <em>housing</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;DESCR&#39;, &#39;feature_names&#39;, &#39;data_filename&#39;, &#39;target_filename&#39;, &#39;data_module&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id26">
+<h4>DESCR<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h4>
+<p>The <em>DESCR</em> attribute provides a detailed description of the dataset as a string.</p>
+<ul class="simple">
+<li><p>Use the print() function to render it in a more readable format.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">DESCR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;.. _diabetes_dataset:\n\nDiabetes dataset\n----------------\n\nTen baseline variables, age, sex, body mass index, average blood\npressure, and six blood serum measurements were obtained for each of n =\n442 diabetes patients, as well as the response of interest, a\nquantitative measure of disease progression one year after baseline.\n\n**Data Set Characteristics:**\n\n  :Number of Instances: 442\n\n  :Number of Attributes: First 10 columns are numeric predictive values\n\n  :Target: Column 11 is a quantitative measure of disease progression one year after baseline\n\n  :Attribute Information:\n      - age     age in years\n      - sex\n      - bmi     body mass index\n      - bp      average blood pressure\n      - s1      tc, total serum cholesterol\n      - s2      ldl, low-density lipoproteins\n      - s3      hdl, high-density lipoproteins\n      - s4      tch, total cholesterol / HDL\n      - s5      ltg, possibly log of serum triglycerides level\n      - s6      glu, blood sugar level\n\nNote: Each of these 10 feature variables have been mean centered and scaled by the standard deviation times the square root of `n_samples` (i.e. the sum of squares of each column totals 1).\n\nSource URL:\nhttps://www4.stat.ncsu.edu/~boos/var.select/diabetes.html\n\nFor more information see:\nBradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani (2004) &quot;Least Angle Regression,&quot; Annals of Statistics (with discussion), 407-499.\n(https://web.stanford.edu/~hastie/Papers/LARS/LeastAngle_2002.pdf)\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">diabetes</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.. _diabetes_dataset:
+
+Diabetes dataset
+----------------
+
+Ten baseline variables, age, sex, body mass index, average blood
+pressure, and six blood serum measurements were obtained for each of n =
+442 diabetes patients, as well as the response of interest, a
+quantitative measure of disease progression one year after baseline.
+
+**Data Set Characteristics:**
+
+  :Number of Instances: 442
+
+  :Number of Attributes: First 10 columns are numeric predictive values
+
+  :Target: Column 11 is a quantitative measure of disease progression one year after baseline
+
+  :Attribute Information:
+      - age     age in years
+      - sex
+      - bmi     body mass index
+      - bp      average blood pressure
+      - s1      tc, total serum cholesterol
+      - s2      ldl, low-density lipoproteins
+      - s3      hdl, high-density lipoproteins
+      - s4      tch, total cholesterol / HDL
+      - s5      ltg, possibly log of serum triglycerides level
+      - s6      glu, blood sugar level
+
+Note: Each of these 10 feature variables have been mean centered and scaled by the standard deviation times the square root of `n_samples` (i.e. the sum of squares of each column totals 1).
+
+Source URL:
+https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html
+
+For more information see:
+Bradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani (2004) &quot;Least Angle Regression,&quot; Annals of Statistics (with discussion), 407-499.
+(https://web.stanford.edu/~hastie/Papers/LARS/LeastAngle_2002.pdf)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id27">
+<h4>data<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h4>
+<p>The <em>data</em> attribute returns a NumPy array. It serves as the input data for modeling tasks.</p>
+<p>It contains ten features (‘age’, ‘sex’, ‘bmi’, ‘bp’, ‘s1’, ‘s2’, ‘s3’, ‘s4’, ‘s5’, ‘s6’) for each patient.</p>
+<ul class="simple">
+<li><p>Its shape is 442 by 10.</p></li>
+<li><p>442 samples (patients)</p></li>
+<li><p>10 features</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.03807591,  0.05068012,  0.06169621,  0.02187239, -0.0442235 ,
+        -0.03482076, -0.04340085, -0.00259226,  0.01990749, -0.01764613],
+       [-0.00188202, -0.04464164, -0.05147406, -0.02632753, -0.00844872,
+        -0.01916334,  0.07441156, -0.03949338, -0.06833155, -0.09220405]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(442, 10)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id28">
+<h4>target<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h4>
+<p>The <em>target</em> attribute returns a NumPy array. It serves as the output data for modeling tasks.</p>
+<p>It consists of the measure of disease progression one year after baseline.</p>
+<ul class="simple">
+<li><p>Its shape is (442,)</p></li>
+<li><p>442 samples (patients)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([151.,  75., 141., 206., 135.,  97., 138.,  63., 110., 310., 101.,
+        69., 179., 185., 118., 171., 166., 144.,  97., 168.,  68.,  49.,
+        68., 245., 184., 202., 137.,  85., 131., 283., 129.,  59., 341.,
+        87.,  65., 102., 265., 276., 252.,  90., 100.,  55.,  61.,  92.,
+       259.,  53., 190., 142.,  75., 142., 155., 225.,  59., 104., 182.,
+       128.,  52.,  37., 170., 170.,  61., 144.,  52., 128.,  71., 163.,
+       150.,  97., 160., 178.,  48., 270., 202., 111.,  85.,  42., 170.,
+       200., 252., 113., 143.,  51.,  52., 210.,  65., 141.,  55., 134.,
+        42., 111.,  98., 164.,  48.,  96.,  90., 162., 150., 279.,  92.,
+        83., 128., 102., 302., 198.,  95.,  53., 134., 144., 232.,  81.,
+       104.,  59., 246., 297., 258., 229., 275., 281., 179., 200., 200.,
+       173., 180.,  84., 121., 161.,  99., 109., 115., 268., 274., 158.,
+       107.,  83., 103., 272.,  85., 280., 336., 281., 118., 317., 235.,
+        60., 174., 259., 178., 128.,  96., 126., 288.,  88., 292.,  71.,
+       197., 186.,  25.,  84.,  96., 195.,  53., 217., 172., 131., 214.,
+        59.,  70., 220., 268., 152.,  47.,  74., 295., 101., 151., 127.,
+       237., 225.,  81., 151., 107.,  64., 138., 185., 265., 101., 137.,
+       143., 141.,  79., 292., 178.,  91., 116.,  86., 122.,  72., 129.,
+       142.,  90., 158.,  39., 196., 222., 277.,  99., 196., 202., 155.,
+        77., 191.,  70.,  73.,  49.,  65., 263., 248., 296., 214., 185.,
+        78.,  93., 252., 150.,  77., 208.,  77., 108., 160.,  53., 220.,
+       154., 259.,  90., 246., 124.,  67.,  72., 257., 262., 275., 177.,
+        71.,  47., 187., 125.,  78.,  51., 258., 215., 303., 243.,  91.,
+       150., 310., 153., 346.,  63.,  89.,  50.,  39., 103., 308., 116.,
+       145.,  74.,  45., 115., 264.,  87., 202., 127., 182., 241.,  66.,
+        94., 283.,  64., 102., 200., 265.,  94., 230., 181., 156., 233.,
+        60., 219.,  80.,  68., 332., 248.,  84., 200.,  55.,  85.,  89.,
+        31., 129.,  83., 275.,  65., 198., 236., 253., 124.,  44., 172.,
+       114., 142., 109., 180., 144., 163., 147.,  97., 220., 190., 109.,
+       191., 122., 230., 242., 248., 249., 192., 131., 237.,  78., 135.,
+       244., 199., 270., 164.,  72.,  96., 306.,  91., 214.,  95., 216.,
+       263., 178., 113., 200., 139., 139.,  88., 148.,  88., 243.,  71.,
+        77., 109., 272.,  60.,  54., 221.,  90., 311., 281., 182., 321.,
+        58., 262., 206., 233., 242., 123., 167.,  63., 197.,  71., 168.,
+       140., 217., 121., 235., 245.,  40.,  52., 104., 132.,  88.,  69.,
+       219.,  72., 201., 110.,  51., 277.,  63., 118.,  69., 273., 258.,
+        43., 198., 242., 232., 175.,  93., 168., 275., 293., 281.,  72.,
+       140., 189., 181., 209., 136., 261., 113., 131., 174., 257.,  55.,
+        84.,  42., 146., 212., 233.,  91., 111., 152., 120.,  67., 310.,
+        94., 183.,  66., 173.,  72.,  49.,  64.,  48., 178., 104., 132.,
+       220.,  57.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(442,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id29">
+<h4>feature_names<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h4>
+<p>It returns the names of the eight features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diabetes</span><span class="o">.</span><span class="n">feature_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;age&#39;, &#39;sex&#39;, &#39;bmi&#39;, &#39;bp&#39;, &#39;s1&#39;, &#39;s2&#39;, &#39;s3&#39;, &#39;s4&#39;, &#39;s5&#39;, &#39;s6&#39;]
 </pre></div>
 </div>
 </div>
@@ -1782,13 +2366,31 @@ cd math-prog/cpo-dataset/machine-learn/WDBC/
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">feature_names</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breast-cancer-dataset">Breast Cancer Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wine-dataset">Wine Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">keys()</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">DESCR</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">data</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">target</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">target_names</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">feature_names</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breast-cancer-dataset">Breast Cancer Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">keys()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">DESCR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">target</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">target_names</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">feature_names</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diabetes-dataset">Diabetes Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diabetes">load_diabetes()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">keys()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">DESCR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">target</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">feature_names</a></li>
 </ul>
 </li>
 </ul>
