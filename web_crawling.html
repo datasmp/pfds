@@ -1,0 +1,1907 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Web Crawling &#8212; Python For Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'web_crawling';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Web Crawling Exercises" href="web_crawling_exercises.html" />
+    <link rel="prev" title="Web APIs Exercises" href="web_api_exercises.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pfds_logo2.png" class="logo__image only-light" alt="Python For Data Science - Home"/>
+    <script>document.write(`<img src="_static/pfds_logo2.png" class="logo__image only-dark" alt="Python For Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Cover
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regular_expressions.html">Regular Expressions</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="regular_expressions_exercises.html">Regular Expression Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="files.html">Files</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="files_exercises.html">Files Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="web_api.html">Web APIs</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_api_exercises.html">Web APIs Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Web Crawling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_crawling_exercises.html">Web Crawling Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="numpy_arrays_exercises.html">Numpy Array Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="series.html">Series</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="series_exercises.html">Series Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">DataFrames Advanced Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">DataFrames Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_exercises.html">DataFrames Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="save_store_csv_excel.html">Importing and Storing Data</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="save_store_csv_excel_exercises.html">Importing and Storing Data Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_prep.html">Data Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_prep_exercises.html">Data Preparation Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_aggregation.html">Data Aggregation</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_aggregation_exercises.html">Data Aggregation Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_matplot.html">Visualization Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Visualization Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_go.html">Visualization GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_exercises.html">Visualization Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="text_analysis.html">Text Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="text_analysis_exercises.html">Text Analysis Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="time_series.html">Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="time_series_exercises.html">Time Series Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ml_algorithm.html">Machine Learning Algorithms</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="k_means.html">k-Means Clustering</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="datasets.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets_exercises.html">Datasets Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">Projects</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io/issues/new?title=Issue%20on%20page%20%2Fweb_crawling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/web_crawling.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Web Crawling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beautifulsoup">BeautifulSoup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#urllib-library">urllib Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quote">Quote</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#author">Author</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tag">Tag</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requests-library">requests Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Quote</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Author</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Tag</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular  Expressions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="web-crawling">
+<h1>Web Crawling<a class="headerlink" href="#web-crawling" title="Permalink to this heading">#</a></h1>
+<p><img alt="Section Title: Web Crawling" src="_images/web_craw2.png" /></p>
+<p>Web crawling involves browsing and extracting data from websites. The basic steps of web crawling are:</p>
+<ul class="simple">
+<li><p>Sending a request for information to a website</p></li>
+<li><p>Retrieving the content on the website</p></li>
+<li><p>Parsing the retrieved data to extract useful information</p></li>
+</ul>
+<p>In this chapter, we will use Python’s <a class="reference external" href="https://beautiful-soup-4.readthedocs.io/en/latest/">BeautifulSoup</a> library to extract data from HTML and XML files.</p>
+<ul class="simple">
+<li><p>Extensible Markup Language (XML) is a markup language designed to store, transmit, and reconstruct data.</p></li>
+</ul>
+<p>We will work with examples using the website <a class="reference external" href="http://quotes.toscrape.com/">http://quotes.toscrape.com/</a>, which offers a collection of quotes, authors, and tags for practicing web scraping and crawling.</p>
+<ul class="simple">
+<li><p>Through web crawling, we will extract the quotes, authors, and tags.</p></li>
+</ul>
+<section id="beautifulsoup">
+<h2>BeautifulSoup<a class="headerlink" href="#beautifulsoup" title="Permalink to this heading">#</a></h2>
+<p>The BeautifulSoup function processes the raw HTML content retrieved from the website.</p>
+<ul class="simple">
+<li><p>It converts the raw HTML data (in bytes) into a structured object for easy navigation and search.</p></li>
+<li><p>It organizes the content into a tree-like structure for efficient parsing and manipulation.</p></li>
+</ul>
+<section id="urllib-library">
+<h3>urllib Library<a class="headerlink" href="#urllib-library" title="Permalink to this heading">#</a></h3>
+<p>If you use the following code for the URL <a class="reference external" href="http://quotes.toscrape.com/">http://quotes.toscrape.com/</a> mentioned above, you will encounter an error because:</p>
+<ul class="simple">
+<li><p>The response from the URL is in HTML format, not JSON.</p></li>
+<li><p>The <em>json.loads()</em> function is designed to parse JSON data, not HTML.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;http://quotes.toscrape.com/&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Instead of attempting to load the HTML content as JSON, we can use the BeautifulSoup library to parse and process it.</p>
+<ul class="simple">
+<li><p>This will return a BeautifulSoup object which is a data structure representing a parsed HTML or XML document.</p></li>
+</ul>
+<p>In the follwoing code:</p>
+<ul class="simple">
+<li><p>response.read().decode() reads the raw HTML content from the website and decodes it into a string.</p></li>
+<li><p>This string contains the HTML content of the webpage.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://quotes.toscrape.com/&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The second argument <em>html.parser</em> specifies the parser to process the HTML.</p>
+<ul class="simple">
+<li><p>It is Python’s built-in HTML parser.</p></li>
+<li><p>It reads and understands the HTML content.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bs4.BeautifulSoup
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;title&gt;Quotes to Scrape&lt;/title&gt;
+&lt;link href=&quot;/static/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/static/main.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;div class=&quot;row header-box&quot;&gt;
+&lt;div class=&quot;col-md-8&quot;&gt;
+&lt;h1&gt;
+&lt;a href=&quot;/&quot; style=&quot;text-decoration: none&quot;&gt;Quotes to Scrape&lt;/a&gt;
+&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-4&quot;&gt;
+&lt;p&gt;
+&lt;a href=&quot;/login&quot;&gt;Login&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+&lt;div class=&quot;col-md-8&quot;&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;change,deep-thoughts,thinking,world&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is our choices, Harry, that show what we truly are, far more than our abilities.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;J.K. Rowling&lt;/small&gt;
+&lt;a href=&quot;/author/J-K-Rowling&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;abilities,choices&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/abilities/page/1/&quot;&gt;abilities&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/choices/page/1/&quot;&gt;choices&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;inspirational,life,live,miracle,miracles&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/live/page/1/&quot;&gt;live&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/miracle/page/1/&quot;&gt;miracle&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/miracles/page/1/&quot;&gt;miracles&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Jane Austen&lt;/small&gt;
+&lt;a href=&quot;/author/Jane-Austen&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;aliteracy,books,classic,humor&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/aliteracy/page/1/&quot;&gt;aliteracy&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/books/page/1/&quot;&gt;books&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/classic/page/1/&quot;&gt;classic&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Imperfection is beauty, madness is genius and it&#39;s better to be absolutely ridiculous than absolutely boring.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Marilyn Monroe&lt;/small&gt;
+&lt;a href=&quot;/author/Marilyn-Monroe&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;be-yourself,inspirational&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/be-yourself/page/1/&quot;&gt;be-yourself&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Try not to become a man of success. Rather become a man of value.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;adulthood,success,value&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/adulthood/page/1/&quot;&gt;adulthood&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/success/page/1/&quot;&gt;success&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/value/page/1/&quot;&gt;value&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is better to be hated for what you are than to be loved for what you are not.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;André Gide&lt;/small&gt;
+&lt;a href=&quot;/author/Andre-Gide&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;life,love&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/love/page/1/&quot;&gt;love&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“I have not failed. I&#39;ve just found 10,000 ways that won&#39;t work.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Thomas A. Edison&lt;/small&gt;
+&lt;a href=&quot;/author/Thomas-A-Edison&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;edison,failure,inspirational,paraphrased&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/edison/page/1/&quot;&gt;edison&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/failure/page/1/&quot;&gt;failure&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/paraphrased/page/1/&quot;&gt;paraphrased&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A woman is like a tea bag; you never know how strong it is until it&#39;s in hot water.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Eleanor Roosevelt&lt;/small&gt;
+&lt;a href=&quot;/author/Eleanor-Roosevelt&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;misattributed-eleanor-roosevelt&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/misattributed-eleanor-roosevelt/page/1/&quot;&gt;misattributed-eleanor-roosevelt&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A day without sunshine is like, you know, night.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Steve Martin&lt;/small&gt;
+&lt;a href=&quot;/author/Steve-Martin&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;humor,obvious,simile&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/obvious/page/1/&quot;&gt;obvious&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/simile/page/1/&quot;&gt;simile&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;nav&gt;
+&lt;ul class=&quot;pager&quot;&gt;
+&lt;li class=&quot;next&quot;&gt;
+&lt;a href=&quot;/page/2/&quot;&gt;Next &lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-4 tags-box&quot;&gt;
+&lt;h2&gt;Top Ten tags&lt;/h2&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/love/&quot; style=&quot;font-size: 28px&quot;&gt;love&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/&quot; style=&quot;font-size: 26px&quot;&gt;inspirational&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/life/&quot; style=&quot;font-size: 26px&quot;&gt;life&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/humor/&quot; style=&quot;font-size: 24px&quot;&gt;humor&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/books/&quot; style=&quot;font-size: 22px&quot;&gt;books&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/reading/&quot; style=&quot;font-size: 14px&quot;&gt;reading&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/friendship/&quot; style=&quot;font-size: 10px&quot;&gt;friendship&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/friends/&quot; style=&quot;font-size: 8px&quot;&gt;friends&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/truth/&quot; style=&quot;font-size: 8px&quot;&gt;truth&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/simile/&quot; style=&quot;font-size: 6px&quot;&gt;simile&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;footer class=&quot;footer&quot;&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;p class=&quot;text-muted&quot;&gt;
+                Quotes by: &lt;a href=&quot;https://www.goodreads.com/quotes&quot;&gt;GoodReads.com&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&quot;copyright&quot;&gt;
+                Made with &lt;span class=&quot;zyte&quot;&gt;❤&lt;/span&gt; by &lt;a class=&quot;zyte&quot; href=&quot;https://www.zyte.com&quot;&gt;Zyte&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="quote">
+<h4>Quote<a class="headerlink" href="#quote" title="Permalink to this heading">#</a></h4>
+<p>The <em>find_all()</em> method is used to retrieve specific information from the HTML content. In the following code:</p>
+<ul class="simple">
+<li><p><strong>span</strong>: Refers to the <em><span></em> HTML element, commonly used to group and style content within a webpage.</p>
+<ul>
+<li><p>The code specifically searches for all <em><span></em> elements present in the HTML content.</p></li>
+</ul>
+</li>
+<li><p><strong>text</strong>: Represents the <em>class</em> attribute of the targeted <em><span></em> elements.</p>
+<ul>
+<li><p>The argument <em>class_=’text’</em> ensures that only <em><span></em> elements with the class name <em>‘text’</em> are included in the search.</p></li>
+<li><p>The <em>‘text’</em> class likely represents quotes within the webpage.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<span class="n">quotes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is our choices, Harry, that show what we truly are, far more than our abilities.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Imperfection is beauty, madness is genius and it&#39;s better to be absolutely ridiculous than absolutely boring.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Try not to become a man of success. Rather become a man of value.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is better to be hated for what you are than to be loved for what you are not.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“I have not failed. I&#39;ve just found 10,000 ways that won&#39;t work.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A woman is like a tea bag; you never know how strong it is until it&#39;s in hot water.”&lt;/span&gt;,
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A day without sunshine is like, you know, night.”&lt;/span&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each element in the quotes list is a Tag object, which represents an HTML element.</p>
+<ul class="simple">
+<li><p>This Tag object has a text attribute that can be used to access the textual content contained within the tag.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bs4.element.Tag
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="author">
+<h4>Author<a class="headerlink" href="#author" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>small</strong>: Refers to the <em><small></em> HTML element, commonly used to style or format text as smaller or less prominent within a webpage.</p>
+<ul>
+<li><p>The code specifically searches for all <em><small></em> elements present in the HTML content.</p></li>
+</ul>
+</li>
+<li><p><strong>author</strong>: Represents the <em>class</em> attribute of the targeted <em><small></em> elements.</p>
+<ul>
+<li><p>The argument <em>class_=’text’</em> ensures that only <em><small></em> elements with the class name <em>‘author’</em> are included in the search.</p></li>
+<li><p>The <em>‘author’</em> class represents the authors of quotes.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">authors</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">authors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;J.K. Rowling&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Jane Austen&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Marilyn Monroe&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;André Gide&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Thomas A. Edison&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Eleanor Roosevelt&lt;/small&gt;,
+ &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Steve Martin&lt;/small&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each element in the authors list is a Tag object, which represents an HTML element.</p>
+<ul class="simple">
+<li><p>This Tag object has a text attribute that can be used to access the textual content contained within the tag.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bs4.element.Tag
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Albert Einstein&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tag">
+<h4>Tag<a class="headerlink" href="#tag" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>a</strong>: Refers to the <em><a></em> HTML element, commonly used to create hyperlinks that navigate to other web pages or sections within the same page.</p>
+<ul>
+<li><p>The code specifically searches for all <em><a></em> elements present in the HTML content.</p></li>
+</ul>
+</li>
+<li><p><strong>tag</strong>: Represents the <em>class</em> attribute of the targeted <em><a></em> elements.</p>
+<ul>
+<li><p>The argument <em>class_=’tag’</em> ensures that only <em><a></em> elements with the class name <em>‘tag’</em> are included in the search.</p></li>
+<li><p>The <em>‘tag’</em> class represents the tags of quotes.</p></li>
+<li><p>Tags typically describe the themes or categories of the quotes.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
+<span class="n">tags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/abilities/page/1/&quot;&gt;abilities&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/choices/page/1/&quot;&gt;choices&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/live/page/1/&quot;&gt;live&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/miracle/page/1/&quot;&gt;miracle&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/miracles/page/1/&quot;&gt;miracles&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/aliteracy/page/1/&quot;&gt;aliteracy&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/books/page/1/&quot;&gt;books&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/classic/page/1/&quot;&gt;classic&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/be-yourself/page/1/&quot;&gt;be-yourself&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/adulthood/page/1/&quot;&gt;adulthood&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/success/page/1/&quot;&gt;success&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/value/page/1/&quot;&gt;value&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/love/page/1/&quot;&gt;love&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/edison/page/1/&quot;&gt;edison&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/failure/page/1/&quot;&gt;failure&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/paraphrased/page/1/&quot;&gt;paraphrased&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/misattributed-eleanor-roosevelt/page/1/&quot;&gt;misattributed-eleanor-roosevelt&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/obvious/page/1/&quot;&gt;obvious&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/simile/page/1/&quot;&gt;simile&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/love/&quot; style=&quot;font-size: 28px&quot;&gt;love&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/&quot; style=&quot;font-size: 26px&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/&quot; style=&quot;font-size: 26px&quot;&gt;life&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/&quot; style=&quot;font-size: 24px&quot;&gt;humor&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/books/&quot; style=&quot;font-size: 22px&quot;&gt;books&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/reading/&quot; style=&quot;font-size: 14px&quot;&gt;reading&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/friendship/&quot; style=&quot;font-size: 10px&quot;&gt;friendship&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/friends/&quot; style=&quot;font-size: 8px&quot;&gt;friends&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/truth/&quot; style=&quot;font-size: 8px&quot;&gt;truth&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/simile/&quot; style=&quot;font-size: 6px&quot;&gt;simile&lt;/a&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bs4.element.Tag
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;change&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="requests-library">
+<h3>requests Library<a class="headerlink" href="#requests-library" title="Permalink to this heading">#</a></h3>
+<p>An alternative approach we can use the <em>requests</em> library instead of <em>urllib.request</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://quotes.toscrape.com/&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The response status can be checked using the status_code attribute. Here are the possible returns:</p>
+<ul class="simple">
+<li><p>200: Success – No issue reaching the website.</p></li>
+<li><p>404: Not Found – Resource not found.</p></li>
+<li><p>500: Internal Server Error – Server issue.</p></li>
+<li><p>403: Forbidden – Access denied.</p></li>
+<li><p>400: Bad Request – Invalid request.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>response.content</em> is a bytes object that contains the HTML content of the website.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;!DOCTYPE html&gt;\n&lt;html lang=&quot;en&quot;&gt;\n&lt;head&gt;\n\t&lt;meta charset=&quot;UTF-8&quot;&gt;\n\t&lt;title&gt;Quotes to Scrape&lt;/title&gt;\n    &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/bootstrap.min.css&quot;&gt;\n    &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/main.css&quot;&gt;\n    \n    \n&lt;/head&gt;\n&lt;body&gt;\n    &lt;div class=&quot;container&quot;&gt;\n        &lt;div class=&quot;row header-box&quot;&gt;\n            &lt;div class=&quot;col-md-8&quot;&gt;\n                &lt;h1&gt;\n                    &lt;a href=&quot;/&quot; style=&quot;text-decoration: none&quot;&gt;Quotes to Scrape&lt;/a&gt;\n                &lt;/h1&gt;\n            &lt;/div&gt;\n            &lt;div class=&quot;col-md-4&quot;&gt;\n                &lt;p&gt;\n                \n                    &lt;a href=&quot;/login&quot;&gt;Login&lt;/a&gt;\n                \n                &lt;/p&gt;\n            &lt;/div&gt;\n        &lt;/div&gt;\n    \n\n&lt;div class=&quot;row&quot;&gt;\n    &lt;div class=&quot;col-md-8&quot;&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cThe world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;\n        &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;change,deep-thoughts,thinking,world&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cIt is our choices, Harry, that show what we truly are, far more than our abilities.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;J.K. Rowling&lt;/small&gt;\n        &lt;a href=&quot;/author/J-K-Rowling&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;abilities,choices&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/abilities/page/1/&quot;&gt;abilities&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/choices/page/1/&quot;&gt;choices&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cThere are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;\n        &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;inspirational,life,live,miracle,miracles&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/live/page/1/&quot;&gt;live&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/miracle/page/1/&quot;&gt;miracle&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/miracles/page/1/&quot;&gt;miracles&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cThe person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Jane Austen&lt;/small&gt;\n        &lt;a href=&quot;/author/Jane-Austen&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;aliteracy,books,classic,humor&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/aliteracy/page/1/&quot;&gt;aliteracy&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/books/page/1/&quot;&gt;books&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/classic/page/1/&quot;&gt;classic&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cImperfection is beauty, madness is genius and it&amp;#39;s better to be absolutely ridiculous than absolutely boring.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Marilyn Monroe&lt;/small&gt;\n        &lt;a href=&quot;/author/Marilyn-Monroe&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;be-yourself,inspirational&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/be-yourself/page/1/&quot;&gt;be-yourself&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cTry not to become a man of success. Rather become a man of value.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;\n        &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;adulthood,success,value&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/adulthood/page/1/&quot;&gt;adulthood&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/success/page/1/&quot;&gt;success&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/value/page/1/&quot;&gt;value&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cIt is better to be hated for what you are than to be loved for what you are not.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Andr\xc3\xa9 Gide&lt;/small&gt;\n        &lt;a href=&quot;/author/Andre-Gide&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;life,love&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/love/page/1/&quot;&gt;love&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cI have not failed. I&amp;#39;ve just found 10,000 ways that won&amp;#39;t work.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Thomas A. Edison&lt;/small&gt;\n        &lt;a href=&quot;/author/Thomas-A-Edison&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;edison,failure,inspirational,paraphrased&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/edison/page/1/&quot;&gt;edison&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/failure/page/1/&quot;&gt;failure&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/paraphrased/page/1/&quot;&gt;paraphrased&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cA woman is like a tea bag; you never know how strong it is until it&amp;#39;s in hot water.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Eleanor Roosevelt&lt;/small&gt;\n        &lt;a href=&quot;/author/Eleanor-Roosevelt&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;misattributed-eleanor-roosevelt&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/misattributed-eleanor-roosevelt/page/1/&quot;&gt;misattributed-eleanor-roosevelt&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;quote&quot; itemscope itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;\n        &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;\xe2\x80\x9cA day without sunshine is like, you know, night.\xe2\x80\x9d&lt;/span&gt;\n        &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Steve Martin&lt;/small&gt;\n        &lt;a href=&quot;/author/Steve-Martin&quot;&gt;(about)&lt;/a&gt;\n        &lt;/span&gt;\n        &lt;div class=&quot;tags&quot;&gt;\n            Tags:\n            &lt;meta class=&quot;keywords&quot; itemprop=&quot;keywords&quot; content=&quot;humor,obvious,simile&quot; /    &gt; \n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/obvious/page/1/&quot;&gt;obvious&lt;/a&gt;\n            \n            &lt;a class=&quot;tag&quot; href=&quot;/tag/simile/page/1/&quot;&gt;simile&lt;/a&gt;\n            \n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;nav&gt;\n        &lt;ul class=&quot;pager&quot;&gt;\n            \n            \n            &lt;li class=&quot;next&quot;&gt;\n                &lt;a href=&quot;/page/2/&quot;&gt;Next &lt;span aria-hidden=&quot;true&quot;&gt;&amp;rarr;&lt;/span&gt;&lt;/a&gt;\n            &lt;/li&gt;\n            \n        &lt;/ul&gt;\n    &lt;/nav&gt;\n    &lt;/div&gt;\n    &lt;div class=&quot;col-md-4 tags-box&quot;&gt;\n        \n            &lt;h2&gt;Top Ten tags&lt;/h2&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 28px&quot; href=&quot;/tag/love/&quot;&gt;love&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 26px&quot; href=&quot;/tag/inspirational/&quot;&gt;inspirational&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 26px&quot; href=&quot;/tag/life/&quot;&gt;life&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 24px&quot; href=&quot;/tag/humor/&quot;&gt;humor&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 22px&quot; href=&quot;/tag/books/&quot;&gt;books&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 14px&quot; href=&quot;/tag/reading/&quot;&gt;reading&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 10px&quot; href=&quot;/tag/friendship/&quot;&gt;friendship&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 8px&quot; href=&quot;/tag/friends/&quot;&gt;friends&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 8px&quot; href=&quot;/tag/truth/&quot;&gt;truth&lt;/a&gt;\n            &lt;/span&gt;\n            \n            &lt;span class=&quot;tag-item&quot;&gt;\n            &lt;a class=&quot;tag&quot; style=&quot;font-size: 6px&quot; href=&quot;/tag/simile/&quot;&gt;simile&lt;/a&gt;\n            &lt;/span&gt;\n            \n        \n    &lt;/div&gt;\n&lt;/div&gt;\n\n    &lt;/div&gt;\n    &lt;footer class=&quot;footer&quot;&gt;\n        &lt;div class=&quot;container&quot;&gt;\n            &lt;p class=&quot;text-muted&quot;&gt;\n                Quotes by: &lt;a href=&quot;https://www.goodreads.com/quotes&quot;&gt;GoodReads.com&lt;/a&gt;\n            &lt;/p&gt;\n            &lt;p class=&quot;copyright&quot;&gt;\n                Made with &lt;span class=\&#39;zyte\&#39;&gt;\xe2\x9d\xa4&lt;/span&gt; by &lt;a class=\&#39;zyte\&#39; href=&quot;https://www.zyte.com&quot;&gt;Zyte&lt;/a&gt;\n            &lt;/p&gt;\n        &lt;/div&gt;\n    &lt;/footer&gt;\n&lt;/body&gt;\n&lt;/html&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The BeautifulSoup function processes the raw HTML content in *response.content into a structured object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;title&gt;Quotes to Scrape&lt;/title&gt;
+&lt;link href=&quot;/static/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;/static/main.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;div class=&quot;row header-box&quot;&gt;
+&lt;div class=&quot;col-md-8&quot;&gt;
+&lt;h1&gt;
+&lt;a href=&quot;/&quot; style=&quot;text-decoration: none&quot;&gt;Quotes to Scrape&lt;/a&gt;
+&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-4&quot;&gt;
+&lt;p&gt;
+&lt;a href=&quot;/login&quot;&gt;Login&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+&lt;div class=&quot;col-md-8&quot;&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;change,deep-thoughts,thinking,world&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is our choices, Harry, that show what we truly are, far more than our abilities.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;J.K. Rowling&lt;/small&gt;
+&lt;a href=&quot;/author/J-K-Rowling&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;abilities,choices&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/abilities/page/1/&quot;&gt;abilities&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/choices/page/1/&quot;&gt;choices&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;inspirational,life,live,miracle,miracles&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/live/page/1/&quot;&gt;live&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/miracle/page/1/&quot;&gt;miracle&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/miracles/page/1/&quot;&gt;miracles&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Jane Austen&lt;/small&gt;
+&lt;a href=&quot;/author/Jane-Austen&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;aliteracy,books,classic,humor&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/aliteracy/page/1/&quot;&gt;aliteracy&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/books/page/1/&quot;&gt;books&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/classic/page/1/&quot;&gt;classic&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Imperfection is beauty, madness is genius and it&#39;s better to be absolutely ridiculous than absolutely boring.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Marilyn Monroe&lt;/small&gt;
+&lt;a href=&quot;/author/Marilyn-Monroe&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;be-yourself,inspirational&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/be-yourself/page/1/&quot;&gt;be-yourself&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Try not to become a man of success. Rather become a man of value.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;adulthood,success,value&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/adulthood/page/1/&quot;&gt;adulthood&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/success/page/1/&quot;&gt;success&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/value/page/1/&quot;&gt;value&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is better to be hated for what you are than to be loved for what you are not.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;André Gide&lt;/small&gt;
+&lt;a href=&quot;/author/Andre-Gide&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;life,love&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/love/page/1/&quot;&gt;love&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“I have not failed. I&#39;ve just found 10,000 ways that won&#39;t work.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Thomas A. Edison&lt;/small&gt;
+&lt;a href=&quot;/author/Thomas-A-Edison&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;edison,failure,inspirational,paraphrased&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/edison/page/1/&quot;&gt;edison&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/failure/page/1/&quot;&gt;failure&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/paraphrased/page/1/&quot;&gt;paraphrased&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A woman is like a tea bag; you never know how strong it is until it&#39;s in hot water.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Eleanor Roosevelt&lt;/small&gt;
+&lt;a href=&quot;/author/Eleanor-Roosevelt&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;misattributed-eleanor-roosevelt&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/misattributed-eleanor-roosevelt/page/1/&quot;&gt;misattributed-eleanor-roosevelt&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A day without sunshine is like, you know, night.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Steve Martin&lt;/small&gt;
+&lt;a href=&quot;/author/Steve-Martin&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;humor,obvious,simile&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/obvious/page/1/&quot;&gt;obvious&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/simile/page/1/&quot;&gt;simile&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;nav&gt;
+&lt;ul class=&quot;pager&quot;&gt;
+&lt;li class=&quot;next&quot;&gt;
+&lt;a href=&quot;/page/2/&quot;&gt;Next &lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-4 tags-box&quot;&gt;
+&lt;h2&gt;Top Ten tags&lt;/h2&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/love/&quot; style=&quot;font-size: 28px&quot;&gt;love&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/&quot; style=&quot;font-size: 26px&quot;&gt;inspirational&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/life/&quot; style=&quot;font-size: 26px&quot;&gt;life&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/humor/&quot; style=&quot;font-size: 24px&quot;&gt;humor&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/books/&quot; style=&quot;font-size: 22px&quot;&gt;books&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/reading/&quot; style=&quot;font-size: 14px&quot;&gt;reading&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/friendship/&quot; style=&quot;font-size: 10px&quot;&gt;friendship&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/friends/&quot; style=&quot;font-size: 8px&quot;&gt;friends&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/truth/&quot; style=&quot;font-size: 8px&quot;&gt;truth&lt;/a&gt;
+&lt;/span&gt;
+&lt;span class=&quot;tag-item&quot;&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/simile/&quot; style=&quot;font-size: 6px&quot;&gt;simile&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;footer class=&quot;footer&quot;&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;p class=&quot;text-muted&quot;&gt;
+                Quotes by: &lt;a href=&quot;https://www.goodreads.com/quotes&quot;&gt;GoodReads.com&lt;/a&gt;
+&lt;/p&gt;
+&lt;p class=&quot;copyright&quot;&gt;
+                Made with &lt;span class=&quot;zyte&quot;&gt;❤&lt;/span&gt; by &lt;a class=&quot;zyte&quot; href=&quot;https://www.zyte.com&quot;&gt;Zyte&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we will parse the quotes, authors, and tags using da different approach.</p>
+<ul class="simple">
+<li><p><strong>div</strong>: Refers to the <span class="math notranslate nohighlight">\(&lt;div&gt;\)</span>  HTML element, commonly used to group and organize content within a webpage.</p>
+<ul>
+<li><p>The code specifically searches for all <span class="math notranslate nohighlight">\(&lt;div&gt;\)</span> elements present in the HTML content.</p></li>
+</ul>
+</li>
+<li><p><strong>quote</strong>: Represents the <em>class</em> attribute of the targeted <span class="math notranslate nohighlight">\(&lt;div&gt;\)</span> elements.</p>
+<ul>
+<li><p>The argument <em>class_=’quote’</em> ensures that only <span class="math notranslate nohighlight">\(&lt;div&gt;\)</span> elements with the class name <em>‘quote’</em> are included in the search.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;quote&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+ &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;change,deep-thoughts,thinking,world&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is our choices, Harry, that show what we truly are, far more than our abilities.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;J.K. Rowling&lt;/small&gt;
+ &lt;a href=&quot;/author/J-K-Rowling&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;abilities,choices&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/abilities/page/1/&quot;&gt;abilities&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/choices/page/1/&quot;&gt;choices&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+ &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;inspirational,life,live,miracle,miracles&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/live/page/1/&quot;&gt;live&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/miracle/page/1/&quot;&gt;miracle&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/miracles/page/1/&quot;&gt;miracles&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Jane Austen&lt;/small&gt;
+ &lt;a href=&quot;/author/Jane-Austen&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;aliteracy,books,classic,humor&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/aliteracy/page/1/&quot;&gt;aliteracy&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/books/page/1/&quot;&gt;books&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/classic/page/1/&quot;&gt;classic&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Imperfection is beauty, madness is genius and it&#39;s better to be absolutely ridiculous than absolutely boring.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Marilyn Monroe&lt;/small&gt;
+ &lt;a href=&quot;/author/Marilyn-Monroe&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;be-yourself,inspirational&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/be-yourself/page/1/&quot;&gt;be-yourself&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“Try not to become a man of success. Rather become a man of value.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+ &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;adulthood,success,value&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/adulthood/page/1/&quot;&gt;adulthood&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/success/page/1/&quot;&gt;success&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/value/page/1/&quot;&gt;value&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“It is better to be hated for what you are than to be loved for what you are not.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;André Gide&lt;/small&gt;
+ &lt;a href=&quot;/author/Andre-Gide&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;life,love&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/love/page/1/&quot;&gt;love&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“I have not failed. I&#39;ve just found 10,000 ways that won&#39;t work.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Thomas A. Edison&lt;/small&gt;
+ &lt;a href=&quot;/author/Thomas-A-Edison&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;edison,failure,inspirational,paraphrased&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/edison/page/1/&quot;&gt;edison&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/failure/page/1/&quot;&gt;failure&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/paraphrased/page/1/&quot;&gt;paraphrased&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A woman is like a tea bag; you never know how strong it is until it&#39;s in hot water.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Eleanor Roosevelt&lt;/small&gt;
+ &lt;a href=&quot;/author/Eleanor-Roosevelt&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;misattributed-eleanor-roosevelt&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/misattributed-eleanor-roosevelt/page/1/&quot;&gt;misattributed-eleanor-roosevelt&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;,
+ &lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+ &lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“A day without sunshine is like, you know, night.”&lt;/span&gt;
+ &lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Steve Martin&lt;/small&gt;
+ &lt;a href=&quot;/author/Steve-Martin&quot;&gt;(about)&lt;/a&gt;
+ &lt;/span&gt;
+ &lt;div class=&quot;tags&quot;&gt;
+             Tags:
+             &lt;meta class=&quot;keywords&quot; content=&quot;humor,obvious,simile&quot; itemprop=&quot;keywords&quot;/&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/obvious/page/1/&quot;&gt;obvious&lt;/a&gt;
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/simile/page/1/&quot;&gt;simile&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;quote&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/CreativeWork&quot;&gt;
+&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tags&quot;&gt;
+            Tags:
+            &lt;meta class=&quot;keywords&quot; content=&quot;change,deep-thoughts,thinking,world&quot; itemprop=&quot;keywords&quot;/&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;
+&lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h4>Quote<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;span class=&quot;text&quot; itemprop=&quot;text&quot;&gt;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h4>Author<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;small class=&quot;author&quot; itemprop=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Albert Einstein&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h4>Tag<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;(about)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can extract all tags using a list comprehension:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">tag</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">quotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;tag&#39;</span><span class="p">)]</span>
+<span class="n">tags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;change&#39;, &#39;deep-thoughts&#39;, &#39;thinking&#39;, &#39;world&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="regular-expressions">
+<h2>Regular  Expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this heading">#</a></h2>
+<p>In this section, we will extract all links in the <em>href</em> attributes that start with <em>/tag</em>.</p>
+<ul class="simple">
+<li><p>The <em>href</em> attribute contains links to other websites or specific sections within a website.</p></li>
+<li><p>We will use regular expressions to accomplish this task.</p></li>
+</ul>
+<p>First, we create a <em>BeautifulSoup</em> object using the HTML content.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://quotes.toscrape.com/&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>All <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> HTML element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">a_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;a href=&quot;/&quot; style=&quot;text-decoration: none&quot;&gt;Quotes to Scrape&lt;/a&gt;,
+ &lt;a href=&quot;/login&quot;&gt;Login&lt;/a&gt;,
+ &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;,
+ &lt;a href=&quot;/author/J-K-Rowling&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/abilities/page/1/&quot;&gt;abilities&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/choices/page/1/&quot;&gt;choices&lt;/a&gt;,
+ &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/live/page/1/&quot;&gt;live&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/miracle/page/1/&quot;&gt;miracle&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/miracles/page/1/&quot;&gt;miracles&lt;/a&gt;,
+ &lt;a href=&quot;/author/Jane-Austen&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/aliteracy/page/1/&quot;&gt;aliteracy&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/books/page/1/&quot;&gt;books&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/classic/page/1/&quot;&gt;classic&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;,
+ &lt;a href=&quot;/author/Marilyn-Monroe&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/be-yourself/page/1/&quot;&gt;be-yourself&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/adulthood/page/1/&quot;&gt;adulthood&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/success/page/1/&quot;&gt;success&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/value/page/1/&quot;&gt;value&lt;/a&gt;,
+ &lt;a href=&quot;/author/Andre-Gide&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/page/1/&quot;&gt;life&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/love/page/1/&quot;&gt;love&lt;/a&gt;,
+ &lt;a href=&quot;/author/Thomas-A-Edison&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/edison/page/1/&quot;&gt;edison&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/failure/page/1/&quot;&gt;failure&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/page/1/&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/paraphrased/page/1/&quot;&gt;paraphrased&lt;/a&gt;,
+ &lt;a href=&quot;/author/Eleanor-Roosevelt&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/misattributed-eleanor-roosevelt/page/1/&quot;&gt;misattributed-eleanor-roosevelt&lt;/a&gt;,
+ &lt;a href=&quot;/author/Steve-Martin&quot;&gt;(about)&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/page/1/&quot;&gt;humor&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/obvious/page/1/&quot;&gt;obvious&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/simile/page/1/&quot;&gt;simile&lt;/a&gt;,
+ &lt;a href=&quot;/page/2/&quot;&gt;Next &lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/love/&quot; style=&quot;font-size: 28px&quot;&gt;love&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/inspirational/&quot; style=&quot;font-size: 26px&quot;&gt;inspirational&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/life/&quot; style=&quot;font-size: 26px&quot;&gt;life&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/humor/&quot; style=&quot;font-size: 24px&quot;&gt;humor&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/books/&quot; style=&quot;font-size: 22px&quot;&gt;books&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/reading/&quot; style=&quot;font-size: 14px&quot;&gt;reading&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/friendship/&quot; style=&quot;font-size: 10px&quot;&gt;friendship&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/friends/&quot; style=&quot;font-size: 8px&quot;&gt;friends&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/truth/&quot; style=&quot;font-size: 8px&quot;&gt;truth&lt;/a&gt;,
+ &lt;a class=&quot;tag&quot; href=&quot;/tag/simile/&quot; style=&quot;font-size: 6px&quot;&gt;simile&lt;/a&gt;,
+ &lt;a href=&quot;https://www.goodreads.com/quotes&quot;&gt;GoodReads.com&lt;/a&gt;,
+ &lt;a class=&quot;zyte&quot; href=&quot;https://www.zyte.com&quot;&gt;Zyte&lt;/a&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The element at index 10 of the list above is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>It can be converted into a string using the <em>decode()</em> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the following code, each element of the <em>a_list</em> is iterated over in a loop.</p>
+<ul class="simple">
+<li><p>The regular expression ‘href=”(/tag[^”]+)”’ is applied. This expression works as follows:</p>
+<ul>
+<li><p>It looks for href=” in the HTML content.</p></li>
+<li><p>After locating href=”, it captures the part that starts with <em>/tag.</em></p></li>
+<li><p>It continues capturing characters until it encounters the closing quotation mark <em>“</em> after <em>/tag</em>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">href_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">a_item</span> <span class="ow">in</span> <span class="n">a_list</span><span class="p">:</span>
+    <span class="n">href_list</span> <span class="o">+=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;href=&quot;(/tag[^&quot;]+)&quot;&#39;</span> <span class="p">,</span> <span class="n">a_item</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">href_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/tag/change/page/1/&#39;,
+ &#39;/tag/deep-thoughts/page/1/&#39;,
+ &#39;/tag/thinking/page/1/&#39;,
+ &#39;/tag/world/page/1/&#39;,
+ &#39;/tag/abilities/page/1/&#39;,
+ &#39;/tag/choices/page/1/&#39;,
+ &#39;/tag/inspirational/page/1/&#39;,
+ &#39;/tag/life/page/1/&#39;,
+ &#39;/tag/live/page/1/&#39;,
+ &#39;/tag/miracle/page/1/&#39;,
+ &#39;/tag/miracles/page/1/&#39;,
+ &#39;/tag/aliteracy/page/1/&#39;,
+ &#39;/tag/books/page/1/&#39;,
+ &#39;/tag/classic/page/1/&#39;,
+ &#39;/tag/humor/page/1/&#39;,
+ &#39;/tag/be-yourself/page/1/&#39;,
+ &#39;/tag/inspirational/page/1/&#39;,
+ &#39;/tag/adulthood/page/1/&#39;,
+ &#39;/tag/success/page/1/&#39;,
+ &#39;/tag/value/page/1/&#39;,
+ &#39;/tag/life/page/1/&#39;,
+ &#39;/tag/love/page/1/&#39;,
+ &#39;/tag/edison/page/1/&#39;,
+ &#39;/tag/failure/page/1/&#39;,
+ &#39;/tag/inspirational/page/1/&#39;,
+ &#39;/tag/paraphrased/page/1/&#39;,
+ &#39;/tag/misattributed-eleanor-roosevelt/page/1/&#39;,
+ &#39;/tag/humor/page/1/&#39;,
+ &#39;/tag/obvious/page/1/&#39;,
+ &#39;/tag/simile/page/1/&#39;,
+ &#39;/tag/love/&#39;,
+ &#39;/tag/inspirational/&#39;,
+ &#39;/tag/life/&#39;,
+ &#39;/tag/humor/&#39;,
+ &#39;/tag/books/&#39;,
+ &#39;/tag/reading/&#39;,
+ &#39;/tag/friendship/&#39;,
+ &#39;/tag/friends/&#39;,
+ &#39;/tag/truth/&#39;,
+ &#39;/tag/simile/&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="web_api_exercises.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Web APIs Exercises</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="web_crawling_exercises.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Web Crawling Exercises</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beautifulsoup">BeautifulSoup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#urllib-library">urllib Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quote">Quote</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#author">Author</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tag">Tag</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requests-library">requests Library</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Quote</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Author</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Tag</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular  Expressions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yusuf Danisman
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

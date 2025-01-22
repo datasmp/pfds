@@ -1,0 +1,2092 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Web APIs &#8212; Python For Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'web_api';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Web APIs Exercises" href="web_api_exercises.html" />
+    <link rel="prev" title="Files Exercises" href="files_exercises.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pfds_logo2.png" class="logo__image only-light" alt="Python For Data Science - Home"/>
+    <script>document.write(`<img src="_static/pfds_logo2.png" class="logo__image only-dark" alt="Python For Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Cover
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pfds.html">Python for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledge.html">Acknowledgments</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regular_expressions.html">Regular Expressions</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="regular_expressions_exercises.html">Regular Expression Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="files.html">Files</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="files_exercises.html">Files Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Web APIs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_api_exercises.html">Web APIs Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="web_crawling.html">Web Crawling</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_crawling_exercises.html">Web Crawling Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="numpy_arrays.html">Numpy Arrays</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="numpy_arrays_exercises.html">Numpy Array Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="series.html">Series</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="series_exercises.html">Series Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="df_basics.html">DataFrames</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="df_attribute_method.html">DataFrames Attributes and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_advanced_method.html">DataFrames Advanced Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_visualization.html">DataFrames Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="df_exercises.html">DataFrames Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="save_store_csv_excel.html">Importing and Storing Data</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="save_store_csv_excel_exercises.html">Importing and Storing Data Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_prep.html">Data Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_prep_exercises.html">Data Preparation Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing Values</a></li>
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_aggregation.html">Data Aggregation</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_aggregation_exercises.html">Data Aggregation Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visual_main.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_matplot.html">Visualization Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_seaborn.html">Visualization Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_go.html">Visualization GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_example.html">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_exercises.html">Visualization Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="text_analysis.html">Text Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="text_analysis_exercises.html">Text Analysis Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="time_series.html">Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="time_series_exercises.html">Time Series Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ml_algorithm.html">Machine Learning Algorithms</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="k_means.html">k-Means Clustering</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="datasets.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets_exercises.html">Datasets Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="projects.html">Projects</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/datasmp/datasmp.github.io/issues/new?title=Issue%20on%20page%20%2Fweb_api.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/web_api.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Web APIs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-advice-slip">Example: Advice Slip</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-advice">Random Advice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-advice">Searching Advice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-weather-info">Example: Weather Info</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hourly-data">Hourly Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-pictures">Example: Pictures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-api-key">Example: API key</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="web-apis">
+<h1>Web APIs<a class="headerlink" href="#web-apis" title="Permalink to this heading">#</a></h1>
+<p><img alt="Section Title: Web APIs" src="_images/web_api2.png" />
+API stands for Application Programming Interface. It basically connects applications to work together and share information.</p>
+<ul class="simple">
+<li><p>Web APIs enable applications to communicate with each other over the internet by sending and receiving data.</p></li>
+<li><p>For example, you can request stock price information from <a class="reference external" href="https://finance.yahoo.com/">Yahoo Finance</a>, weather details from <a class="reference external" href="https://openweathermap.org/">OpenWeather</a>, or Twitter messages from X (formerly Twitter).</p></li>
+<li><p>Some API services are completely free and can be used without any setup. Others require you to create an account and obtain an API key, even if they are free. Many APIs offer limited free usage, with additional charges for higher usage.</p></li>
+<li><p>On the landing pages of many websites, you can often find a link to their API information.</p></li>
+<li><p>Python provides several libraries for working with Web APIs. In this chapter, we will primarily use <em>urllib</em>.</p></li>
+</ul>
+<section id="json">
+<h2>JSON<a class="headerlink" href="#json" title="Permalink to this heading">#</a></h2>
+<p>JSON stands for JavaScript Object Notation. It is a text-based format used to store structured data.</p>
+<ul class="simple">
+<li><p>JSON is commonly used for exchanging data between applications, making it easy to transmit information across different systems.</p></li>
+<li><p>At first, it may seem complicated, long, and messy, but JSON is actually very easy to read.</p></li>
+<li><p>It is composed of key-value pairs, where each key is associated with a value.</p></li>
+<li><p>JSON can be used with any programming language.</p></li>
+<li><p>Below is an example of how data appears in JSON format:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fhand</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;json_sample.txt&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fhand</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+
+ &quot;cells&quot;: [
+
+  {
+
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+
+   &quot;id&quot;: &quot;d8712b3b-783d-4fee-b9d9-65c3178feb7f&quot;,
+
+   &quot;metadata&quot;: {},
+
+   &quot;source&quot;: [
+
+    &quot;# Numpy Arrays\n&quot;,
+
+    &quot;![](title_pict/numpy2.png)&quot;
+
+   ]
+
+  },
+
+  {
+
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+
+   &quot;id&quot;: &quot;7d557bc0-854e-4690-a83d-fbbb8a904085&quot;,
+
+   &quot;metadata&quot;: {},
+
+   &quot;source&quot;: [
+
+    &quot;## Missing Parts\n&quot;,
+
+    &quot;- Vectorized Operations&quot;
+
+   ]
+
+  },
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-advice-slip">
+<h2>Example: Advice Slip<a class="headerlink" href="#example-advice-slip" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://adviceslip.com/">https://adviceslip.com/</a> is a website that provides advice.</p>
+<ul class="simple">
+<li><p>Its API can be used to request advice programmatically.</p></li>
+<li><p>For more information about their API services, visit the following link: <a class="reference external" href="https://api.adviceslip.com/">Advice Slip API Documentation</a>.</p></li>
+</ul>
+<p>The following libraries will be required:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="random-advice">
+<h3>Random Advice<a class="headerlink" href="#random-advice" title="Permalink to this heading">#</a></h3>
+<p>To receive a random advice, the following <a class="reference external" href="https://api.adviceslip.com/advice">URL</a> will be used, as provided on the <a class="reference external" href="https://api.adviceslip.com/">website</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://api.adviceslip.com/advice&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the following code, urllib.request.urlopen() opens the webpage with the given URL (called API endpoint):</p>
+<ul class="simple">
+<li><p>It sends an HTTP request to the URL and retrieves the response from the server.</p></li>
+<li><p>It returns a response object, which contains the server’s response to the request.</p></li>
+<li><p>This response object can be used to access the content, status code, headers, and other details of the server’s response.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;http.client.HTTPResponse at 0x104a12560&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http.client.HTTPResponse
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>You can then read the content from the response using a for loop line by line or methods like read().</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;{&quot;slip&quot;: { &quot;id&quot;: 200, &quot;advice&quot;: &quot;Sarcasm is the lowest form of wit. Employ correctly with apt timing.&quot;}}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;{&quot;slip&quot;: { &quot;id&quot;: 18, &quot;advice&quot;: &quot;Don\&#39;t judge a book by its cover, unless it has a synopsis on the back.&quot;}}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The type of the line returned by urllib.request.urlopen() is bytes.</p></li>
+<li><p>The <em>read()</em> method also returns a byte object.</p></li>
+<li><p>You can use <em>decode()</em> method to convert it to a string.</p></li>
+<li><p>To work with the content as a string, you need to decode the bytes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;response: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="se">\n\n</span><span class="s1">TYPE: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>response: {&quot;slip&quot;: { &quot;id&quot;: 171, &quot;advice&quot;: &quot;If you&#39;ve nothing nice to say, say nothing.&quot;}} 
+
+TYPE: &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;slip&quot;: { &quot;id&quot;: 205, &quot;advice&quot;: &quot;Try to not compliment people on things they don\&#39;t control.&quot;}}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em>json.loads()</em> is used to convert the response into a Python dictionary.</p></li>
+<li><p>This makes it easier to access and manipulate the content of the response, as you can use key-value pairs.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;slip&#39;: {&#39;id&#39;: 85,
+  &#39;advice&#39;: &quot;If you don&#39;t want something to be public, don&#39;t post it on the Internet.&quot;}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>In the data dictionary, there is a key-value pair where the key is ‘slip’, and the corresponding value is another dictionary.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;slip&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: 85,
+ &#39;advice&#39;: &quot;If you don&#39;t want something to be public, don&#39;t post it on the Internet.&quot;}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The second (inner) dictionary contains two key-value pairs with the keys: ‘id’ and ‘advice’.</p></li>
+<li><p>To access the id number and the advice, you can use the following code:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;slip&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>85
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;slip&#39;</span><span class="p">][</span><span class="s1">&#39;advice&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;If you don&#39;t want something to be public, don&#39;t post it on the Internet.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since access issues to URLs are common, it’s recommended to use a try-except statement to handle any potential errors.</p>
+<ul class="simple">
+<li><p>This allows the code to handle exceptions such as network errors or HTTP errors without crashing.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://api.adviceslip.com/advice&#39;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; ID: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;slip&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> --- ADVICE: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;slip&quot;</span><span class="p">][</span><span class="s2">&quot;advice&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ID: 183 --- ADVICE: Always get two ciders.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="searching-advice">
+<h3>Searching Advice<a class="headerlink" href="#searching-advice" title="Permalink to this heading">#</a></h3>
+<p>As stated in the API documentation, advice slips related to a specific search term can be retrieved using the following code:</p>
+<ul class="simple">
+<li><p>The primary changes are in the URL, where the search query is included, and the structure of the returned data is slightly different.</p></li>
+<li><p>In the following example, we will search for advice slips containing the word “always.”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;always&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://api.adviceslip.com/advice/search/</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The type of <em>data</em> is a dictionary.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;total_results&#39;: &#39;17&#39;,
+ &#39;query&#39;: &#39;always&#39;,
+ &#39;slips&#39;: [{&#39;id&#39;: 9,
+   &#39;advice&#39;: &#39;True happiness always resides in the quest.&#39;,
+   &#39;date&#39;: &#39;2015-10-24&#39;},
+  {&#39;id&#39;: 12, &#39;advice&#39;: &#39;Always block trolls.&#39;, &#39;date&#39;: &#39;2016-11-30&#39;},
+  {&#39;id&#39;: 13,
+   &#39;advice&#39;: &quot;If you&#39;re feeling tired or anxious, a pint of water will almost always make you feel better.&quot;,
+   &#39;date&#39;: &#39;2016-10-23&#39;},
+  {&#39;id&#39;: 34,
+   &#39;advice&#39;: &#39;To improve productivity, always have a shittier task to put off.&#39;,
+   &#39;date&#39;: &#39;2016-09-26&#39;},
+  {&#39;id&#39;: 38,
+   &#39;advice&#39;: &#39;The most delicious cocktails often have the highest alcohol content. Always pace yourself to preserve your dignity.&#39;,
+   &#39;date&#39;: &#39;2016-09-21&#39;},
+  {&#39;id&#39;: 42,
+   &#39;advice&#39;: &#39;Always double check you actually attached the file to the email.&#39;,
+   &#39;date&#39;: &#39;2017-03-30&#39;},
+  {&#39;id&#39;: 75,
+   &#39;advice&#39;: &#39;You will always regret the round of Tequila.&#39;,
+   &#39;date&#39;: &#39;2015-04-07&#39;},
+  {&#39;id&#39;: 76,
+   &#39;advice&#39;: &#39;You will always regret the round of JÃ¤germeister.&#39;,
+   &#39;date&#39;: &#39;2016-12-19&#39;},
+  {&#39;id&#39;: 98, &#39;advice&#39;: &quot;It&#39;s always the quiet ones.&quot;, &#39;date&#39;: &#39;2015-10-04&#39;},
+  {&#39;id&#39;: 145, &#39;advice&#39;: &#39;Always the burrito.&#39;, &#39;date&#39;: &#39;2015-10-13&#39;},
+  {&#39;id&#39;: 173, &#39;advice&#39;: &#39;Always bet on black.&#39;, &#39;date&#39;: &#39;2016-11-12&#39;},
+  {&#39;id&#39;: 178,
+   &#39;advice&#39;: &quot;It always seems impossible, until it&#39;s done.&quot;,
+   &#39;date&#39;: &#39;2017-03-09&#39;},
+  {&#39;id&#39;: 183, &#39;advice&#39;: &#39;Always get two ciders.&#39;, &#39;date&#39;: &#39;2017-01-01&#39;},
+  {&#39;id&#39;: 187,
+   &#39;advice&#39;: &#39;The sun always shines above the clouds.&#39;,
+   &#39;date&#39;: &#39;2013-01-01&#39;},
+  {&#39;id&#39;: 190,
+   &#39;advice&#39;: &quot;Don&#39;t always believe what you think.&quot;,
+   &#39;date&#39;: &#39;2016-08-21&#39;},
+  {&#39;id&#39;: 194,
+   &#39;advice&#39;: &quot;Don&#39;t always rely on your comforts.&quot;,
+   &#39;date&#39;: &#39;2017-01-08&#39;},
+  {&#39;id&#39;: 207,
+   &#39;advice&#39;: &#39;Always seek out advice or opinions when making a decision.&#39;,
+   &#39;date&#39;: &#39;2016-11-05&#39;}]}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-weather-info">
+<h2>Example: Weather Info<a class="headerlink" href="#example-weather-info" title="Permalink to this heading">#</a></h2>
+<p>In this example, we will use the <a class="reference external" href="https://open-meteo.com/en/docs">Open-Meteo API</a> to access weather information using latitude and longitude.</p>
+<ul class="simple">
+<li><p>We will use the latitude and longitude coordinates of California.</p></li>
+<li><p>The URL contains placeholders for the latitude and longitude values.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="mf">36.7783</span><span class="p">,</span> <span class="o">-</span><span class="mf">119.4179</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://api.open-meteo.com/v1/forecast?latitude=</span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s1">&amp;longitude=</span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s1">&amp;current_weather=true&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>urllib.request.urlopen() opens the webpage with the given URL</p></li>
+<li><p>read() returns the response as a byte object, making it readable like a file.</p></li>
+<li><p>decode() converts the byte response into a string.</p></li>
+<li><p>json.loads() converts the string response into a dictionary.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;latitude&#39;: 36.765133,
+ &#39;longitude&#39;: -119.425156,
+ &#39;generationtime_ms&#39;: 0.8177757263183594,
+ &#39;utc_offset_seconds&#39;: 0,
+ &#39;timezone&#39;: &#39;GMT&#39;,
+ &#39;timezone_abbreviation&#39;: &#39;GMT&#39;,
+ &#39;elevation&#39;: 144.0,
+ &#39;current_weather_units&#39;: {&#39;time&#39;: &#39;iso8601&#39;,
+  &#39;interval&#39;: &#39;seconds&#39;,
+  &#39;temperature&#39;: &#39;°C&#39;,
+  &#39;windspeed&#39;: &#39;km/h&#39;,
+  &#39;winddirection&#39;: &#39;°&#39;,
+  &#39;is_day&#39;: &#39;&#39;,
+  &#39;weathercode&#39;: &#39;wmo code&#39;},
+ &#39;current_weather&#39;: {&#39;time&#39;: &#39;2025-01-22T18:30&#39;,
+  &#39;interval&#39;: 900,
+  &#39;temperature&#39;: 12.1,
+  &#39;windspeed&#39;: 5.2,
+  &#39;winddirection&#39;: 286,
+  &#39;is_day&#39;: 1,
+  &#39;weathercode&#39;: 0}}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em>data</em> is a dictionary, and the values corresponding to the keys ‘current_weather_units’ and ‘current_weather’ are both dictionaries.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;latitude&#39;, &#39;longitude&#39;, &#39;generationtime_ms&#39;, &#39;utc_offset_seconds&#39;, &#39;timezone&#39;, &#39;timezone_abbreviation&#39;, &#39;elevation&#39;, &#39;current_weather_units&#39;, &#39;current_weather&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;current_weather&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;time&#39;: &#39;2025-01-22T18:30&#39;,
+ &#39;interval&#39;: 900,
+ &#39;temperature&#39;: 12.1,
+ &#39;windspeed&#39;: 5.2,
+ &#39;winddirection&#39;: 286,
+ &#39;is_day&#39;: 1,
+ &#39;weathercode&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;current_weather_units&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;time&#39;: &#39;iso8601&#39;,
+ &#39;interval&#39;: &#39;seconds&#39;,
+ &#39;temperature&#39;: &#39;°C&#39;,
+ &#39;windspeed&#39;: &#39;km/h&#39;,
+ &#39;winddirection&#39;: &#39;°&#39;,
+ &#39;is_day&#39;: &#39;&#39;,
+ &#39;weathercode&#39;: &#39;wmo code&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The temperature and its unit can be combined as follows:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;current_weather&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">])</span> <span class="o">+</span>  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;current_weather_units&#39;</span><span class="p">][</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;12.1°C&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="mf">36.7783</span><span class="p">,</span> <span class="o">-</span><span class="mf">119.4179</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://api.open-meteo.com/v1/forecast?latitude=</span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s1">&amp;longitude=</span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s1">&amp;current_weather=true&#39;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Temperature: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;current_weather&quot;</span><span class="p">][</span><span class="s2">&quot;temperature&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;current_weather_units&quot;</span><span class="p">][</span><span class="s2">&quot;temperature&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Windspeed  : </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;current_weather&quot;</span><span class="p">][</span><span class="s2">&quot;windspeed&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;current_weather_units&quot;</span><span class="p">][</span><span class="s2">&quot;windspeed&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Temperature: 12.1 °C
+Windspeed  : 5.2 km/h
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hourly-data">
+<h3>Hourly Data<a class="headerlink" href="#hourly-data" title="Permalink to this heading">#</a></h3>
+<p>The hourly parameter allows you to retrieve hourly temperature data measured at a height of 2 meters above ground level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="mf">36.7783</span><span class="p">,</span> <span class="o">-</span><span class="mf">119.4179</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://api.open-meteo.com/v1/forecast?latitude=</span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s1">&amp;longitude=</span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s1">&amp;hourly=temperature_2m&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em>data</em> is a dictionary, and the values corresponding to the keys ‘hoourly’ and ‘temperature_2m’ are both dictionaries.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;latitude&#39;: 36.765133,
+ &#39;longitude&#39;: -119.425156,
+ &#39;generationtime_ms&#39;: 0.0247955322265625,
+ &#39;utc_offset_seconds&#39;: 0,
+ &#39;timezone&#39;: &#39;GMT&#39;,
+ &#39;timezone_abbreviation&#39;: &#39;GMT&#39;,
+ &#39;elevation&#39;: 144.0,
+ &#39;hourly_units&#39;: {&#39;time&#39;: &#39;iso8601&#39;, &#39;temperature_2m&#39;: &#39;°C&#39;},
+ &#39;hourly&#39;: {&#39;time&#39;: [&#39;2025-01-22T00:00&#39;,
+   &#39;2025-01-22T01:00&#39;,
+   &#39;2025-01-22T02:00&#39;,
+   &#39;2025-01-22T03:00&#39;,
+   &#39;2025-01-22T04:00&#39;,
+   &#39;2025-01-22T05:00&#39;,
+   &#39;2025-01-22T06:00&#39;,
+   &#39;2025-01-22T07:00&#39;,
+   &#39;2025-01-22T08:00&#39;,
+   &#39;2025-01-22T09:00&#39;,
+   &#39;2025-01-22T10:00&#39;,
+   &#39;2025-01-22T11:00&#39;,
+   &#39;2025-01-22T12:00&#39;,
+   &#39;2025-01-22T13:00&#39;,
+   &#39;2025-01-22T14:00&#39;,
+   &#39;2025-01-22T15:00&#39;,
+   &#39;2025-01-22T16:00&#39;,
+   &#39;2025-01-22T17:00&#39;,
+   &#39;2025-01-22T18:00&#39;,
+   &#39;2025-01-22T19:00&#39;,
+   &#39;2025-01-22T20:00&#39;,
+   &#39;2025-01-22T21:00&#39;,
+   &#39;2025-01-22T22:00&#39;,
+   &#39;2025-01-22T23:00&#39;,
+   &#39;2025-01-23T00:00&#39;,
+   &#39;2025-01-23T01:00&#39;,
+   &#39;2025-01-23T02:00&#39;,
+   &#39;2025-01-23T03:00&#39;,
+   &#39;2025-01-23T04:00&#39;,
+   &#39;2025-01-23T05:00&#39;,
+   &#39;2025-01-23T06:00&#39;,
+   &#39;2025-01-23T07:00&#39;,
+   &#39;2025-01-23T08:00&#39;,
+   &#39;2025-01-23T09:00&#39;,
+   &#39;2025-01-23T10:00&#39;,
+   &#39;2025-01-23T11:00&#39;,
+   &#39;2025-01-23T12:00&#39;,
+   &#39;2025-01-23T13:00&#39;,
+   &#39;2025-01-23T14:00&#39;,
+   &#39;2025-01-23T15:00&#39;,
+   &#39;2025-01-23T16:00&#39;,
+   &#39;2025-01-23T17:00&#39;,
+   &#39;2025-01-23T18:00&#39;,
+   &#39;2025-01-23T19:00&#39;,
+   &#39;2025-01-23T20:00&#39;,
+   &#39;2025-01-23T21:00&#39;,
+   &#39;2025-01-23T22:00&#39;,
+   &#39;2025-01-23T23:00&#39;,
+   &#39;2025-01-24T00:00&#39;,
+   &#39;2025-01-24T01:00&#39;,
+   &#39;2025-01-24T02:00&#39;,
+   &#39;2025-01-24T03:00&#39;,
+   &#39;2025-01-24T04:00&#39;,
+   &#39;2025-01-24T05:00&#39;,
+   &#39;2025-01-24T06:00&#39;,
+   &#39;2025-01-24T07:00&#39;,
+   &#39;2025-01-24T08:00&#39;,
+   &#39;2025-01-24T09:00&#39;,
+   &#39;2025-01-24T10:00&#39;,
+   &#39;2025-01-24T11:00&#39;,
+   &#39;2025-01-24T12:00&#39;,
+   &#39;2025-01-24T13:00&#39;,
+   &#39;2025-01-24T14:00&#39;,
+   &#39;2025-01-24T15:00&#39;,
+   &#39;2025-01-24T16:00&#39;,
+   &#39;2025-01-24T17:00&#39;,
+   &#39;2025-01-24T18:00&#39;,
+   &#39;2025-01-24T19:00&#39;,
+   &#39;2025-01-24T20:00&#39;,
+   &#39;2025-01-24T21:00&#39;,
+   &#39;2025-01-24T22:00&#39;,
+   &#39;2025-01-24T23:00&#39;,
+   &#39;2025-01-25T00:00&#39;,
+   &#39;2025-01-25T01:00&#39;,
+   &#39;2025-01-25T02:00&#39;,
+   &#39;2025-01-25T03:00&#39;,
+   &#39;2025-01-25T04:00&#39;,
+   &#39;2025-01-25T05:00&#39;,
+   &#39;2025-01-25T06:00&#39;,
+   &#39;2025-01-25T07:00&#39;,
+   &#39;2025-01-25T08:00&#39;,
+   &#39;2025-01-25T09:00&#39;,
+   &#39;2025-01-25T10:00&#39;,
+   &#39;2025-01-25T11:00&#39;,
+   &#39;2025-01-25T12:00&#39;,
+   &#39;2025-01-25T13:00&#39;,
+   &#39;2025-01-25T14:00&#39;,
+   &#39;2025-01-25T15:00&#39;,
+   &#39;2025-01-25T16:00&#39;,
+   &#39;2025-01-25T17:00&#39;,
+   &#39;2025-01-25T18:00&#39;,
+   &#39;2025-01-25T19:00&#39;,
+   &#39;2025-01-25T20:00&#39;,
+   &#39;2025-01-25T21:00&#39;,
+   &#39;2025-01-25T22:00&#39;,
+   &#39;2025-01-25T23:00&#39;,
+   &#39;2025-01-26T00:00&#39;,
+   &#39;2025-01-26T01:00&#39;,
+   &#39;2025-01-26T02:00&#39;,
+   &#39;2025-01-26T03:00&#39;,
+   &#39;2025-01-26T04:00&#39;,
+   &#39;2025-01-26T05:00&#39;,
+   &#39;2025-01-26T06:00&#39;,
+   &#39;2025-01-26T07:00&#39;,
+   &#39;2025-01-26T08:00&#39;,
+   &#39;2025-01-26T09:00&#39;,
+   &#39;2025-01-26T10:00&#39;,
+   &#39;2025-01-26T11:00&#39;,
+   &#39;2025-01-26T12:00&#39;,
+   &#39;2025-01-26T13:00&#39;,
+   &#39;2025-01-26T14:00&#39;,
+   &#39;2025-01-26T15:00&#39;,
+   &#39;2025-01-26T16:00&#39;,
+   &#39;2025-01-26T17:00&#39;,
+   &#39;2025-01-26T18:00&#39;,
+   &#39;2025-01-26T19:00&#39;,
+   &#39;2025-01-26T20:00&#39;,
+   &#39;2025-01-26T21:00&#39;,
+   &#39;2025-01-26T22:00&#39;,
+   &#39;2025-01-26T23:00&#39;,
+   &#39;2025-01-27T00:00&#39;,
+   &#39;2025-01-27T01:00&#39;,
+   &#39;2025-01-27T02:00&#39;,
+   &#39;2025-01-27T03:00&#39;,
+   &#39;2025-01-27T04:00&#39;,
+   &#39;2025-01-27T05:00&#39;,
+   &#39;2025-01-27T06:00&#39;,
+   &#39;2025-01-27T07:00&#39;,
+   &#39;2025-01-27T08:00&#39;,
+   &#39;2025-01-27T09:00&#39;,
+   &#39;2025-01-27T10:00&#39;,
+   &#39;2025-01-27T11:00&#39;,
+   &#39;2025-01-27T12:00&#39;,
+   &#39;2025-01-27T13:00&#39;,
+   &#39;2025-01-27T14:00&#39;,
+   &#39;2025-01-27T15:00&#39;,
+   &#39;2025-01-27T16:00&#39;,
+   &#39;2025-01-27T17:00&#39;,
+   &#39;2025-01-27T18:00&#39;,
+   &#39;2025-01-27T19:00&#39;,
+   &#39;2025-01-27T20:00&#39;,
+   &#39;2025-01-27T21:00&#39;,
+   &#39;2025-01-27T22:00&#39;,
+   &#39;2025-01-27T23:00&#39;,
+   &#39;2025-01-28T00:00&#39;,
+   &#39;2025-01-28T01:00&#39;,
+   &#39;2025-01-28T02:00&#39;,
+   &#39;2025-01-28T03:00&#39;,
+   &#39;2025-01-28T04:00&#39;,
+   &#39;2025-01-28T05:00&#39;,
+   &#39;2025-01-28T06:00&#39;,
+   &#39;2025-01-28T07:00&#39;,
+   &#39;2025-01-28T08:00&#39;,
+   &#39;2025-01-28T09:00&#39;,
+   &#39;2025-01-28T10:00&#39;,
+   &#39;2025-01-28T11:00&#39;,
+   &#39;2025-01-28T12:00&#39;,
+   &#39;2025-01-28T13:00&#39;,
+   &#39;2025-01-28T14:00&#39;,
+   &#39;2025-01-28T15:00&#39;,
+   &#39;2025-01-28T16:00&#39;,
+   &#39;2025-01-28T17:00&#39;,
+   &#39;2025-01-28T18:00&#39;,
+   &#39;2025-01-28T19:00&#39;,
+   &#39;2025-01-28T20:00&#39;,
+   &#39;2025-01-28T21:00&#39;,
+   &#39;2025-01-28T22:00&#39;,
+   &#39;2025-01-28T23:00&#39;],
+  &#39;temperature_2m&#39;: [16.3,
+   14.1,
+   11.8,
+   10.3,
+   10.0,
+   9.6,
+   8.8,
+   7.0,
+   8.0,
+   7.5,
+   6.8,
+   7.2,
+   5.9,
+   4.7,
+   4.0,
+   2.0,
+   4.8,
+   8.9,
+   11.1,
+   12.9,
+   14.2,
+   15.5,
+   16.3,
+   16.6,
+   16.2,
+   13.5,
+   11.1,
+   9.8,
+   9.5,
+   9.3,
+   9.1,
+   8.9,
+   8.9,
+   9.3,
+   9.2,
+   8.4,
+   8.2,
+   7.9,
+   7.9,
+   7.8,
+   6.1,
+   9.1,
+   12.8,
+   16.1,
+   18.2,
+   19.3,
+   19.8,
+   20.0,
+   19.3,
+   16.1,
+   13.9,
+   13.6,
+   14.0,
+   14.1,
+   13.1,
+   13.6,
+   9.5,
+   10.3,
+   9.5,
+   9.8,
+   9.9,
+   7.3,
+   6.9,
+   6.6,
+   9.2,
+   13.5,
+   15.4,
+   16.8,
+   17.8,
+   18.5,
+   18.8,
+   18.6,
+   16.9,
+   12.5,
+   10.9,
+   10.9,
+   11.0,
+   10.5,
+   10.5,
+   9.8,
+   8.9,
+   9.4,
+   9.9,
+   10.3,
+   10.0,
+   9.1,
+   9.6,
+   10.4,
+   10.3,
+   10.6,
+   11.8,
+   12.9,
+   13.4,
+   13.4,
+   13.6,
+   12.5,
+   11.7,
+   10.5,
+   9.9,
+   9.8,
+   8.6,
+   8.4,
+   8.4,
+   8.0,
+   8.2,
+   8.4,
+   8.1,
+   6.7,
+   6.3,
+   5.9,
+   5.9,
+   5.2,
+   6.5,
+   8.7,
+   10.3,
+   11.5,
+   12.4,
+   13.1,
+   13.4,
+   13.9,
+   13.3,
+   11.4,
+   9.9,
+   8.6,
+   7.0,
+   7.3,
+   5.8,
+   4.8,
+   5.2,
+   4.6,
+   4.5,
+   4.4,
+   4.7,
+   4.2,
+   3.6,
+   3.7,
+   4.8,
+   6.6,
+   8.2,
+   9.4,
+   10.4,
+   11.1,
+   11.7,
+   11.9,
+   11.5,
+   10.0,
+   7.9,
+   6.3,
+   5.8,
+   5.7,
+   5.6,
+   5.2,
+   4.8,
+   4.4,
+   4.2,
+   4.0,
+   3.8,
+   3.1,
+   2.5,
+   2.7,
+   4.6,
+   7.3,
+   9.7,
+   11.1,
+   12.0,
+   12.6,
+   13.1,
+   13.3]}}
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>data[‘hourly’][‘time’] is a list containing dates and times.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2025-01-22T00:00&#39;,
+ &#39;2025-01-22T01:00&#39;,
+ &#39;2025-01-22T02:00&#39;,
+ &#39;2025-01-22T03:00&#39;,
+ &#39;2025-01-22T04:00&#39;,
+ &#39;2025-01-22T05:00&#39;,
+ &#39;2025-01-22T06:00&#39;,
+ &#39;2025-01-22T07:00&#39;,
+ &#39;2025-01-22T08:00&#39;,
+ &#39;2025-01-22T09:00&#39;,
+ &#39;2025-01-22T10:00&#39;,
+ &#39;2025-01-22T11:00&#39;,
+ &#39;2025-01-22T12:00&#39;,
+ &#39;2025-01-22T13:00&#39;,
+ &#39;2025-01-22T14:00&#39;,
+ &#39;2025-01-22T15:00&#39;,
+ &#39;2025-01-22T16:00&#39;,
+ &#39;2025-01-22T17:00&#39;,
+ &#39;2025-01-22T18:00&#39;,
+ &#39;2025-01-22T19:00&#39;,
+ &#39;2025-01-22T20:00&#39;,
+ &#39;2025-01-22T21:00&#39;,
+ &#39;2025-01-22T22:00&#39;,
+ &#39;2025-01-22T23:00&#39;,
+ &#39;2025-01-23T00:00&#39;,
+ &#39;2025-01-23T01:00&#39;,
+ &#39;2025-01-23T02:00&#39;,
+ &#39;2025-01-23T03:00&#39;,
+ &#39;2025-01-23T04:00&#39;,
+ &#39;2025-01-23T05:00&#39;,
+ &#39;2025-01-23T06:00&#39;,
+ &#39;2025-01-23T07:00&#39;,
+ &#39;2025-01-23T08:00&#39;,
+ &#39;2025-01-23T09:00&#39;,
+ &#39;2025-01-23T10:00&#39;,
+ &#39;2025-01-23T11:00&#39;,
+ &#39;2025-01-23T12:00&#39;,
+ &#39;2025-01-23T13:00&#39;,
+ &#39;2025-01-23T14:00&#39;,
+ &#39;2025-01-23T15:00&#39;,
+ &#39;2025-01-23T16:00&#39;,
+ &#39;2025-01-23T17:00&#39;,
+ &#39;2025-01-23T18:00&#39;,
+ &#39;2025-01-23T19:00&#39;,
+ &#39;2025-01-23T20:00&#39;,
+ &#39;2025-01-23T21:00&#39;,
+ &#39;2025-01-23T22:00&#39;,
+ &#39;2025-01-23T23:00&#39;,
+ &#39;2025-01-24T00:00&#39;,
+ &#39;2025-01-24T01:00&#39;,
+ &#39;2025-01-24T02:00&#39;,
+ &#39;2025-01-24T03:00&#39;,
+ &#39;2025-01-24T04:00&#39;,
+ &#39;2025-01-24T05:00&#39;,
+ &#39;2025-01-24T06:00&#39;,
+ &#39;2025-01-24T07:00&#39;,
+ &#39;2025-01-24T08:00&#39;,
+ &#39;2025-01-24T09:00&#39;,
+ &#39;2025-01-24T10:00&#39;,
+ &#39;2025-01-24T11:00&#39;,
+ &#39;2025-01-24T12:00&#39;,
+ &#39;2025-01-24T13:00&#39;,
+ &#39;2025-01-24T14:00&#39;,
+ &#39;2025-01-24T15:00&#39;,
+ &#39;2025-01-24T16:00&#39;,
+ &#39;2025-01-24T17:00&#39;,
+ &#39;2025-01-24T18:00&#39;,
+ &#39;2025-01-24T19:00&#39;,
+ &#39;2025-01-24T20:00&#39;,
+ &#39;2025-01-24T21:00&#39;,
+ &#39;2025-01-24T22:00&#39;,
+ &#39;2025-01-24T23:00&#39;,
+ &#39;2025-01-25T00:00&#39;,
+ &#39;2025-01-25T01:00&#39;,
+ &#39;2025-01-25T02:00&#39;,
+ &#39;2025-01-25T03:00&#39;,
+ &#39;2025-01-25T04:00&#39;,
+ &#39;2025-01-25T05:00&#39;,
+ &#39;2025-01-25T06:00&#39;,
+ &#39;2025-01-25T07:00&#39;,
+ &#39;2025-01-25T08:00&#39;,
+ &#39;2025-01-25T09:00&#39;,
+ &#39;2025-01-25T10:00&#39;,
+ &#39;2025-01-25T11:00&#39;,
+ &#39;2025-01-25T12:00&#39;,
+ &#39;2025-01-25T13:00&#39;,
+ &#39;2025-01-25T14:00&#39;,
+ &#39;2025-01-25T15:00&#39;,
+ &#39;2025-01-25T16:00&#39;,
+ &#39;2025-01-25T17:00&#39;,
+ &#39;2025-01-25T18:00&#39;,
+ &#39;2025-01-25T19:00&#39;,
+ &#39;2025-01-25T20:00&#39;,
+ &#39;2025-01-25T21:00&#39;,
+ &#39;2025-01-25T22:00&#39;,
+ &#39;2025-01-25T23:00&#39;,
+ &#39;2025-01-26T00:00&#39;,
+ &#39;2025-01-26T01:00&#39;,
+ &#39;2025-01-26T02:00&#39;,
+ &#39;2025-01-26T03:00&#39;,
+ &#39;2025-01-26T04:00&#39;,
+ &#39;2025-01-26T05:00&#39;,
+ &#39;2025-01-26T06:00&#39;,
+ &#39;2025-01-26T07:00&#39;,
+ &#39;2025-01-26T08:00&#39;,
+ &#39;2025-01-26T09:00&#39;,
+ &#39;2025-01-26T10:00&#39;,
+ &#39;2025-01-26T11:00&#39;,
+ &#39;2025-01-26T12:00&#39;,
+ &#39;2025-01-26T13:00&#39;,
+ &#39;2025-01-26T14:00&#39;,
+ &#39;2025-01-26T15:00&#39;,
+ &#39;2025-01-26T16:00&#39;,
+ &#39;2025-01-26T17:00&#39;,
+ &#39;2025-01-26T18:00&#39;,
+ &#39;2025-01-26T19:00&#39;,
+ &#39;2025-01-26T20:00&#39;,
+ &#39;2025-01-26T21:00&#39;,
+ &#39;2025-01-26T22:00&#39;,
+ &#39;2025-01-26T23:00&#39;,
+ &#39;2025-01-27T00:00&#39;,
+ &#39;2025-01-27T01:00&#39;,
+ &#39;2025-01-27T02:00&#39;,
+ &#39;2025-01-27T03:00&#39;,
+ &#39;2025-01-27T04:00&#39;,
+ &#39;2025-01-27T05:00&#39;,
+ &#39;2025-01-27T06:00&#39;,
+ &#39;2025-01-27T07:00&#39;,
+ &#39;2025-01-27T08:00&#39;,
+ &#39;2025-01-27T09:00&#39;,
+ &#39;2025-01-27T10:00&#39;,
+ &#39;2025-01-27T11:00&#39;,
+ &#39;2025-01-27T12:00&#39;,
+ &#39;2025-01-27T13:00&#39;,
+ &#39;2025-01-27T14:00&#39;,
+ &#39;2025-01-27T15:00&#39;,
+ &#39;2025-01-27T16:00&#39;,
+ &#39;2025-01-27T17:00&#39;,
+ &#39;2025-01-27T18:00&#39;,
+ &#39;2025-01-27T19:00&#39;,
+ &#39;2025-01-27T20:00&#39;,
+ &#39;2025-01-27T21:00&#39;,
+ &#39;2025-01-27T22:00&#39;,
+ &#39;2025-01-27T23:00&#39;,
+ &#39;2025-01-28T00:00&#39;,
+ &#39;2025-01-28T01:00&#39;,
+ &#39;2025-01-28T02:00&#39;,
+ &#39;2025-01-28T03:00&#39;,
+ &#39;2025-01-28T04:00&#39;,
+ &#39;2025-01-28T05:00&#39;,
+ &#39;2025-01-28T06:00&#39;,
+ &#39;2025-01-28T07:00&#39;,
+ &#39;2025-01-28T08:00&#39;,
+ &#39;2025-01-28T09:00&#39;,
+ &#39;2025-01-28T10:00&#39;,
+ &#39;2025-01-28T11:00&#39;,
+ &#39;2025-01-28T12:00&#39;,
+ &#39;2025-01-28T13:00&#39;,
+ &#39;2025-01-28T14:00&#39;,
+ &#39;2025-01-28T15:00&#39;,
+ &#39;2025-01-28T16:00&#39;,
+ &#39;2025-01-28T17:00&#39;,
+ &#39;2025-01-28T18:00&#39;,
+ &#39;2025-01-28T19:00&#39;,
+ &#39;2025-01-28T20:00&#39;,
+ &#39;2025-01-28T21:00&#39;,
+ &#39;2025-01-28T22:00&#39;,
+ &#39;2025-01-28T23:00&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>This is weekly data, consisting of 7 days, each with 24 hours, totaling 168 hours of data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>168
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>data[‘hourly’][‘temperature_2m’] is a list containing temperatures.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">][</span><span class="s1">&#39;temperature_2m&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[16.3,
+ 14.1,
+ 11.8,
+ 10.3,
+ 10.0,
+ 9.6,
+ 8.8,
+ 7.0,
+ 8.0,
+ 7.5,
+ 6.8,
+ 7.2,
+ 5.9,
+ 4.7,
+ 4.0,
+ 2.0,
+ 4.8,
+ 8.9,
+ 11.1,
+ 12.9,
+ 14.2,
+ 15.5,
+ 16.3,
+ 16.6,
+ 16.2,
+ 13.5,
+ 11.1,
+ 9.8,
+ 9.5,
+ 9.3,
+ 9.1,
+ 8.9,
+ 8.9,
+ 9.3,
+ 9.2,
+ 8.4,
+ 8.2,
+ 7.9,
+ 7.9,
+ 7.8,
+ 6.1,
+ 9.1,
+ 12.8,
+ 16.1,
+ 18.2,
+ 19.3,
+ 19.8,
+ 20.0,
+ 19.3,
+ 16.1,
+ 13.9,
+ 13.6,
+ 14.0,
+ 14.1,
+ 13.1,
+ 13.6,
+ 9.5,
+ 10.3,
+ 9.5,
+ 9.8,
+ 9.9,
+ 7.3,
+ 6.9,
+ 6.6,
+ 9.2,
+ 13.5,
+ 15.4,
+ 16.8,
+ 17.8,
+ 18.5,
+ 18.8,
+ 18.6,
+ 16.9,
+ 12.5,
+ 10.9,
+ 10.9,
+ 11.0,
+ 10.5,
+ 10.5,
+ 9.8,
+ 8.9,
+ 9.4,
+ 9.9,
+ 10.3,
+ 10.0,
+ 9.1,
+ 9.6,
+ 10.4,
+ 10.3,
+ 10.6,
+ 11.8,
+ 12.9,
+ 13.4,
+ 13.4,
+ 13.6,
+ 12.5,
+ 11.7,
+ 10.5,
+ 9.9,
+ 9.8,
+ 8.6,
+ 8.4,
+ 8.4,
+ 8.0,
+ 8.2,
+ 8.4,
+ 8.1,
+ 6.7,
+ 6.3,
+ 5.9,
+ 5.9,
+ 5.2,
+ 6.5,
+ 8.7,
+ 10.3,
+ 11.5,
+ 12.4,
+ 13.1,
+ 13.4,
+ 13.9,
+ 13.3,
+ 11.4,
+ 9.9,
+ 8.6,
+ 7.0,
+ 7.3,
+ 5.8,
+ 4.8,
+ 5.2,
+ 4.6,
+ 4.5,
+ 4.4,
+ 4.7,
+ 4.2,
+ 3.6,
+ 3.7,
+ 4.8,
+ 6.6,
+ 8.2,
+ 9.4,
+ 10.4,
+ 11.1,
+ 11.7,
+ 11.9,
+ 11.5,
+ 10.0,
+ 7.9,
+ 6.3,
+ 5.8,
+ 5.7,
+ 5.6,
+ 5.2,
+ 4.8,
+ 4.4,
+ 4.2,
+ 4.0,
+ 3.8,
+ 3.1,
+ 2.5,
+ 2.7,
+ 4.6,
+ 7.3,
+ 9.7,
+ 11.1,
+ 12.0,
+ 12.6,
+ 13.1,
+ 13.3]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Hourly temperatures for the first two days</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">][:</span><span class="mi">24</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hourly&#39;</span><span class="p">][</span><span class="s1">&#39;temperature_2m&#39;</span><span class="p">][:</span><span class="mi">24</span><span class="o">*</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a6bbdeb769933bb8d8aa80f87d7ebd1c524fdb6c3fdab7750fdab2ae82cadfd7.png" src="_images/a6bbdeb769933bb8d8aa80f87d7ebd1c524fdb6c3fdab7750fdab2ae82cadfd7.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="example-pictures">
+<h2>Example: Pictures<a class="headerlink" href="#example-pictures" title="Permalink to this heading">#</a></h2>
+<p>In this example, we will use the <a class="reference external" href="https://picsum.photos/">PicSum AI</a> to access some random pictures.</p>
+<ul class="simple">
+<li><p>The last two numbers in the URL represent the dimensions of the image, specifically the width and height in pixels.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://picsum.photos/200/300&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The response is an HTTPResponse object, and by using the read() method, we can convert the response content into a bytes object.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;http.client.HTTPResponse at 0x104a117e0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the <em>imread()</em> method of plt response object is converted to an array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">image_array</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;jpeg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The shape of this array is (300, 200, 3), and it is a 3-dimensional array. The third dimension represents the RGB color channels that will becovered in Numpy Arrays chapter.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_array</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(300, 200, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_array</span><span class="o">.</span><span class="n">ndim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_array</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[156, 152, 149, ...,  64,  64,  65],
+       [154, 152, 149, ...,  63,  64,  65],
+       [152, 150, 149, ...,  63,  64,  64],
+       ...,
+       [ 20,  20,  20, ...,  48,  53,  56],
+       [ 20,  20,  20, ...,  46,  51,  55],
+       [ 20,  20,  20, ...,  37,  42,  45]], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_array</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(300, 200)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>This picture can be displayed using the <em>imshow()</em> method.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_array</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0b38441212d01662718e9ae59347f998a8b2aa63946dd8ae49e1da0bbb0d9d31.png" src="_images/0b38441212d01662718e9ae59347f998a8b2aa63946dd8ae49e1da0bbb0d9d31.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>This picture can be saved using the <em>imsave()</em> method.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s1">&#39;random_image.png&#39;</span><span class="p">,</span> <span class="n">image_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-api-key">
+<h2>Example: API key<a class="headerlink" href="#example-api-key" title="Permalink to this heading">#</a></h2>
+<p>In this example, we will use the <a class="reference external" href="https://openweathermap.org/">OpenWeather</a> to access weather data.</p>
+<ul class="simple">
+<li><p>To proceed, you need to sign up and wait at least 2 hours for your account to be activated.</p></li>
+<li><p>Once activated, you will receive an API key to make data requests.</p></li>
+<li><p>First, we construct the URL by including the query parameters such as the city, API key, and measurement units (metric).</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;London&quot;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;API KEY&quot;</span>
+<span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;metric&quot;</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://api.openweathermap.org/data/2.5/weather?q=</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s1">&amp;appid=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">&amp;units=</span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">url</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Similar to the previous example, the received data is in the form of a dictionary.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;coord&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1257</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="mf">51.5085</span><span class="p">},</span>
+ <span class="s1">&#39;weather&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">804</span><span class="p">,</span>
+   <span class="s1">&#39;main&#39;</span><span class="p">:</span> <span class="s1">&#39;Clouds&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;overcast clouds&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;icon&#39;</span><span class="p">:</span> <span class="s1">&#39;04n&#39;</span><span class="p">}],</span>
+ <span class="s1">&#39;base&#39;</span><span class="p">:</span> <span class="s1">&#39;stations&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;main&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;temp&#39;</span><span class="p">:</span> <span class="mf">8.53</span><span class="p">,</span>
+  <span class="s1">&#39;feels_like&#39;</span><span class="p">:</span> <span class="mf">7.93</span><span class="p">,</span>
+  <span class="s1">&#39;temp_min&#39;</span><span class="p">:</span> <span class="mf">6.98</span><span class="p">,</span>
+  <span class="s1">&#39;temp_max&#39;</span><span class="p">:</span> <span class="mf">9.44</span><span class="p">,</span>
+  <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="mi">1034</span><span class="p">,</span>
+  <span class="s1">&#39;humidity&#39;</span><span class="p">:</span> <span class="mi">92</span><span class="p">,</span>
+  <span class="s1">&#39;sea_level&#39;</span><span class="p">:</span> <span class="mi">1034</span><span class="p">,</span>
+  <span class="s1">&#39;grnd_level&#39;</span><span class="p">:</span> <span class="mi">1030</span><span class="p">},</span>
+ <span class="s1">&#39;visibility&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+ <span class="s1">&#39;wind&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="mf">1.54</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span>
+ <span class="s1">&#39;clouds&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;all&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+ <span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="mi">1736973275</span><span class="p">,</span>
+ <span class="s1">&#39;sys&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">2075535</span><span class="p">,</span>
+  <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="s1">&#39;GB&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;sunrise&#39;</span><span class="p">:</span> <span class="mi">1736927957</span><span class="p">,</span>
+  <span class="s1">&#39;sunset&#39;</span><span class="p">:</span> <span class="mi">1736958010</span><span class="p">},</span>
+ <span class="s1">&#39;timezone&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+ <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">2643743</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;London&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cod&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Temperature</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">][</span><span class="s1">&#39;temp&#39;</span><span class="p">])</span> 
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;8.53&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Latitude</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;coord&#39;</span><span class="p">][</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mf">51.5085</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Longitude</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;coord&#39;</span><span class="p">][</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.1257</span>
+</pre></div>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="files_exercises.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Files Exercises</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="web_api_exercises.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Web APIs Exercises</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-advice-slip">Example: Advice Slip</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-advice">Random Advice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-advice">Searching Advice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-weather-info">Example: Weather Info</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hourly-data">Hourly Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-pictures">Example: Pictures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-api-key">Example: API key</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yusuf Danisman
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

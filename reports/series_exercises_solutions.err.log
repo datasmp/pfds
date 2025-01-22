@@ -1,0 +1,41 @@
+Traceback (most recent call last):
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/yusufdanisman/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+apple.index = dates
+
+print(f'Number of rows    : {len(apple)}')
+print(f'Last five indices : {list(apple[:5].index)}')
+print(f'Last five values  : {apple[:5].values}')
+print(f'Median            : {apple.median():.2f}')
+print(f'Highest two values: {apple.sort_values().values[-2:]}')
+
+apple.head()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[2], line 1[0m
+[0;32m----> 1[0m apple[38;5;241m.[39mindex [38;5;241m=[39m dates
+[1;32m      3[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m'[39m[38;5;124mNumber of rows    : [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(apple)[38;5;132;01m}[39;00m[38;5;124m'[39m)
+[1;32m      4[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m'[39m[38;5;124mLast five indices : [39m[38;5;132;01m{[39;00m[38;5;28mlist[39m(apple[:[38;5;241m5[39m][38;5;241m.[39mindex)[38;5;132;01m}[39;00m[38;5;124m'[39m)
+
+[0;31mNameError[0m: name 'dates' is not defined
+
