@@ -388,9 +388,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-csv">read_csv()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-csv">read_csv()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-col">index_col</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parse-dates">parse_dates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#header">header</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usecols">usecols</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-excel">read_excel()</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-csv">to_csv()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-csv">to_csv()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index">index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columns">columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">header</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-excel">to_excel()</a></li>
 </ul>
             </nav>
@@ -405,18 +416,984 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="importing-and-storing-data">
 <h1>Importing and Storing Data<a class="headerlink" href="#importing-and-storing-data" title="Permalink to this heading">#</a></h1>
-<p><img alt="Warning Message: Under Construction" src="_images/under_construction.png" /></p>
+<p>In this section, we will explore how to import comma-separated values (CSV) and Excel (XLSX) files into a DataFrame, as well as how to export DataFrames back to CSV or Excel formats using the Pandas library. We will also review the various parameters available to customize the import and export process effectively.</p>
+<p>Since we will be using methods from the Pandas library, we first need to import it using:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="read-csv">
 <h2>read_csv()<a class="headerlink" href="#read-csv" title="Permalink to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv()</a> function reads a comma-separated values (CSV) file and loads it into a DataFrame.</p>
+<ul class="simple">
+<li><p>The file path is provided as a string inside the read_csv() function, including the file name and its extension.</p></li>
+<li><p>In the following code, the CSV file person_info_v1.csv is located in the sample_files folder.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v1.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Amy</td>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Joe</td>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mia</td>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Amy</td>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Liz</td>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>John</td>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="index-col">
+<h3>index_col<a class="headerlink" href="#index-col" title="Permalink to this heading">#</a></h3>
+<p>Specifies which column to use as the index of the DataFrame, using the column’s index number or label.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v1.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Amy</th>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>Joe</th>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>Mia</th>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>John</th>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="parse-dates">
+<h3>parse_dates<a class="headerlink" href="#parse-dates" title="Permalink to this heading">#</a></h3>
+<p>Specifies columns to be parsed as Timestamp objects during import.</p>
+<p>The values in the Date column are currently stored as strings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Birthdate&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2/5/2010&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the following code, Date column values imported as a Timestamp object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v1.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Birthdate&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Amy</th>
+      <td>1972-10-25</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>Joe</th>
+      <td>2010-02-05</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>Mia</th>
+      <td>2015-10-23</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <td>1983-11-06</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>1994-04-19</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>John</th>
+      <td>2023-08-29</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Birthdate&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timestamp(&#39;2010-02-05 00:00:00&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Birthdate&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas._libs.tslibs.timestamps.Timestamp
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="header">
+<h3>header<a class="headerlink" href="#header" title="Permalink to this heading">#</a></h3>
+<p>The person_info_v2.csv file contains some unnecessary information in certain cells. As a result, importing the entire file may lead to many missing values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v2.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Unnamed: 1</th>
+      <th>Person  Info</th>
+      <th>Unnamed: 3</th>
+      <th>Unnamed: 4</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Birthdate</td>
+      <td>NaN</td>
+      <td>N</td>
+      <td>D</td>
+      <td>S</td>
+      <td>A</td>
+      <td>W</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>State</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Age</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Weight</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Name</td>
+      <td>Birthdate</td>
+      <td>State</td>
+      <td>Age</td>
+      <td>Weight</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Amy</td>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Joe</td>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Mia</td>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Amy</td>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Liz</td>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>John</td>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To avoid this, we should import only the relevant data, as demonstrated in the previous section.</p>
+<ul class="simple">
+<li><p>First, the header parameter is used to skip the first 5 rows and treat the sixth row (index 5) as the header.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v2.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Unnamed: 1</th>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Amy</td>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Joe</td>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Mia</td>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Amy</td>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Liz</td>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>John</td>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The index_col parameter is used to exclude the first two columns and setting third one (index 2) as the index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v2.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Unnamed: 1</th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Amy</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>Joe</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>Mia</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>John</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The iloc indexer can be used to exclude the first two unnecessary columns by selecting only the desired columns based on their integer positions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v2.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">2</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Amy</th>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>Joe</th>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>Mia</th>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>John</th>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="usecols">
+<h3>usecols<a class="headerlink" href="#usecols" title="Permalink to this heading">#</a></h3>
+<p>This parameter is used to specify which columns should be imported from the file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/person_info_v2.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+            <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Birthdate&#39;</span><span class="p">,</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Birthdate</th>
+      <th>State</th>
+      <th>Age</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Amy</th>
+      <td>10/25/1972</td>
+      <td>NY</td>
+      <td>34</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>Joe</th>
+      <td>2/5/2010</td>
+      <td>NJ</td>
+      <td>21</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <th>Mia</th>
+      <td>10/23/2015</td>
+      <td>AZ</td>
+      <td>67</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <td>11/6/1983</td>
+      <td>FL</td>
+      <td>19</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>Liz</th>
+      <td>4/19/1994</td>
+      <td>CA</td>
+      <td>29</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>John</th>
+      <td>8/29/2023</td>
+      <td>OH</td>
+      <td>34</td>
+      <td>170</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
 </section>
 <section id="read-excel">
 <h2>read_excel()<a class="headerlink" href="#read-excel" title="Permalink to this heading">#</a></h2>
+<p>It is similar to the read_csv() method but is used to import data from Excel files.</p>
 </section>
 <section id="to-csv">
 <h2>to_csv()<a class="headerlink" href="#to-csv" title="Permalink to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html">to_csv()</a> method is used to write a DataFrame to a comma-separated values (CSV) file.</p>
+<p>The file path is passed as a string to the to_csv() function, including the file name and its extension.</p>
+<p>In the following code, the DataFrame df is saved as a CSV file named countries.csv inside the sample_files folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="s1">&#39;Japan&#39;</span><span class="p">],</span>
+                 <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Continent&#39;</span><span class="p">,</span> <span class="s1">&#39;Company&#39;</span><span class="p">],</span>
+                 <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;Carrefour&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Europe&#39;</span><span class="p">,</span> <span class="s1">&#39;Siemens&#39;</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;Apple&#39;</span><span class="p">],</span>
+                         <span class="p">[</span><span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="s1">&#39;Sony&#39;</span><span class="p">]])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Continent</th>
+      <th>Company</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>France</th>
+      <td>Europe</td>
+      <td>Carrefour</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>Europe</td>
+      <td>Siemens</td>
+    </tr>
+    <tr>
+      <th>North America</th>
+      <td>USA</td>
+      <td>Apple</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>Asia</td>
+      <td>Sony</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/countries.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="A screenshot of an Excel file containing index, 2 columns and 4 rows of data." src="_images/csv1.png" /></p>
+<section id="index">
+<h3>index<a class="headerlink" href="#index" title="Permalink to this heading">#</a></h3>
+<p>Set the index parameter False to prevent the DataFrame’s index from being written to the output file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/countries.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="A screenshot of an Excel file containing 2 columns and 4 rows of data." src="_images/csv2.png" /></p>
+</section>
+<section id="columns">
+<h3>columns<a class="headerlink" href="#columns" title="Permalink to this heading">#</a></h3>
+<p>Specifies which columns of the DataFrame should be written to the output file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/countries.csv&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Company&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="A screenshot of an Excel file containing 2 columns and 4 rows of data." src="_images/csv3.png" /></p>
+</section>
+<section id="id1">
+<h3>header<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Specifies whether to write column labels to the output file. It can also accept a list of custom labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/countries.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="A screenshot of an Excel file containing 2 columns and 4 rows of data." src="_images/csv4.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sample_files/countries.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CONTINENT&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPANY&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="A screenshot of an Excel file containing 2 columns and 4 rows of data." src="_images/csv5.png" /></p>
+</section>
 </section>
 <section id="to-excel">
 <h2>to_excel()<a class="headerlink" href="#to-excel" title="Permalink to this heading">#</a></h2>
+<p>It is similar to the to_csv() method but is used to save data as an Excel files.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -485,9 +1462,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-csv">read_csv()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-csv">read_csv()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-col">index_col</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parse-dates">parse_dates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#header">header</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usecols">usecols</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-excel">read_excel()</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-csv">to_csv()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-csv">to_csv()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index">index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#columns">columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">header</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-excel">to_excel()</a></li>
 </ul>
   </nav></div>

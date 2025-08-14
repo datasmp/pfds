@@ -432,6 +432,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linspace">linspace()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#round">round()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where">where()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select">select()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot">dot()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross">cross()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeros">zeros()</a></li>
@@ -1716,6 +1717,27 @@ Shape    : (2, 3)
 </div>
 </div>
 </section>
+<section id="select">
+<h3>select()<a class="headerlink" href="#select" title="Permalink to this heading">#</a></h3>
+<p>The numpy.select() function selects elements in choicelist, depending on condition(s).</p>
+<ul class="simple">
+<li><p>If the condition is True, it returns the corresponding value in the choicelist.</p></li>
+<li><p>Its syntax is numpy.select(condlist, choicelist)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;a&#39;, dtype=&#39;&lt;U3&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="dot">
 <h3>dot()<a class="headerlink" href="#dot" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">dot()</span></code> method returns the dot product of two vectors, which is the sum of their componentwise products.</p>
@@ -1813,7 +1835,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
 </pre></div>
 </div>
 </div>
@@ -1826,7 +1848,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 1, 3, 1, 3, 1, 2, 2, 1, 2])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 2, 1, 2, 2, 1, 3, 3, 1])
 </pre></div>
 </div>
 </div>
@@ -1839,11 +1861,11 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2, 3, 3, 3, 1, 1, 1],
-       [3, 1, 2, 1, 2, 2, 2],
-       [3, 2, 3, 2, 1, 2, 1],
-       [1, 3, 2, 3, 3, 3, 1],
-       [1, 1, 2, 3, 2, 2, 1]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3, 3, 1, 2, 3, 3, 1],
+       [3, 1, 1, 3, 2, 1, 2],
+       [1, 3, 1, 3, 2, 1, 1],
+       [1, 1, 1, 1, 3, 3, 2],
+       [2, 3, 2, 3, 2, 2, 3]])
 </pre></div>
 </div>
 </div>
@@ -1860,7 +1882,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f99e156a26377f7b4f60217cadb42bd82979b76b45b83c5abf94e62a45045877.png" src="_images/f99e156a26377f7b4f60217cadb42bd82979b76b45b83c5abf94e62a45045877.png" />
+<img alt="_images/9132aa5d92d2f9c4814ccd468b12c1af7e010b33cc67ec50e35419d2d2e4f89d.png" src="_images/9132aa5d92d2f9c4814ccd468b12c1af7e010b33cc67ec50e35419d2d2e4f89d.png" />
 </div>
 </div>
 </section>
@@ -1879,7 +1901,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.521378572558436
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4833583569901593
 </pre></div>
 </div>
 </div>
@@ -1892,8 +1914,8 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.56066517, 5.22535332, 5.24552192, 6.03018811, 5.06288326,
-       5.35124977, 6.02815072, 5.157794  , 6.67908905, 6.54600948])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.93958109, 5.9098756 , 6.71902334, 6.87653921, 5.66234391,
+       6.31633581, 5.3674959 , 6.62699153, 5.21734002, 6.07325553])
 </pre></div>
 </div>
 </div>
@@ -1906,8 +1928,8 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[6.56140082, 6.92053426, 6.16649529],
-       [5.64901753, 5.54592537, 6.85604582]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.66793726, 5.48120079, 6.46718961],
+       [5.18870794, 6.94859288, 5.650964  ]])
 </pre></div>
 </div>
 </div>
@@ -1925,7 +1947,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.121122482767956
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31374383274018963
 </pre></div>
 </div>
 </div>
@@ -1938,8 +1960,8 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.36585313, 0.72715249, 0.08761861, 0.58776094, 0.53115739,
-       0.40199229, 0.37792171, 0.2650633 , 0.99555463, 0.48677902])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.94268858, 0.0792644 , 0.94616421, 0.65958059, 0.91852409,
+       0.71114999, 0.35884285, 0.16633063, 0.65666641, 0.95769996])
 </pre></div>
 </div>
 </div>
@@ -1952,8 +1974,8 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.30567989, -1.53816314,  0.39595457],
-       [-0.13773966, -1.00887225,  0.89008529]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.65196966, -0.35802709,  0.04019786],
+       [-0.26987366,  0.83463569,  1.49766058]])
 </pre></div>
 </div>
 </div>
@@ -1970,7 +1992,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/802a591882932c39d0e396f23780778ad4dcdd3db6415b463eddb935b6573025.png" src="_images/802a591882932c39d0e396f23780778ad4dcdd3db6415b463eddb935b6573025.png" />
+<img alt="_images/a3169fc00e729bc82b41e77c15ebcc1d811c3e4fdb02a9837dcd7948a5fc0512.png" src="_images/a3169fc00e729bc82b41e77c15ebcc1d811c3e4fdb02a9837dcd7948a5fc0512.png" />
 </div>
 </div>
 </section>
@@ -1989,8 +2011,8 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;b&#39;, &#39;b&#39;, &#39;c&#39;],
-       [&#39;c&#39;, &#39;b&#39;, &#39;a&#39;]], dtype=&#39;&lt;U1&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;c&#39;, &#39;b&#39;, &#39;a&#39;],
+       [&#39;e&#39;, &#39;a&#39;, &#39;a&#39;]], dtype=&#39;&lt;U1&#39;)
 </pre></div>
 </div>
 </div>
@@ -2003,8 +2025,8 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;d&#39;, &#39;b&#39;],
-       [&#39;a&#39;, &#39;e&#39;]], dtype=&#39;&lt;U1&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;d&#39;, &#39;c&#39;],
+       [&#39;b&#39;, &#39;a&#39;]], dtype=&#39;&lt;U1&#39;)
 </pre></div>
 </div>
 </div>
@@ -2025,7 +2047,7 @@ Shape    : (2, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7191398101957068
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5327401753473313
 </pre></div>
 </div>
 </div>
@@ -2498,6 +2520,7 @@ Shape    : (2, 3)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linspace">linspace()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#round">round()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where">where()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select">select()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot">dot()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross">cross()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeros">zeros()</a></li>
